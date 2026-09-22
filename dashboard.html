@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      :root {
+        --bg: #020617;
+        --panel: #111827;
+        --panel-light: #1f2937;
+        --border: rgba(148, 163, 184, 0.3);
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #38bdf8;
+        --danger: #ef4444;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #020617, #111827 50%, #0f172a);
+        font-family: Arial, sans-serif;
+        color: var(--text);
+      }
+
+      .panel {
+        width: min(640px, 92vw);
+        background: rgba(17,24,39,0.95);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 22px 50px rgba(15, 23, 42, 0.65);
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 2rem;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .actions {
+        margin-top: 1.5rem;
+      }
+
+      button {
+        border: none;
+        border-radius: 10px;
+        padding: 0.9rem 1.3rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--primary);
+        color: #082f49;
+      }
+
+      button:hover { background: #7dd3fc; }
+
+      .status {
+        margin-top: 1rem;
+        min-height: 24px;
+        color: #86efac;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Dashboard</h1>
+      <p>You are signed in successfully.</p>
+      <p id="userEmail">Loading user info...</p>
+      <div class="actions">
+        <button id="signOutBtn" type="button">Sign out</button>
+      </div>
+      <div id="status" class="status" aria-live="polite"></div>
+    </div>
+
+    <script>
+      const supabaseUrl = 'https://ezjfyyoguyknxepjfcrs.supabase.co';
+      const supabaseKey = 'sb_publishable_pRj6SP-YfxQFwOxRdXtotw_O7K7TtTX';
+      const supabase = supabaseJs.createClient(supabaseUrl, supabaseKey);
+
+      const userEmail = document.getElementById('userEmail');
+      const signOutBtn = document.getElementById('signOutBtn');
+      const status = document.getElementById('status');
+
+      async function bootstrap() {
+        const { data: { session }, error } = await supabase.auth.getSession();
+
+        if (error || !session) {
+          window.location.href = 'login.htmI';
+          return;
+        }
+
+        userEmail.textContent = 'Signed in as: ' + (session.user.email || 'Unknown user');
+      }
+
+      signOutBtn.addEventListener('click', async () => {
+        status.textContent = 'Signing out...';
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+          status.textContent = error.message;
+          return;
+        }
+
+        window.location.href = 'login.htmI';
+      });
+
+      bootstrap();
+    </script>
+  </body>
+</html>

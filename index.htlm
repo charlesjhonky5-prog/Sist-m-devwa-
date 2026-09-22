@@ -1,1 +1,37 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+      }
+      .message {
+        text-align: center;
+        padding: 2rem 3rem;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+      }
+      a {
+        color: #7dd3fc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message">
+      <h1>Loading app...</h1>
+      <p><a href="login.htmI">Go to login page</a></p>
+    </div>
+    <script>
+      window.location.replace('login.htmI');
+    </script>
+  </body>
+</html>
