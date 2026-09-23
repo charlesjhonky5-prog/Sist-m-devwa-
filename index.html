@@ -21,7 +21,7 @@ body{
 header{
   background:#1769aa;
   color:white;
-  padding:20px;
+  padding:22px 15px;
   text-align:center;
 }
 
@@ -48,8 +48,12 @@ nav button{
   cursor:pointer;
 }
 
+nav button:hover{
+  opacity:.9;
+}
+
 main{
-  max-width:1000px;
+  max-width:1100px;
   margin:20px auto;
   padding:15px;
 }
@@ -70,7 +74,7 @@ main{
   box-shadow:0 2px 8px #ddd;
 }
 
-input, textarea, select{
+input,textarea,select{
   width:100%;
   padding:12px;
   margin:8px 0 15px;
@@ -82,19 +86,88 @@ input, textarea, select{
   background:#1769aa;
   color:white;
   border:none;
-  padding:12px 18px;
+  padding:10px 15px;
   border-radius:6px;
   cursor:pointer;
+  margin:3px;
 }
 
 .danger{
   background:#c62828;
 }
 
+.edit{
+  background:#ef8f00;
+}
+
+.success{
+  background:#2e7d32;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.stat{
+  background:white;
+  padding:25px;
+  text-align:center;
+  border-radius:10px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.stat h2{
+  font-size:32px;
+  color:#1769aa;
+  margin-bottom:8px;
+}
+
+.item{
+  border:1px solid #ddd;
+  padding:15px;
+  margin:10px 0;
+  border-radius:8px;
+}
+
+.item h3{
+  margin-bottom:8px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  background:#eee;
+  font-size:13px;
+  margin-top:7px;
+}
+
+.empty{
+  color:#777;
+  padding:10px 0;
+}
+
 footer{
   text-align:center;
   padding:25px;
   color:#666;
+}
+
+@media(max-width:650px){
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  nav button{
+    width:100%;
+  }
+
+  .card{
+    padding:15px;
+  }
 }
 </style>
 </head>
@@ -103,7 +176,7 @@ footer{
 
 <header>
   <h1>📚 Système de Devoirs</h1>
-  <p>Une plateforme pour gérer les devoirs plus facilement</p>
+  <p>Plateforme de gestion scolaire</p>
 </header>
 
 <nav>
@@ -117,29 +190,57 @@ footer{
 
 <main>
 
+<!-- ACCUEIL -->
+
 <section id="accueil" class="section active">
+
   <div class="card">
     <h2>Bienvenue 👋</h2>
     <br>
-    <p>Bienvenue dans votre système de gestion des devoirs.</p>
+    <p>
+      Bienvenue dans votre système de gestion des devoirs.
+    </p>
     <br>
-    <p>Cette plateforme permet de gérer les élèves, les devoirs, les matières et les résultats.</p>
+    <p>
+      Gérez les élèves, les devoirs et les matières
+      depuis une seule plateforme.
+    </p>
   </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <h2 id="totalEleves">0</h2>
+      <p>👨‍🎓 Élèves</p>
+    </div>
+
+    <div class="stat">
+      <h2 id="totalDevoirs">0</h2>
+      <p>📝 Devoirs</p>
+    </div>
+
+    <div class="stat">
+      <h2 id="totalMatieres">0</h2>
+      <p>📚 Matières</p>
+    </div>
+
+  </div>
+
 </section>
 
+
+<!-- DEVOIRS -->
+
 <section id="devoirs" class="section">
+
   <div class="card">
+
     <h2>📝 Ajouter un devoir</h2>
 
-    <input id="titre" type="text" placeholder="Titre du devoir">
+    <input id="titre" type="text"
+      placeholder="Titre du devoir">
 
     <select id="matiere">
-      <option>Mathématiques</option>
-      <option>Sciences sociales</option>
-      <option>Français</option>
-      <option>Physique</option>
-      <option>Chimie</option>
-      <option>Biologie</option>
     </select>
 
     <input id="date" type="date">
@@ -150,202 +251,879 @@ footer{
     <button class="action" onclick="ajouterDevoir()">
       ➕ Ajouter le devoir
     </button>
+
   </div>
 
+
   <div class="card">
+
     <h2>📋 Liste des devoirs</h2>
+
+    <input id="rechercheDevoir"
+      type="text"
+      placeholder="🔎 Rechercher un devoir..."
+      oninput="afficherDevoirs()">
+
     <div id="listeDevoirs"></div>
+
   </div>
+
 </section>
 
+
+<!-- ELEVES -->
+
 <section id="eleves" class="section">
+
   <div class="card">
+
     <h2>👨‍🎓 Gestion des élèves</h2>
 
-    <input id="nomEleve" type="text" placeholder="Nom de l'élève">
-    <input id="classeEleve" type="text" placeholder="Classe">
+    <input id="nomEleve"
+      type="text"
+      placeholder="Nom complet de l'élève">
+
+    <input id="classeEleve"
+      type="text"
+      placeholder="Classe">
 
     <button class="action" onclick="ajouterEleve()">
       ➕ Ajouter l'élève
     </button>
+
   </div>
 
+
   <div class="card">
-    <h2>Liste des élèves</h2>
+
+    <h2>📋 Liste des élèves</h2>
+
+    <input id="rechercheEleve"
+      type="text"
+      placeholder="🔎 Rechercher un élève..."
+      oninput="afficherEleves()">
+
     <div id="listeEleves"></div>
+
   </div>
+
 </section>
+
+
+<!-- PROFESSEURS -->
 
 <section id="professeurs" class="section">
+
   <div class="card">
+
     <h2>👨‍🏫 Professeurs</h2>
-    <p>Gestion des enseignants de l'établissement.</p>
+
+    <p>
+      La gestion des professeurs pourra être ajoutée
+      dans la prochaine étape.
+    </p>
+
   </div>
+
 </section>
+
+
+<!-- MATIERES -->
 
 <section id="matieres" class="section">
+
   <div class="card">
-    <h2>📚 Matières</h2>
-    <ul>
-      <li>Mathématiques</li>
-      <li>Français</li>
-      <li>Sciences sociales</li>
-      <li>Physique</li>
-      <li>Chimie</li>
-      <li>Biologie</li>
-    </ul>
+
+    <h2>📚 Ajouter une matière</h2>
+
+    <input id="nomMatiere"
+      type="text"
+      placeholder="Nom de la matière">
+
+    <button class="action" onclick="ajouterMatiere()">
+      ➕ Ajouter la matière
+    </button>
+
   </div>
+
+
+  <div class="card">
+
+    <h2>📋 Liste des matières</h2>
+
+    <div id="listeMatieres"></div>
+
+  </div>
+
 </section>
 
+
+<!-- RESULTATS -->
+
 <section id="resultats" class="section">
+
   <div class="card">
+
     <h2>📊 Résultats</h2>
-    <p>La gestion des notes et des résultats sera disponible ici.</p>
+
+    <p>
+      Le système de notes sera ajouté dans une prochaine étape.
+    </p>
+
   </div>
+
 </section>
 
 </main>
+
 
 <footer>
   © 2026 - Système de Devoirs
 </footer>
 
+
 <script>
 
+/* =========================
+   NAVIGATION
+========================= */
+
 function showSection(id){
-  document.querySelectorAll('.section').forEach(function(section){
-    section.classList.remove('active');
-  });
 
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.section')
+    .forEach(function(section){
+      section.classList.remove('active');
+    });
+
+  document.getElementById(id)
+    .classList.add('active');
 }
 
-function ajouterDevoir(){
 
-  let titre = document.getElementById("titre").value;
-  let matiere = document.getElementById("matiere").value;
-  let date = document.getElementById("date").value;
-  let description = document.getElementById("description").value;
+/* =========================
+   DONNEES
+========================= */
 
-  if(titre === ""){
-    alert("Veuillez entrer le titre du devoir.");
+let eleves =
+  JSON.parse(localStorage.getItem("eleves") || "[]");
+
+let devoirs =
+  JSON.parse(localStorage.getItem("devoirs") || "[]");
+
+let matieres =
+  JSON.parse(localStorage.getItem("matieres") || "[]");
+
+
+/* =========================
+   MATIERES PAR DEFAUT
+========================= */
+
+if(matieres.length === 0){
+
+  matieres = [
+    "Mathématiques",
+    "Français",
+    "Sciences sociales",
+    "Physique",
+    "Chimie",
+    "Biologie"
+  ];
+
+  sauvegarderMatieres();
+}
+
+
+/* =========================
+   SAUVEGARDE
+========================= */
+
+function sauvegarderEleves(){
+
+  localStorage.setItem(
+    "eleves",
+    JSON.stringify(eleves)
+  );
+}
+
+
+function sauvegarderDevoirs(){
+
+  localStorage.setItem(
+    "devoirs",
+    JSON.stringify(devoirs)
+  );
+}
+
+
+function sauvegarderMatieres(){
+
+  localStorage.setItem(
+    "matieres",
+    JSON.stringify(matieres)
+  );
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function mettreAJourDashboard(){
+
+  document.getElementById("totalEleves")
+    .textContent = eleves.length;
+
+  document.getElementById("totalDevoirs")
+    .textContent = devoirs.length;
+
+  document.getElementById("totalMatieres")
+    .textContent = matieres.length;
+}
+
+
+/* =========================
+   MATIERES SELECT
+========================= */
+
+function chargerMatieres(){
+
+  let select =
+    document.getElementById("matiere");
+
+  select.innerHTML = "";
+
+  matieres.forEach(function(matiere){
+
+    let option =
+      document.createElement("option");
+
+    option.value = matiere;
+    option.textContent = matiere;
+
+    select.appendChild(option);
+
+  });
+}
+
+
+/* =========================
+   AJOUTER MATIERE
+========================= */
+
+function ajouterMatiere(){
+
+  let input =
+    document.getElementById("nomMatiere");
+
+  let nom =
+    input.value.trim();
+
+  if(nom === ""){
+
+    alert("Veuillez entrer le nom de la matière.");
+
     return;
   }
 
-  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
+  let existe =
+    matieres.some(function(m){
+      return m.toLowerCase() === nom.toLowerCase();
+    });
 
-  devoirs.push({
-    titre:titre,
-    matiere:matiere,
-    date:date,
-    description:description
-  });
+  if(existe){
 
-  localStorage.setItem("devoirs", JSON.stringify(devoirs));
+    alert("Cette matière existe déjà.");
 
-  afficherDevoirs();
-
-  document.getElementById("titre").value="";
-  document.getElementById("date").value="";
-  document.getElementById("description").value="";
-
-  alert("Devoir ajouté avec succès !");
-}
-
-function afficherDevoirs(){
-
-  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
-
-  let liste = document.getElementById("listeDevoirs");
-
-  if(devoirs.length === 0){
-    liste.innerHTML="<p>Aucun devoir enregistré.</p>";
     return;
   }
 
-  liste.innerHTML="";
+  matieres.push(nom);
 
-  devoirs.forEach(function(devoir,index){
+  sauvegarderMatieres();
+
+  input.value = "";
+
+  afficherMatieres();
+
+  chargerMatieres();
+
+  mettreAJourDashboard();
+
+  alert("Matière ajoutée avec succès !");
+}
+
+
+/* =========================
+   AFFICHER MATIERES
+========================= */
+
+function afficherMatieres(){
+
+  let liste =
+    document.getElementById("listeMatieres");
+
+  liste.innerHTML = "";
+
+  if(matieres.length === 0){
+
+    liste.innerHTML =
+      '<p class="empty">Aucune matière enregistrée.</p>';
+
+    return;
+  }
+
+  matieres.forEach(function(matiere,index){
 
     liste.innerHTML += `
-      <div style="border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:8px;">
-        <h3>${devoir.titre}</h3>
-        <p><b>Matière :</b> ${devoir.matiere}</p>
-        <p><b>Date :</b> ${devoir.date || "Non définie"}</p>
-        <p>${devoir.description}</p>
-        <br>
-        <button class="action danger" onclick="supprimerDevoir(${index})">
+
+      <div class="item">
+
+        <h3>📚 ${echapper(matiere)}</h3>
+
+        <button
+          class="action danger"
+          onclick="supprimerMatiere(${index})">
+
           Supprimer
+
         </button>
+
       </div>
+
     `;
+
   });
 }
 
-function supprimerDevoir(index){
 
-  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
+/* =========================
+   SUPPRIMER MATIERE
+========================= */
 
-  devoirs.splice(index,1);
+function supprimerMatiere(index){
 
-  localStorage.setItem("devoirs", JSON.stringify(devoirs));
+  if(!confirm(
+    "Voulez-vous vraiment supprimer cette matière ?"
+  )){
+    return;
+  }
 
-  afficherDevoirs();
+  matieres.splice(index,1);
+
+  sauvegarderMatieres();
+
+  afficherMatieres();
+
+  chargerMatieres();
+
+  mettreAJourDashboard();
 }
+
+
+/* =========================
+   AJOUTER ELEVE
+========================= */
 
 function ajouterEleve(){
 
-  let nom = document.getElementById("nomEleve").value;
-  let classe = document.getElementById("classeEleve").value;
+  let nom =
+    document.getElementById("nomEleve")
+      .value.trim();
+
+  let classe =
+    document.getElementById("classeEleve")
+      .value.trim();
 
   if(nom === ""){
+
     alert("Veuillez entrer le nom de l'élève.");
+
     return;
   }
 
-  let eleves = JSON.parse(localStorage.getItem("eleves") || "[]");
-
   eleves.push({
-    nom:nom,
-    classe:classe
+
+    id: Date.now(),
+
+    nom: nom,
+
+    classe: classe
+
   });
 
-  localStorage.setItem("eleves", JSON.stringify(eleves));
+  sauvegarderEleves();
+
+  document.getElementById("nomEleve").value = "";
+
+  document.getElementById("classeEleve").value = "";
 
   afficherEleves();
 
-  document.getElementById("nomEleve").value="";
-  document.getElementById("classeEleve").value="";
+  mettreAJourDashboard();
 
   alert("Élève ajouté avec succès !");
 }
 
+
+/* =========================
+   AFFICHER ELEVES
+========================= */
+
 function afficherEleves(){
 
-  let eleves = JSON.parse(localStorage.getItem("eleves") || "[]");
+  let recherche =
+    document.getElementById("rechercheEleve")
+      .value.toLowerCase().trim();
 
-  let liste = document.getElementById("listeEleves");
+  let liste =
+    document.getElementById("listeEleves");
 
-  if(eleves.length === 0){
-    liste.innerHTML="<p>Aucun élève enregistré.</p>";
+  liste.innerHTML = "";
+
+  let resultats =
+    eleves.filter(function(eleve){
+
+      return (
+        eleve.nom.toLowerCase().includes(recherche) ||
+        (eleve.classe || "")
+          .toLowerCase()
+          .includes(recherche)
+      );
+
+    });
+
+
+  if(resultats.length === 0){
+
+    liste.innerHTML =
+      '<p class="empty">Aucun élève trouvé.</p>';
+
     return;
   }
 
-  liste.innerHTML="";
 
-  eleves.forEach(function(eleve,index){
+  resultats.forEach(function(eleve){
+
+    let vraiIndex =
+      eleves.findIndex(function(e){
+        return e.id === eleve.id;
+      });
 
     liste.innerHTML += `
-      <div style="border:1px solid #ddd;padding:12px;margin:8px 0;border-radius:8px;">
-        <b>${eleve.nom}</b>
-        <p>Classe : ${eleve.classe}</p>
+
+      <div class="item">
+
+        <h3>👨‍🎓 ${echapper(eleve.nom)}</h3>
+
+        <p>
+          <b>Classe :</b>
+          ${echapper(eleve.classe || "Non définie")}
+        </p>
+
+        <br>
+
+        <button
+          class="action edit"
+          onclick="modifierEleve(${vraiIndex})">
+
+          ✏️ Modifier
+
+        </button>
+
+        <button
+          class="action danger"
+          onclick="supprimerEleve(${vraiIndex})">
+
+          🗑️ Supprimer
+
+        </button>
+
       </div>
+
     `;
+
   });
 }
 
-afficherDevoirs();
+
+/* =========================
+   MODIFIER ELEVE
+========================= */
+
+function modifierEleve(index){
+
+  let nouveauNom =
+    prompt(
+      "Nouveau nom :",
+      eleves[index].nom
+    );
+
+  if(nouveauNom === null){
+    return;
+  }
+
+  nouveauNom =
+    nouveauNom.trim();
+
+  if(nouveauNom === ""){
+    alert("Le nom ne peut pas être vide.");
+    return;
+  }
+
+
+  let nouvelleClasse =
+    prompt(
+      "Nouvelle classe :",
+      eleves[index].classe
+    );
+
+  if(nouvelleClasse === null){
+    return;
+  }
+
+
+  eleves[index].nom =
+    nouveauNom;
+
+  eleves[index].classe =
+    nouvelleClasse.trim();
+
+  sauvegarderEleves();
+
+  afficherEleves();
+
+  alert("Élève modifié avec succès !");
+}
+
+
+/* =========================
+   SUPPRIMER ELEVE
+========================= */
+
+function supprimerEleve(index){
+
+  if(!confirm(
+    "Voulez-vous vraiment supprimer cet élève ?"
+  )){
+    return;
+  }
+
+  eleves.splice(index,1);
+
+  sauvegarderEleves();
+
+  afficherEleves();
+
+  mettreAJourDashboard();
+
+}
+
+
+/* =========================
+   AJOUTER DEVOIR
+========================= */
+
+function ajouterDevoir(){
+
+  let titre =
+    document.getElementById("titre")
+      .value.trim();
+
+  let matiere =
+    document.getElementById("matiere")
+      .value;
+
+  let date =
+    document.getElementById("date")
+      .value;
+
+  let description =
+    document.getElementById("description")
+      .value.trim();
+
+
+  if(titre === ""){
+
+    alert(
+      "Veuillez entrer le titre du devoir."
+    );
+
+    return;
+  }
+
+
+  devoirs.push({
+
+    id: Date.now(),
+
+    titre: titre,
+
+    matiere: matiere,
+
+    date: date,
+
+    description: description
+
+  });
+
+
+  sauvegarderDevoirs();
+
+  afficherDevoirs();
+
+  mettreAJourDashboard();
+
+
+  document.getElementById("titre").value = "";
+
+  document.getElementById("date").value = "";
+
+  document.getElementById("description").value = "";
+
+
+  alert("Devoir ajouté avec succès !");
+}
+
+
+/* =========================
+   AFFICHER DEVOIRS
+========================= */
+
+function afficherDevoirs(){
+
+  let recherche =
+    document.getElementById("rechercheDevoir")
+      .value.toLowerCase().trim();
+
+  let liste =
+    document.getElementById("listeDevoirs");
+
+  liste.innerHTML = "";
+
+
+  let resultats =
+    devoirs.filter(function(devoir){
+
+      return (
+        devoir.titre.toLowerCase()
+          .includes(recherche) ||
+
+        devoir.matiere.toLowerCase()
+          .includes(recherche) ||
+
+        (devoir.description || "")
+          .toLowerCase()
+          .includes(recherche)
+      );
+
+    });
+
+
+  if(resultats.length === 0){
+
+    liste.innerHTML =
+      '<p class="empty">Aucun devoir trouvé.</p>';
+
+    return;
+  }
+
+
+  resultats.forEach(function(devoir){
+
+    let vraiIndex =
+      devoirs.findIndex(function(d){
+        return d.id === devoir.id;
+      });
+
+
+    let statut = "📅 À venir";
+
+    if(devoir.date){
+
+      let aujourdHui =
+        new Date().toISOString().split("T")[0];
+
+      if(devoir.date < aujourdHui){
+        statut = "⚠️ Date dépassée";
+      }
+
+    }
+
+
+    liste.innerHTML += `
+
+      <div class="item">
+
+        <h3>📝 ${echapper(devoir.titre)}</h3>
+
+        <p>
+          <b>Matière :</b>
+          ${echapper(devoir.matiere)}
+        </p>
+
+        <p>
+          <b>Date :</b>
+          ${devoir.date || "Non définie"}
+        </p>
+
+        <span class="badge">
+          ${statut}
+        </span>
+
+        <br><br>
+
+        <p>
+          ${echapper(
+            devoir.description ||
+            "Aucune description."
+          )}
+        </p>
+
+        <br>
+
+        <button
+          class="action edit"
+          onclick="modifierDevoir(${vraiIndex})">
+
+          ✏️ Modifier
+
+        </button>
+
+        <button
+          class="action danger"
+          onclick="supprimerDevoir(${vraiIndex})">
+
+          🗑️ Supprimer
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+}
+
+
+/* =========================
+   MODIFIER DEVOIR
+========================= */
+
+function modifierDevoir(index){
+
+  let devoir =
+    devoirs[index];
+
+
+  let titre =
+    prompt(
+      "Titre du devoir :",
+      devoir.titre
+    );
+
+  if(titre === null){
+    return;
+  }
+
+  titre =
+    titre.trim();
+
+  if(titre === ""){
+    alert("Le titre ne peut pas être vide.");
+    return;
+  }
+
+
+  let date =
+    prompt(
+      "Date du devoir (AAAA-MM-JJ) :",
+      devoir.date
+    );
+
+  if(date === null){
+    return;
+  }
+
+
+  let description =
+    prompt(
+      "Description :",
+      devoir.description
+    );
+
+  if(description === null){
+    return;
+  }
+
+
+  devoir.titre =
+    titre;
+
+  devoir.date =
+    date.trim();
+
+  devoir.description =
+    description.trim();
+
+
+  sauvegarderDevoirs();
+
+  afficherDevoirs();
+
+}
+
+
+/* =========================
+   SUPPRIMER DEVOIR
+========================= */
+
+function supprimerDevoir(index){
+
+  if(!confirm(
+    "Voulez-vous vraiment supprimer ce devoir ?"
+  )){
+    return;
+  }
+
+  devoirs.splice(index,1);
+
+  sauvegarderDevoirs();
+
+  afficherDevoirs();
+
+  mettreAJourDashboard();
+}
+
+
+/* =========================
+   SECURITE HTML
+========================= */
+
+function echapper(texte){
+
+  let div =
+    document.createElement("div");
+
+  div.textContent =
+    texte;
+
+  return div.innerHTML;
+}
+
+
+/* =========================
+   INITIALISATION
+========================= */
+
+chargerMatieres();
+
+afficherMatieres();
+
 afficherEleves();
+
+afficherDevoirs();
+
+mettreAJourDashboard();
 
 </script>
 
