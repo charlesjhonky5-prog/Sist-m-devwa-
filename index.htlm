@@ -1,37 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting...</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: white;
-      }
-      .message {
-        text-align: center;
-        padding: 2rem 3rem;
-        background: rgba(255, 255, 255, 0.06);
-        border-radius: 12px;
-      }
-      a {
-        color: #7dd3fc;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="message">
-      <h1>Loading app...</h1>
-      <p><a href="login.htmI">Go to login page</a></p>
-    </div>
-    <script>
-      window.location.replace('login.htmI');
-    </script>
-  </body>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistèm Devwa</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f9;
+  color:#222;
+}
+
+header{
+  background:#1769aa;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+header h1{
+  margin-bottom:8px;
+}
+
+nav{
+  background:white;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  padding:12px;
+  box-shadow:0 2px 6px #ccc;
+}
+
+nav button{
+  border:none;
+  background:#1769aa;
+  color:white;
+  padding:10px 15px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+main{
+  max-width:1000px;
+  margin:20px auto;
+  padding:15px;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:15px;
+  border-radius:10px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  margin:8px 0 15px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+.action{
+  background:#1769aa;
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.danger{
+  background:#c62828;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📚 Système de Devoirs</h1>
+  <p>Une plateforme pour gérer les devoirs plus facilement</p>
+</header>
+
+<nav>
+  <button onclick="showSection('accueil')">🏠 Accueil</button>
+  <button onclick="showSection('devoirs')">📝 Devoirs</button>
+  <button onclick="showSection('eleves')">👨‍🎓 Élèves</button>
+  <button onclick="showSection('professeurs')">👨‍🏫 Professeurs</button>
+  <button onclick="showSection('matieres')">📚 Matières</button>
+  <button onclick="showSection('resultats')">📊 Résultats</button>
+</nav>
+
+<main>
+
+<section id="accueil" class="section active">
+  <div class="card">
+    <h2>Bienvenue 👋</h2>
+    <br>
+    <p>Bienvenue dans votre système de gestion des devoirs.</p>
+    <br>
+    <p>Cette plateforme permet de gérer les élèves, les devoirs, les matières et les résultats.</p>
+  </div>
+</section>
+
+<section id="devoirs" class="section">
+  <div class="card">
+    <h2>📝 Ajouter un devoir</h2>
+
+    <input id="titre" type="text" placeholder="Titre du devoir">
+
+    <select id="matiere">
+      <option>Mathématiques</option>
+      <option>Sciences sociales</option>
+      <option>Français</option>
+      <option>Physique</option>
+      <option>Chimie</option>
+      <option>Biologie</option>
+    </select>
+
+    <input id="date" type="date">
+
+    <textarea id="description" rows="5"
+      placeholder="Description du devoir"></textarea>
+
+    <button class="action" onclick="ajouterDevoir()">
+      ➕ Ajouter le devoir
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>📋 Liste des devoirs</h2>
+    <div id="listeDevoirs"></div>
+  </div>
+</section>
+
+<section id="eleves" class="section">
+  <div class="card">
+    <h2>👨‍🎓 Gestion des élèves</h2>
+
+    <input id="nomEleve" type="text" placeholder="Nom de l'élève">
+    <input id="classeEleve" type="text" placeholder="Classe">
+
+    <button class="action" onclick="ajouterEleve()">
+      ➕ Ajouter l'élève
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Liste des élèves</h2>
+    <div id="listeEleves"></div>
+  </div>
+</section>
+
+<section id="professeurs" class="section">
+  <div class="card">
+    <h2>👨‍🏫 Professeurs</h2>
+    <p>Gestion des enseignants de l'établissement.</p>
+  </div>
+</section>
+
+<section id="matieres" class="section">
+  <div class="card">
+    <h2>📚 Matières</h2>
+    <ul>
+      <li>Mathématiques</li>
+      <li>Français</li>
+      <li>Sciences sociales</li>
+      <li>Physique</li>
+      <li>Chimie</li>
+      <li>Biologie</li>
+    </ul>
+  </div>
+</section>
+
+<section id="resultats" class="section">
+  <div class="card">
+    <h2>📊 Résultats</h2>
+    <p>La gestion des notes et des résultats sera disponible ici.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 - Système de Devoirs
+</footer>
+
+<script>
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(function(section){
+    section.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+}
+
+function ajouterDevoir(){
+
+  let titre = document.getElementById("titre").value;
+  let matiere = document.getElementById("matiere").value;
+  let date = document.getElementById("date").value;
+  let description = document.getElementById("description").value;
+
+  if(titre === ""){
+    alert("Veuillez entrer le titre du devoir.");
+    return;
+  }
+
+  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
+
+  devoirs.push({
+    titre:titre,
+    matiere:matiere,
+    date:date,
+    description:description
+  });
+
+  localStorage.setItem("devoirs", JSON.stringify(devoirs));
+
+  afficherDevoirs();
+
+  document.getElementById("titre").value="";
+  document.getElementById("date").value="";
+  document.getElementById("description").value="";
+
+  alert("Devoir ajouté avec succès !");
+}
+
+function afficherDevoirs(){
+
+  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
+
+  let liste = document.getElementById("listeDevoirs");
+
+  if(devoirs.length === 0){
+    liste.innerHTML="<p>Aucun devoir enregistré.</p>";
+    return;
+  }
+
+  liste.innerHTML="";
+
+  devoirs.forEach(function(devoir,index){
+
+    liste.innerHTML += `
+      <div style="border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:8px;">
+        <h3>${devoir.titre}</h3>
+        <p><b>Matière :</b> ${devoir.matiere}</p>
+        <p><b>Date :</b> ${devoir.date || "Non définie"}</p>
+        <p>${devoir.description}</p>
+        <br>
+        <button class="action danger" onclick="supprimerDevoir(${index})">
+          Supprimer
+        </button>
+      </div>
+    `;
+  });
+}
+
+function supprimerDevoir(index){
+
+  let devoirs = JSON.parse(localStorage.getItem("devoirs") || "[]");
+
+  devoirs.splice(index,1);
+
+  localStorage.setItem("devoirs", JSON.stringify(devoirs));
+
+  afficherDevoirs();
+}
+
+function ajouterEleve(){
+
+  let nom = document.getElementById("nomEleve").value;
+  let classe = document.getElementById("classeEleve").value;
+
+  if(nom === ""){
+    alert("Veuillez entrer le nom de l'élève.");
+    return;
+  }
+
+  let eleves = JSON.parse(localStorage.getItem("eleves") || "[]");
+
+  eleves.push({
+    nom:nom,
+    classe:classe
+  });
+
+  localStorage.setItem("eleves", JSON.stringify(eleves));
+
+  afficherEleves();
+
+  document.getElementById("nomEleve").value="";
+  document.getElementById("classeEleve").value="";
+
+  alert("Élève ajouté avec succès !");
+}
+
+function afficherEleves(){
+
+  let eleves = JSON.parse(localStorage.getItem("eleves") || "[]");
+
+  let liste = document.getElementById("listeEleves");
+
+  if(eleves.length === 0){
+    liste.innerHTML="<p>Aucun élève enregistré.</p>";
+    return;
+  }
+
+  liste.innerHTML="";
+
+  eleves.forEach(function(eleve,index){
+
+    liste.innerHTML += `
+      <div style="border:1px solid #ddd;padding:12px;margin:8px 0;border-radius:8px;">
+        <b>${eleve.nom}</b>
+        <p>Classe : ${eleve.classe}</p>
+      </div>
+    `;
+  });
+}
+
+afficherDevoirs();
+afficherEleves();
+
+</script>
+
+</body>
 </html>
