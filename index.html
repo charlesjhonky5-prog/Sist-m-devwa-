@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistèm Devwa</title>
+
+<title>Sistèm Lekòl</title>
 
 <style>
 *{
@@ -18,6 +19,7 @@ body{
   color:#222;
 }
 
+/* HEADER */
 header{
   background:#1769aa;
   color:white;
@@ -29,6 +31,7 @@ header h1{
   margin-bottom:8px;
 }
 
+/* NAVIGATION */
 nav{
   background:white;
   display:flex;
@@ -37,21 +40,25 @@ nav{
   gap:8px;
   padding:12px;
   box-shadow:0 2px 6px #ccc;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 nav button{
   border:none;
   background:#1769aa;
   color:white;
-  padding:10px 15px;
+  padding:10px 14px;
   border-radius:6px;
   cursor:pointer;
 }
 
 nav button:hover{
-  opacity:.9;
+  background:#0d4f83;
 }
 
+/* MAIN */
 main{
   max-width:1100px;
   margin:20px auto;
@@ -66,103 +73,181 @@ main{
   display:block;
 }
 
+/* CARD */
 .card{
   background:white;
   padding:20px;
-  margin-bottom:15px;
+  margin-bottom:18px;
   border-radius:10px;
   box-shadow:0 2px 8px #ddd;
 }
 
-input,textarea,select{
+.card h2{
+  margin-bottom:15px;
+}
+
+/* FORM */
+input,
+textarea,
+select{
   width:100%;
   padding:12px;
   margin:8px 0 15px;
   border:1px solid #ccc;
   border-radius:6px;
+  font-size:15px;
 }
 
+textarea{
+  resize:vertical;
+}
+
+/* BUTTONS */
 .action{
   background:#1769aa;
   color:white;
   border:none;
-  padding:10px 15px;
+  padding:11px 17px;
   border-radius:6px;
   cursor:pointer;
   margin:3px;
+}
+
+.action:hover{
+  opacity:.9;
 }
 
 .danger{
   background:#c62828;
 }
 
-.edit{
-  background:#ef8f00;
-}
-
 .success{
   background:#2e7d32;
 }
 
+.warning{
+  background:#ef6c00;
+}
+
+.gray{
+  background:#666;
+}
+
+/* DASHBOARD */
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
-  margin-top:20px;
+  margin-bottom:20px;
 }
 
 .stat{
   background:white;
-  padding:25px;
+  padding:22px;
   text-align:center;
   border-radius:10px;
   box-shadow:0 2px 8px #ddd;
 }
 
-.stat h2{
-  font-size:32px;
+.stat h3{
+  font-size:30px;
   color:#1769aa;
   margin-bottom:8px;
 }
 
+/* ITEMS */
 .item{
   border:1px solid #ddd;
   padding:15px;
   margin:10px 0;
   border-radius:8px;
+  background:#fafafa;
 }
 
 .item h3{
   margin-bottom:8px;
 }
 
+.item p{
+  margin:5px 0;
+}
+
+/* TABLE */
+.table-container{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,
+td{
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+}
+
+th{
+  background:#1769aa;
+  color:white;
+}
+
+/* BADGES */
 .badge{
   display:inline-block;
   padding:5px 9px;
   border-radius:15px;
-  background:#eee;
-  font-size:13px;
-  margin-top:7px;
+  font-size:12px;
+  color:white;
 }
 
-.empty{
-  color:#777;
-  padding:10px 0;
+.badge-green{
+  background:#2e7d32;
 }
 
+.badge-red{
+  background:#c62828;
+}
+
+.badge-orange{
+  background:#ef6c00;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
-  padding:25px;
+  padding:30px;
   color:#666;
 }
 
-@media(max-width:650px){
+/* MOBILE */
+@media(max-width:800px){
+
   .stats{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  nav{
+    position:static;
   }
 
   nav button{
-    width:100%;
+    flex:1 1 30%;
+  }
+}
+
+@media(max-width:500px){
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  nav button{
+    flex:1 1 45%;
+    font-size:13px;
   }
 
   .card{
@@ -175,133 +260,129 @@ footer{
 <body>
 
 <header>
-  <h1>📚 Système de Devoirs</h1>
-  <p>Plateforme de gestion scolaire</p>
+  <h1>📚 Sistèm Lekòl</h1>
+  <p>Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta</p>
 </header>
 
 <nav>
-  <button onclick="showSection('accueil')">🏠 Accueil</button>
-  <button onclick="showSection('devoirs')">📝 Devoirs</button>
-  <button onclick="showSection('eleves')">👨‍🎓 Élèves</button>
-  <button onclick="showSection('professeurs')">👨‍🏫 Professeurs</button>
-  <button onclick="showSection('matieres')">📚 Matières</button>
-  <button onclick="showSection('resultats')">📊 Résultats</button>
+  <button onclick="showSection('accueil')">🏠 Akèy</button>
+  <button onclick="showSection('eleves')">👨‍🎓 Elèv</button>
+  <button onclick="showSection('professeurs')">👨‍🏫 Pwofesè</button>
+  <button onclick="showSection('classes')">🏫 Klas</button>
+  <button onclick="showSection('matieres')">📚 Matyè</button>
+  <button onclick="showSection('devoirs')">📝 Devwa</button>
+  <button onclick="showSection('remises')">📥 Remèt</button>
+  <button onclick="showSection('resultats')">📊 Rezilta</button>
+  <button onclick="showSection('statistiques')">📈 Estatistik</button>
+  <button onclick="showSection('sauvegarde')">💾 Done</button>
 </nav>
 
 <main>
 
-<!-- ACCUEIL -->
+<!-- ================= AKÈY ================= -->
 
 <section id="accueil" class="section active">
 
   <div class="card">
-    <h2>Bienvenue 👋</h2>
-    <br>
+    <h2>👋 Byenveni</h2>
     <p>
-      Bienvenue dans votre système de gestion des devoirs.
-    </p>
-    <br>
-    <p>
-      Gérez les élèves, les devoirs et les matières
-      depuis une seule plateforme.
+      Byenveni nan sistèm jesyon lekòl la.
+      Soti isit la ou kapab jere tout enfòmasyon lekòl la.
     </p>
   </div>
 
   <div class="stats">
 
     <div class="stat">
-      <h2 id="totalEleves">0</h2>
-      <p>👨‍🎓 Élèves</p>
+      <h3 id="statEleves">0</h3>
+      <p>👨‍🎓 Elèv</p>
     </div>
 
     <div class="stat">
-      <h2 id="totalDevoirs">0</h2>
-      <p>📝 Devoirs</p>
+      <h3 id="statProfesseurs">0</h3>
+      <p>👨‍🏫 Pwofesè</p>
     </div>
 
     <div class="stat">
-      <h2 id="totalMatieres">0</h2>
-      <p>📚 Matières</p>
+      <h3 id="statClasses">0</h3>
+      <p>🏫 Klas</p>
+    </div>
+
+    <div class="stat">
+      <h3 id="statDevoirs">0</h3>
+      <p>📝 Devwa</p>
     </div>
 
   </div>
 
-</section>
-
-
-<!-- DEVOIRS -->
-
-<section id="devoirs" class="section">
-
   <div class="card">
+    <h2>⚡ Aksyon rapid</h2>
 
-    <h2>📝 Ajouter un devoir</h2>
+    <button class="action" onclick="showSection('eleves')">
+      ➕ Ajoute elèv
+    </button>
 
-    <input id="titre" type="text"
-      placeholder="Titre du devoir">
+    <button class="action" onclick="showSection('professeurs')">
+      ➕ Ajoute pwofesè
+    </button>
 
-    <select id="matiere">
-    </select>
+    <button class="action" onclick="showSection('classes')">
+      ➕ Ajoute klas
+    </button>
 
-    <input id="date" type="date">
-
-    <textarea id="description" rows="5"
-      placeholder="Description du devoir"></textarea>
-
-    <button class="action" onclick="ajouterDevoir()">
-      ➕ Ajouter le devoir
+    <button class="action" onclick="showSection('devoirs')">
+      ➕ Ajoute devwa
     </button>
 
   </div>
 
-
-  <div class="card">
-
-    <h2>📋 Liste des devoirs</h2>
-
-    <input id="rechercheDevoir"
-      type="text"
-      placeholder="🔎 Rechercher un devoir..."
-      oninput="afficherDevoirs()">
-
-    <div id="listeDevoirs"></div>
-
-  </div>
-
 </section>
 
 
-<!-- ELEVES -->
+<!-- ================= ELÈV ================= -->
 
 <section id="eleves" class="section">
 
   <div class="card">
 
-    <h2>👨‍🎓 Gestion des élèves</h2>
+    <h2>👨‍🎓 Jesyon Elèv</h2>
 
     <input id="nomEleve"
-      type="text"
-      placeholder="Nom complet de l'élève">
+           type="text"
+           placeholder="Non konplè elèv la">
 
-    <input id="classeEleve"
-      type="text"
-      placeholder="Classe">
+    <input id="ageEleve"
+           type="number"
+           placeholder="Laj">
+
+    <select id="classeEleve">
+      <option value="">Chwazi klas</option>
+    </select>
+
+    <input id="telephoneEleve"
+           type="text"
+           placeholder="Telefòn">
 
     <button class="action" onclick="ajouterEleve()">
-      ➕ Ajouter l'élève
+      ➕ Ajoute elèv
     </button>
 
   </div>
 
+  <div class="card">
+
+    <h2>🔎 Rechèch elèv</h2>
+
+    <input id="rechercheEleve"
+           type="text"
+           placeholder="Chèche pa non oswa klas..."
+           oninput="afficherEleves()">
+
+  </div>
 
   <div class="card">
 
-    <h2>📋 Liste des élèves</h2>
-
-    <input id="rechercheEleve"
-      type="text"
-      placeholder="🔎 Rechercher un élève..."
-      oninput="afficherEleves()">
+    <h2>📋 Lis elèv</h2>
 
     <div id="listeEleves"></div>
 
@@ -310,46 +391,97 @@ footer{
 </section>
 
 
-<!-- PROFESSEURS -->
+<!-- ================= PWOFESÈ ================= -->
 
 <section id="professeurs" class="section">
 
   <div class="card">
 
-    <h2>👨‍🏫 Professeurs</h2>
+    <h2>👨‍🏫 Jesyon Pwofesè</h2>
 
-    <p>
-      La gestion des professeurs pourra être ajoutée
-      dans la prochaine étape.
-    </p>
+    <input id="nomProfesseur"
+           type="text"
+           placeholder="Non konplè pwofesè a">
+
+    <input id="telephoneProfesseur"
+           type="text"
+           placeholder="Telefòn">
+
+    <input id="matiereProfesseur"
+           type="text"
+           placeholder="Matyè li anseye">
+
+    <button class="action" onclick="ajouterProfesseur()">
+      ➕ Ajoute pwofesè
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📋 Lis pwofesè</h2>
+
+    <div id="listeProfesseurs"></div>
 
   </div>
 
 </section>
 
 
-<!-- MATIERES -->
+<!-- ================= KLAS ================= -->
+
+<section id="classes" class="section">
+
+  <div class="card">
+
+    <h2>🏫 Jesyon Klas</h2>
+
+    <input id="nomClasse"
+           type="text"
+           placeholder="Egzanp: 7e AF">
+
+    <input id="anneeClasse"
+           type="text"
+           placeholder="Egzanp: 2026-2027">
+
+    <button class="action" onclick="ajouterClasse()">
+      ➕ Ajoute klas
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📋 Lis klas</h2>
+
+    <div id="listeClasses"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MATYÈ ================= -->
 
 <section id="matieres" class="section">
 
   <div class="card">
 
-    <h2>📚 Ajouter une matière</h2>
+    <h2>📚 Jesyon Matyè</h2>
 
     <input id="nomMatiere"
-      type="text"
-      placeholder="Nom de la matière">
+           type="text"
+           placeholder="Non matyè a">
 
     <button class="action" onclick="ajouterMatiere()">
-      ➕ Ajouter la matière
+      ➕ Ajoute matyè
     </button>
 
   </div>
 
-
   <div class="card">
 
-    <h2>📋 Liste des matières</h2>
+    <h2>📋 Lis matyè</h2>
 
     <div id="listeMatieres"></div>
 
@@ -358,17 +490,224 @@ footer{
 </section>
 
 
-<!-- RESULTATS -->
+<!-- ================= DEVWA ================= -->
+
+<section id="devoirs" class="section">
+
+  <div class="card">
+
+    <h2>📝 Ajoute yon devwa</h2>
+
+    <input id="titreDevoir"
+           type="text"
+           placeholder="Tit devwa a">
+
+    <select id="matiereDevoir">
+      <option value="">Chwazi matyè</option>
+    </select>
+
+    <select id="classeDevoir">
+      <option value="">Chwazi klas</option>
+    </select>
+
+    <input id="dateDevoir"
+           type="date">
+
+    <textarea id="descriptionDevoir"
+              rows="5"
+              placeholder="Deskripsyon devwa a"></textarea>
+
+    <button class="action" onclick="ajouterDevoir()">
+      ➕ Ajoute devwa
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>🔎 Rechèch devwa</h2>
+
+    <input id="rechercheDevoir"
+           type="text"
+           placeholder="Chèche devwa..."
+           oninput="afficherDevoirs()">
+
+  </div>
+
+  <div class="card">
+
+    <h2>📋 Lis devwa</h2>
+
+    <div id="listeDevoirs"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= REMÈT DEVWA ================= -->
+
+<section id="remises" class="section">
+
+  <div class="card">
+
+    <h2>📥 Suivi devwa</h2>
+
+    <select id="eleveRemise">
+      <option value="">Chwazi elèv</option>
+    </select>
+
+    <select id="devoirRemise">
+      <option value="">Chwazi devwa</option>
+    </select>
+
+    <select id="statutRemise">
+      <option value="Remèt">✅ Remèt</option>
+      <option value="Pa remèt">❌ Pa remèt</option>
+    </select>
+
+    <input id="noteRemise"
+           type="number"
+           min="0"
+           max="100"
+           placeholder="Nòt /100">
+
+    <button class="action" onclick="ajouterRemise()">
+      💾 Anrejistre
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📋 Lis devwa elèv yo</h2>
+
+    <div id="listeRemises"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= REZILTA ================= -->
 
 <section id="resultats" class="section">
 
   <div class="card">
 
-    <h2>📊 Résultats</h2>
+    <h2>📊 Rezilta Elèv</h2>
+
+    <select id="eleveResultat"
+            onchange="afficherResultatEleve()">
+
+      <option value="">Chwazi elèv</option>
+
+    </select>
+
+  </div>
+
+  <div class="card">
+
+    <div id="resultatEleve"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ESTATISTIK ================= -->
+
+<section id="statistiques" class="section">
+
+  <div class="card">
+
+    <h2>📈 Estatistik</h2>
+
+    <div class="stats">
+
+      <div class="stat">
+        <h3 id="totalElevesStat">0</h3>
+        <p>Elèv</p>
+      </div>
+
+      <div class="stat">
+        <h3 id="totalProfStat">0</h3>
+        <p>Pwofesè</p>
+      </div>
+
+      <div class="stat">
+        <h3 id="totalDevoirStat">0</h3>
+        <p>Devwa</p>
+      </div>
+
+      <div class="stat">
+        <h3 id="moyenneStat">0</h3>
+        <p>Mwayèn</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SAUVEGARDE ================= -->
+
+<section id="sauvegarde" class="section">
+
+  <div class="card">
+
+    <h2>💾 Sauvegarde done</h2>
 
     <p>
-      Le système de notes sera ajouté dans une prochaine étape.
+      Ou kapab telechaje tout done sistèm nan kòm yon fichye.
     </p>
+
+    <br>
+
+    <button class="action success"
+            onclick="exporterDonnees()">
+      📥 Telechaje sauvegarde
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📤 Récupérer done</h2>
+
+    <p>
+      Chwazi yon fichye sauvegarde ou te ekspòte avan.
+    </p>
+
+    <br>
+
+    <input type="file"
+           id="importFile"
+           accept=".json">
+
+    <button class="action"
+            onclick="importerDonnees()">
+      📤 Importer done
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>⚠️ Zòn danje</h2>
+
+    <p>
+      Bouton sa a ap efase tout done ki nan navigatè sa a.
+    </p>
+
+    <br>
+
+    <button class="action danger"
+            onclick="effacerTout()">
+      🗑️ Efase tout done
+    </button>
 
   </div>
 
@@ -378,214 +717,230 @@ footer{
 
 
 <footer>
-  © 2026 - Système de Devoirs
+  © 2026 - Sistèm Lekòl
 </footer>
 
 
 <script>
 
-/* =========================
-   NAVIGATION
-========================= */
+/* =====================================================
+   FONKSYON NAVIGATION
+===================================================== */
 
 function showSection(id){
 
-  document.querySelectorAll('.section')
-    .forEach(function(section){
-      section.classList.remove('active');
-    });
+  document.querySelectorAll(".section").forEach(function(section){
+    section.classList.remove("active");
+  });
 
-  document.getElementById(id)
-    .classList.add('active');
+  const section=document.getElementById(id);
+
+  if(section){
+    section.classList.add("active");
+  }
+
+  actualiserTout();
 }
 
 
-/* =========================
-   DONNEES
-========================= */
+/* =====================================================
+   OUTILS
+===================================================== */
 
-let eleves =
-  JSON.parse(localStorage.getItem("eleves") || "[]");
+function getData(key){
 
-let devoirs =
-  JSON.parse(localStorage.getItem("devoirs") || "[]");
+  return JSON.parse(
+    localStorage.getItem(key) || "[]"
+  );
 
-let matieres =
-  JSON.parse(localStorage.getItem("matieres") || "[]");
-
-
-/* =========================
-   MATIERES PAR DEFAUT
-========================= */
-
-if(matieres.length === 0){
-
-  matieres = [
-    "Mathématiques",
-    "Français",
-    "Sciences sociales",
-    "Physique",
-    "Chimie",
-    "Biologie"
-  ];
-
-  sauvegarderMatieres();
 }
 
 
-/* =========================
-   SAUVEGARDE
-========================= */
-
-function sauvegarderEleves(){
+function saveData(key,data){
 
   localStorage.setItem(
-    "eleves",
-    JSON.stringify(eleves)
+    key,
+    JSON.stringify(data)
   );
+
 }
 
 
-function sauvegarderDevoirs(){
+function escapeHTML(text){
 
-  localStorage.setItem(
-    "devoirs",
-    JSON.stringify(devoirs)
-  );
+  if(text===undefined || text===null){
+    return "";
+  }
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
 }
 
 
-function sauvegarderMatieres(){
+/* =====================================================
+   KLASS
+===================================================== */
 
-  localStorage.setItem(
-    "matieres",
-    JSON.stringify(matieres)
-  );
+function ajouterClasse(){
+
+  const nom=document.getElementById("nomClasse").value.trim();
+  const annee=document.getElementById("anneeClasse").value.trim();
+
+  if(nom===""){
+    alert("Tanpri antre non klas la.");
+    return;
+  }
+
+  let classes=getData("classes");
+
+  classes.push({
+    id:Date.now(),
+    nom:nom,
+    annee:annee
+  });
+
+  saveData("classes",classes);
+
+  document.getElementById("nomClasse").value="";
+  document.getElementById("anneeClasse").value="";
+
+  afficherClasses();
+  remplirSelects();
+
+  alert("Klas la ajoute avèk siksè.");
+
 }
 
 
-/* =========================
-   DASHBOARD
-========================= */
+function afficherClasses(){
 
-function mettreAJourDashboard(){
+  const liste=document.getElementById("listeClasses");
 
-  document.getElementById("totalEleves")
-    .textContent = eleves.length;
+  if(!liste)return;
 
-  document.getElementById("totalDevoirs")
-    .textContent = devoirs.length;
+  const classes=getData("classes");
 
-  document.getElementById("totalMatieres")
-    .textContent = matieres.length;
-}
+  if(classes.length===0){
 
+    liste.innerHTML="<p>Pa gen klas anrejistre.</p>";
+    return;
 
-/* =========================
-   MATIERES SELECT
-========================= */
+  }
 
-function chargerMatieres(){
+  liste.innerHTML="";
 
-  let select =
-    document.getElementById("matiere");
+  classes.forEach(function(classe){
 
-  select.innerHTML = "";
+    liste.innerHTML+=`
 
-  matieres.forEach(function(matiere){
+      <div class="item">
 
-    let option =
-      document.createElement("option");
+        <h3>🏫 ${escapeHTML(classe.nom)}</h3>
 
-    option.value = matiere;
-    option.textContent = matiere;
+        <p>
+          Ane lekòl:
+          ${escapeHTML(classe.annee || "Pa defini")}
+        </p>
 
-    select.appendChild(option);
+        <button class="action danger"
+          onclick="supprimerClasse(${classe.id})">
+          🗑️ Efase
+        </button>
+
+      </div>
+
+    `;
 
   });
+
 }
 
 
-/* =========================
-   AJOUTER MATIERE
-========================= */
+function supprimerClasse(id){
+
+  if(!confirm("Èske ou vle efase klas sa a?")){
+    return;
+  }
+
+  let classes=getData("classes");
+
+  classes=classes.filter(function(c){
+    return c.id!==id;
+  });
+
+  saveData("classes",classes);
+
+  afficherClasses();
+  remplirSelects();
+
+}
+
+
+/* =====================================================
+   MATYÈ
+===================================================== */
 
 function ajouterMatiere(){
 
-  let input =
-    document.getElementById("nomMatiere");
+  const nom=document.getElementById("nomMatiere").value.trim();
 
-  let nom =
-    input.value.trim();
-
-  if(nom === ""){
-
-    alert("Veuillez entrer le nom de la matière.");
-
+  if(nom===""){
+    alert("Tanpri antre non matyè a.");
     return;
   }
 
-  let existe =
-    matieres.some(function(m){
-      return m.toLowerCase() === nom.toLowerCase();
-    });
+  let matieres=getData("matieres");
 
-  if(existe){
+  matieres.push({
+    id:Date.now(),
+    nom:nom
+  });
 
-    alert("Cette matière existe déjà.");
+  saveData("matieres",matieres);
 
-    return;
-  }
-
-  matieres.push(nom);
-
-  sauvegarderMatieres();
-
-  input.value = "";
+  document.getElementById("nomMatiere").value="";
 
   afficherMatieres();
+  remplirSelects();
 
-  chargerMatieres();
+  alert("Matyè a ajoute avèk siksè.");
 
-  mettreAJourDashboard();
-
-  alert("Matière ajoutée avec succès !");
 }
 
-
-/* =========================
-   AFFICHER MATIERES
-========================= */
 
 function afficherMatieres(){
 
-  let liste =
-    document.getElementById("listeMatieres");
+  const liste=document.getElementById("listeMatieres");
 
-  liste.innerHTML = "";
+  if(!liste)return;
 
-  if(matieres.length === 0){
+  const matieres=getData("matieres");
 
-    liste.innerHTML =
-      '<p class="empty">Aucune matière enregistrée.</p>';
+  if(matieres.length===0){
 
+    liste.innerHTML="<p>Pa gen matyè.</p>";
     return;
+
   }
 
-  matieres.forEach(function(matiere,index){
+  liste.innerHTML="";
 
-    liste.innerHTML += `
+  matieres.forEach(function(matiere){
+
+    liste.innerHTML+=`
 
       <div class="item">
 
-        <h3>📚 ${echapper(matiere)}</h3>
+        <h3>📚 ${escapeHTML(matiere.nom)}</h3>
 
-        <button
-          class="action danger"
-          onclick="supprimerMatiere(${index})">
-
-          Supprimer
-
+        <button class="action danger"
+          onclick="supprimerMatiere(${matiere.id})">
+          🗑️ Efase
         </button>
 
       </div>
@@ -593,149 +948,131 @@ function afficherMatieres(){
     `;
 
   });
+
 }
 
 
-/* =========================
-   SUPPRIMER MATIERE
-========================= */
+function supprimerMatiere(id){
 
-function supprimerMatiere(index){
-
-  if(!confirm(
-    "Voulez-vous vraiment supprimer cette matière ?"
-  )){
+  if(!confirm("Èske ou vle efase matyè sa a?")){
     return;
   }
 
-  matieres.splice(index,1);
+  let matieres=getData("matieres");
 
-  sauvegarderMatieres();
+  matieres=matieres.filter(function(m){
+    return m.id!==id;
+  });
+
+  saveData("matieres",matieres);
 
   afficherMatieres();
+  remplirSelects();
 
-  chargerMatieres();
-
-  mettreAJourDashboard();
 }
 
 
-/* =========================
-   AJOUTER ELEVE
-========================= */
+/* =====================================================
+   ELÈV
+===================================================== */
 
 function ajouterEleve(){
 
-  let nom =
-    document.getElementById("nomEleve")
-      .value.trim();
+  const nom=document.getElementById("nomEleve").value.trim();
+  const age=document.getElementById("ageEleve").value;
+  const classe=document.getElementById("classeEleve").value;
+  const telephone=document.getElementById("telephoneEleve").value.trim();
 
-  let classe =
-    document.getElementById("classeEleve")
-      .value.trim();
-
-  if(nom === ""){
-
-    alert("Veuillez entrer le nom de l'élève.");
-
+  if(nom===""){
+    alert("Tanpri antre non elèv la.");
     return;
   }
+
+  let eleves=getData("eleves");
 
   eleves.push({
 
-    id: Date.now(),
-
-    nom: nom,
-
-    classe: classe
+    id:Date.now(),
+    nom:nom,
+    age:age,
+    classe:classe,
+    telephone:telephone
 
   });
 
-  sauvegarderEleves();
+  saveData("eleves",eleves);
 
-  document.getElementById("nomEleve").value = "";
-
-  document.getElementById("classeEleve").value = "";
+  document.getElementById("nomEleve").value="";
+  document.getElementById("ageEleve").value="";
+  document.getElementById("classeEleve").value="";
+  document.getElementById("telephoneEleve").value="";
 
   afficherEleves();
+  remplirSelects();
+  actualiserDashboard();
 
-  mettreAJourDashboard();
+  alert("Elèv la ajoute avèk siksè.");
 
-  alert("Élève ajouté avec succès !");
 }
 
 
-/* =========================
-   AFFICHER ELEVES
-========================= */
-
 function afficherEleves(){
 
-  let recherche =
-    document.getElementById("rechercheEleve")
-      .value.toLowerCase().trim();
+  const liste=document.getElementById("listeEleves");
 
-  let liste =
-    document.getElementById("listeEleves");
+  if(!liste)return;
 
-  liste.innerHTML = "";
+  const recherche=
+    document.getElementById("rechercheEleve")?.value
+    .toLowerCase()
+    .trim() || "";
 
-  let resultats =
-    eleves.filter(function(eleve){
+  let eleves=getData("eleves");
 
-      return (
-        eleve.nom.toLowerCase().includes(recherche) ||
-        (eleve.classe || "")
-          .toLowerCase()
-          .includes(recherche)
-      );
+  eleves=eleves.filter(function(eleve){
 
-    });
+    return (
+      eleve.nom.toLowerCase().includes(recherche) ||
+      String(eleve.classe).toLowerCase().includes(recherche)
+    );
 
+  });
 
-  if(resultats.length === 0){
+  if(eleves.length===0){
 
-    liste.innerHTML =
-      '<p class="empty">Aucun élève trouvé.</p>';
-
+    liste.innerHTML="<p>Pa gen elèv ki koresponn.</p>";
     return;
+
   }
 
+  liste.innerHTML="";
 
-  resultats.forEach(function(eleve){
+  eleves.forEach(function(eleve){
 
-    let vraiIndex =
-      eleves.findIndex(function(e){
-        return e.id === eleve.id;
-      });
-
-    liste.innerHTML += `
+    liste.innerHTML+=`
 
       <div class="item">
 
-        <h3>👨‍🎓 ${echapper(eleve.nom)}</h3>
+        <h3>👨‍🎓 ${escapeHTML(eleve.nom)}</h3>
 
         <p>
-          <b>Classe :</b>
-          ${echapper(eleve.classe || "Non définie")}
+          <b>Laj:</b>
+          ${escapeHTML(eleve.age || "Pa defini")}
         </p>
 
-        <br>
+        <p>
+          <b>Klas:</b>
+          ${escapeHTML(eleve.classe || "Pa defini")}
+        </p>
 
-        <button
-          class="action edit"
-          onclick="modifierEleve(${vraiIndex})">
+        <p>
+          <b>Telefòn:</b>
+          ${escapeHTML(eleve.telephone || "Pa defini")}
+        </p>
 
-          ✏️ Modifier
-
-        </button>
-
-        <button
-          class="action danger"
-          onclick="supprimerEleve(${vraiIndex})">
-
-          🗑️ Supprimer
-
+        <button class="action danger"
+          onclick="supprimerEleve(${eleve.id})">
+          🗑️ Efase
         </button>
 
       </div>
@@ -743,258 +1080,287 @@ function afficherEleves(){
     `;
 
   });
+
 }
 
 
-/* =========================
-   MODIFIER ELEVE
-========================= */
+function supprimerEleve(id){
 
-function modifierEleve(index){
-
-  let nouveauNom =
-    prompt(
-      "Nouveau nom :",
-      eleves[index].nom
-    );
-
-  if(nouveauNom === null){
+  if(!confirm("Èske ou vle efase elèv sa a?")){
     return;
   }
 
-  nouveauNom =
-    nouveauNom.trim();
+  let eleves=getData("eleves");
 
-  if(nouveauNom === ""){
-    alert("Le nom ne peut pas être vide.");
-    return;
-  }
+  eleves=eleves.filter(function(e){
+    return e.id!==id;
+  });
 
-
-  let nouvelleClasse =
-    prompt(
-      "Nouvelle classe :",
-      eleves[index].classe
-    );
-
-  if(nouvelleClasse === null){
-    return;
-  }
-
-
-  eleves[index].nom =
-    nouveauNom;
-
-  eleves[index].classe =
-    nouvelleClasse.trim();
-
-  sauvegarderEleves();
+  saveData("eleves",eleves);
 
   afficherEleves();
-
-  alert("Élève modifié avec succès !");
-}
-
-
-/* =========================
-   SUPPRIMER ELEVE
-========================= */
-
-function supprimerEleve(index){
-
-  if(!confirm(
-    "Voulez-vous vraiment supprimer cet élève ?"
-  )){
-    return;
-  }
-
-  eleves.splice(index,1);
-
-  sauvegarderEleves();
-
-  afficherEleves();
-
-  mettreAJourDashboard();
+  remplirSelects();
+  actualiserDashboard();
 
 }
 
 
-/* =========================
-   AJOUTER DEVOIR
-========================= */
+/* =====================================================
+   PWOFESÈ
+===================================================== */
 
-function ajouterDevoir(){
+function ajouterProfesseur(){
 
-  let titre =
-    document.getElementById("titre")
-      .value.trim();
+  const nom=
+    document.getElementById("nomProfesseur").value.trim();
 
-  let matiere =
-    document.getElementById("matiere")
-      .value;
+  const telephone=
+    document.getElementById("telephoneProfesseur").value.trim();
 
-  let date =
-    document.getElementById("date")
-      .value;
+  const matiere=
+    document.getElementById("matiereProfesseur").value.trim();
 
-  let description =
-    document.getElementById("description")
-      .value.trim();
-
-
-  if(titre === ""){
-
-    alert(
-      "Veuillez entrer le titre du devoir."
-    );
-
+  if(nom===""){
+    alert("Tanpri antre non pwofesè a.");
     return;
   }
 
+  let professeurs=getData("professeurs");
 
-  devoirs.push({
+  professeurs.push({
 
-    id: Date.now(),
-
-    titre: titre,
-
-    matiere: matiere,
-
-    date: date,
-
-    description: description
+    id:Date.now(),
+    nom:nom,
+    telephone:telephone,
+    matiere:matiere
 
   });
 
+  saveData("professeurs",professeurs);
 
-  sauvegarderDevoirs();
+  document.getElementById("nomProfesseur").value="";
+  document.getElementById("telephoneProfesseur").value="";
+  document.getElementById("matiereProfesseur").value="";
 
-  afficherDevoirs();
+  afficherProfesseurs();
+  actualiserDashboard();
 
-  mettreAJourDashboard();
+  alert("Pwofesè a ajoute avèk siksè.");
 
-
-  document.getElementById("titre").value = "";
-
-  document.getElementById("date").value = "";
-
-  document.getElementById("description").value = "";
-
-
-  alert("Devoir ajouté avec succès !");
 }
 
 
-/* =========================
-   AFFICHER DEVOIRS
-========================= */
+function afficherProfesseurs(){
 
-function afficherDevoirs(){
+  const liste=document.getElementById("listeProfesseurs");
 
-  let recherche =
-    document.getElementById("rechercheDevoir")
-      .value.toLowerCase().trim();
+  if(!liste)return;
 
-  let liste =
-    document.getElementById("listeDevoirs");
+  const professeurs=getData("professeurs");
 
-  liste.innerHTML = "";
+  if(professeurs.length===0){
+
+    liste.innerHTML="<p>Pa gen pwofesè anrejistre.</p>";
+    return;
+
+  }
+
+  liste.innerHTML="";
+
+  professeurs.forEach(function(prof){
+
+    liste.innerHTML+=`
+
+      <div class="item">
+
+        <h3>👨‍🏫 ${escapeHTML(prof.nom)}</h3>
+
+        <p>
+          <b>Matyè:</b>
+          ${escapeHTML(prof.matiere || "Pa defini")}
+        </p>
+
+        <p>
+          <b>Telefòn:</b>
+          ${escapeHTML(prof.telephone || "Pa defini")}
+        </p>
+
+        <button class="action danger"
+          onclick="supprimerProfesseur(${prof.id})">
+          🗑️ Efase
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
 
 
-  let resultats =
-    devoirs.filter(function(devoir){
+function supprimerProfesseur(id){
 
-      return (
-        devoir.titre.toLowerCase()
-          .includes(recherche) ||
-
-        devoir.matiere.toLowerCase()
-          .includes(recherche) ||
-
-        (devoir.description || "")
-          .toLowerCase()
-          .includes(recherche)
-      );
-
-    });
-
-
-  if(resultats.length === 0){
-
-    liste.innerHTML =
-      '<p class="empty">Aucun devoir trouvé.</p>';
-
+  if(!confirm("Èske ou vle efase pwofesè sa a?")){
     return;
   }
 
+  let professeurs=getData("professeurs");
 
-  resultats.forEach(function(devoir){
+  professeurs=professeurs.filter(function(p){
+    return p.id!==id;
+  });
 
-    let vraiIndex =
-      devoirs.findIndex(function(d){
-        return d.id === devoir.id;
-      });
+  saveData("professeurs",professeurs);
+
+  afficherProfesseurs();
+  actualiserDashboard();
+
+}
 
 
-    let statut = "📅 À venir";
+/* =====================================================
+   DEVWA
+===================================================== */
+
+function ajouterDevoir(){
+
+  const titre=
+    document.getElementById("titreDevoir").value.trim();
+
+  const matiere=
+    document.getElementById("matiereDevoir").value;
+
+  const classe=
+    document.getElementById("classeDevoir").value;
+
+  const date=
+    document.getElementById("dateDevoir").value;
+
+  const description=
+    document.getElementById("descriptionDevoir").value.trim();
+
+  if(titre===""){
+
+    alert("Tanpri antre tit devwa a.");
+    return;
+
+  }
+
+  let devoirs=getData("devoirs");
+
+  devoirs.push({
+
+    id:Date.now(),
+    titre:titre,
+    matiere:matiere,
+    classe:classe,
+    date:date,
+    description:description
+
+  });
+
+  saveData("devoirs",devoirs);
+
+  document.getElementById("titreDevoir").value="";
+  document.getElementById("dateDevoir").value="";
+  document.getElementById("descriptionDevoir").value="";
+
+  afficherDevoirs();
+  remplirSelects();
+  actualiserDashboard();
+
+  alert("Devwa a ajoute avèk siksè.");
+
+}
+
+
+function afficherDevoirs(){
+
+  const liste=document.getElementById("listeDevoirs");
+
+  if(!liste)return;
+
+  const recherche=
+    document.getElementById("rechercheDevoir")?.value
+    .toLowerCase()
+    .trim() || "";
+
+  let devoirs=getData("devoirs");
+
+  devoirs=devoirs.filter(function(d){
+
+    return (
+      d.titre.toLowerCase().includes(recherche) ||
+      String(d.matiere).toLowerCase().includes(recherche) ||
+      String(d.classe).toLowerCase().includes(recherche)
+    );
+
+  });
+
+  if(devoirs.length===0){
+
+    liste.innerHTML="<p>Pa gen devwa ki koresponn.</p>";
+    return;
+
+  }
+
+  liste.innerHTML="";
+
+  devoirs.forEach(function(devoir){
+
+    let statut="";
 
     if(devoir.date){
 
-      let aujourdHui =
-        new Date().toISOString().split("T")[0];
+      const jodi=new Date();
+      const dat=new Date(devoir.date);
 
-      if(devoir.date < aujourdHui){
-        statut = "⚠️ Date dépassée";
+      if(dat<jodi){
+
+        statut=
+          `<span class="badge badge-red">Dat pase</span>`;
+
+      }else{
+
+        statut=
+          `<span class="badge badge-green">A venir</span>`;
+
       }
 
     }
 
-
-    liste.innerHTML += `
+    liste.innerHTML+=`
 
       <div class="item">
 
-        <h3>📝 ${echapper(devoir.titre)}</h3>
+        <h3>📝 ${escapeHTML(devoir.titre)}</h3>
 
         <p>
-          <b>Matière :</b>
-          ${echapper(devoir.matiere)}
+          <b>Matyè:</b>
+          ${escapeHTML(devoir.matiere || "Pa defini")}
         </p>
 
         <p>
-          <b>Date :</b>
-          ${devoir.date || "Non définie"}
+          <b>Klas:</b>
+          ${escapeHTML(devoir.classe || "Tout klas")}
         </p>
 
-        <span class="badge">
+        <p>
+          <b>Dat:</b>
+          ${escapeHTML(devoir.date || "Pa defini")}
           ${statut}
-        </span>
-
-        <br><br>
+        </p>
 
         <p>
-          ${echapper(
-            devoir.description ||
-            "Aucune description."
-          )}
+          ${escapeHTML(devoir.description)}
         </p>
 
         <br>
 
-        <button
-          class="action edit"
-          onclick="modifierDevoir(${vraiIndex})">
-
-          ✏️ Modifier
-
-        </button>
-
-        <button
-          class="action danger"
-          onclick="supprimerDevoir(${vraiIndex})">
-
-          🗑️ Supprimer
-
+        <button class="action danger"
+          onclick="supprimerDevoir(${devoir.id})">
+          🗑️ Efase
         </button>
 
       </div>
@@ -1002,128 +1368,756 @@ function afficherDevoirs(){
     `;
 
   });
+
 }
 
 
-/* =========================
-   MODIFIER DEVOIR
-========================= */
+function supprimerDevoir(id){
 
-function modifierDevoir(index){
-
-  let devoir =
-    devoirs[index];
-
-
-  let titre =
-    prompt(
-      "Titre du devoir :",
-      devoir.titre
-    );
-
-  if(titre === null){
+  if(!confirm("Èske ou vle efase devwa sa a?")){
     return;
   }
 
-  titre =
-    titre.trim();
+  let devoirs=getData("devoirs");
 
-  if(titre === ""){
-    alert("Le titre ne peut pas être vide.");
-    return;
-  }
+  devoirs=devoirs.filter(function(d){
+    return d.id!==id;
+  });
 
-
-  let date =
-    prompt(
-      "Date du devoir (AAAA-MM-JJ) :",
-      devoir.date
-    );
-
-  if(date === null){
-    return;
-  }
-
-
-  let description =
-    prompt(
-      "Description :",
-      devoir.description
-    );
-
-  if(description === null){
-    return;
-  }
-
-
-  devoir.titre =
-    titre;
-
-  devoir.date =
-    date.trim();
-
-  devoir.description =
-    description.trim();
-
-
-  sauvegarderDevoirs();
+  saveData("devoirs",devoirs);
 
   afficherDevoirs();
+  remplirSelects();
+  actualiserDashboard();
 
 }
 
 
-/* =========================
-   SUPPRIMER DEVOIR
-========================= */
+/* =====================================================
+   REMÈT DEVWA
+===================================================== */
 
-function supprimerDevoir(index){
+function ajouterRemise(){
 
-  if(!confirm(
-    "Voulez-vous vraiment supprimer ce devoir ?"
-  )){
+  const eleveId=
+    document.getElementById("eleveRemise").value;
+
+  const devoirId=
+    document.getElementById("devoirRemise").value;
+
+  const statut=
+    document.getElementById("statutRemise").value;
+
+  const note=
+    document.getElementById("noteRemise").value;
+
+  if(eleveId==="" || devoirId===""){
+
+    alert("Tanpri chwazi elèv ak devwa.");
+    return;
+
+  }
+
+  let remises=getData("remises");
+
+  const existant=remises.find(function(r){
+
+    return String(r.eleveId)===String(eleveId) &&
+           String(r.devoirId)===String(devoirId);
+
+  });
+
+  if(existant){
+
+    existant.statut=statut;
+    existant.note=note;
+
+  }else{
+
+    remises.push({
+
+      id:Date.now(),
+      eleveId:eleveId,
+      devoirId:devoirId,
+      statut:statut,
+      note:note
+
+    });
+
+  }
+
+  saveData("remises",remises);
+
+  afficherRemises();
+
+  document.getElementById("noteRemise").value="";
+
+  alert("Suivi devwa a anrejistre.");
+
+}
+
+
+function afficherRemises(){
+
+  const liste=document.getElementById("listeRemises");
+
+  if(!liste)return;
+
+  const remises=getData("remises");
+  const eleves=getData("eleves");
+  const devoirs=getData("devoirs");
+
+  if(remises.length===0){
+
+    liste.innerHTML="<p>Pa gen done sou remèt devwa.</p>";
+    return;
+
+  }
+
+  liste.innerHTML="";
+
+  remises.forEach(function(remise){
+
+    const eleve=eleves.find(function(e){
+      return String(e.id)===String(remise.eleveId);
+    });
+
+    const devoir=devoirs.find(function(d){
+      return String(d.id)===String(remise.devoirId);
+    });
+
+    if(!eleve || !devoir)return;
+
+    const badge=
+      remise.statut==="Remèt"
+      ? "badge-green"
+      : "badge-red";
+
+    liste.innerHTML+=`
+
+      <div class="item">
+
+        <h3>
+          👨‍🎓 ${escapeHTML(eleve.nom)}
+        </h3>
+
+        <p>
+          <b>Devwa:</b>
+          ${escapeHTML(devoir.titre)}
+        </p>
+
+        <p>
+          <b>Estati:</b>
+          <span class="badge ${badge}">
+            ${escapeHTML(remise.statut)}
+          </span>
+        </p>
+
+        <p>
+          <b>Nòt:</b>
+          ${escapeHTML(remise.note || "Pa gen nòt")}
+        </p>
+
+        <button class="action danger"
+          onclick="supprimerRemise(${remise.id})">
+          🗑️ Efase
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+function supprimerRemise(id){
+
+  if(!confirm("Efase anrejistreman sa a?")){
     return;
   }
 
-  devoirs.splice(index,1);
+  let remises=getData("remises");
 
-  sauvegarderDevoirs();
+  remises=remises.filter(function(r){
+    return r.id!==id;
+  });
 
+  saveData("remises",remises);
+
+  afficherRemises();
+
+}
+
+
+/* =====================================================
+   REZILTA
+===================================================== */
+
+function afficherResultatEleve(){
+
+  const id=
+    document.getElementById("eleveResultat").value;
+
+  const resultat=
+    document.getElementById("resultatEleve");
+
+  if(!id){
+
+    resultat.innerHTML="<p>Chwazi yon elèv.</p>";
+    return;
+
+  }
+
+  const eleves=getData("eleves");
+  const devoirs=getData("devoirs");
+  const remises=getData("remises");
+
+  const eleve=eleves.find(function(e){
+    return String(e.id)===String(id);
+  });
+
+  if(!eleve)return;
+
+  const notes=remises.filter(function(r){
+
+    return String(r.eleveId)===String(id) &&
+           r.note!=="" &&
+           r.note!==undefined;
+
+  });
+
+  let total=0;
+
+  notes.forEach(function(n){
+    total+=Number(n.note);
+  });
+
+  const moyenne=
+    notes.length
+    ? (total/notes.length).toFixed(2)
+    : "0";
+
+  let html=`
+
+    <h2>📊 Rezilta: ${escapeHTML(eleve.nom)}</h2>
+
+    <p>
+      <b>Klas:</b>
+      ${escapeHTML(eleve.classe || "Pa defini")}
+    </p>
+
+    <br>
+
+    <h3>
+      Mwayèn: ${moyenne}/100
+    </h3>
+
+    <br>
+
+    <div class="table-container">
+
+    <table>
+
+      <tr>
+        <th>Devwa</th>
+        <th>Nòt</th>
+        <th>Estati</th>
+      </tr>
+
+  `;
+
+  notes.forEach(function(note){
+
+    const devoir=devoirs.find(function(d){
+
+      return String(d.id)===String(note.devoirId);
+
+    });
+
+    html+=`
+
+      <tr>
+
+        <td>
+          ${escapeHTML(
+            devoir ? devoir.titre : "Devwa"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(note.note)}/100
+        </td>
+
+        <td>
+          ${escapeHTML(note.statut)}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+  html+=`
+
+    </table>
+
+    </div>
+
+  `;
+
+  resultat.innerHTML=html;
+
+}
+
+
+/* =====================================================
+   SELECTS
+===================================================== */
+
+function remplirSelects(){
+
+  const eleves=getData("eleves");
+  const classes=getData("classes");
+  const matieres=getData("matieres");
+  const devoirs=getData("devoirs");
+
+  /* CLASSES */
+
+  const classeSelects=[
+    document.getElementById("classeEleve"),
+    document.getElementById("classeDevoir")
+  ];
+
+  classeSelects.forEach(function(select){
+
+    if(!select)return;
+
+    const valeur=select.value;
+
+    select.innerHTML=
+      `<option value="">Chwazi klas</option>`;
+
+    classes.forEach(function(c){
+
+      select.innerHTML+=`
+
+        <option value="${escapeHTML(c.nom)}">
+          ${escapeHTML(c.nom)}
+        </option>
+
+      `;
+
+    });
+
+    select.value=valeur;
+
+  });
+
+
+  /* MATIÈRES */
+
+  const matiereSelect=
+    document.getElementById("matiereDevoir");
+
+  if(matiereSelect){
+
+    const valeur=matiereSelect.value;
+
+    matiereSelect.innerHTML=
+      `<option value="">Chwazi matyè</option>`;
+
+    matieres.forEach(function(m){
+
+      matiereSelect.innerHTML+=`
+
+        <option value="${escapeHTML(m.nom)}">
+          ${escapeHTML(m.nom)}
+        </option>
+
+      `;
+
+    });
+
+    matiereSelect.value=valeur;
+
+  }
+
+
+  /* ELÈVES */
+
+  const eleveSelects=[
+
+    document.getElementById("eleveRemise"),
+    document.getElementById("eleveResultat")
+
+  ];
+
+  eleveSelects.forEach(function(select){
+
+    if(!select)return;
+
+    const valeur=select.value;
+
+    select.innerHTML=
+      `<option value="">Chwazi elèv</option>`;
+
+    eleves.forEach(function(e){
+
+      select.innerHTML+=`
+
+        <option value="${e.id}">
+          ${escapeHTML(e.nom)}
+        </option>
+
+      `;
+
+    });
+
+    select.value=valeur;
+
+  });
+
+
+  /* DEVWA */
+
+  const devoirSelect=
+    document.getElementById("devoirRemise");
+
+  if(devoirSelect){
+
+    const valeur=devoirSelect.value;
+
+    devoirSelect.innerHTML=
+      `<option value="">Chwazi devwa</option>`;
+
+    devoirs.forEach(function(d){
+
+      devoirSelect.innerHTML+=`
+
+        <option value="${d.id}">
+          ${escapeHTML(d.titre)}
+        </option>
+
+      `;
+
+    });
+
+    devoirSelect.value=valeur;
+
+  }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function actualiserDashboard(){
+
+  const eleves=getData("eleves");
+  const professeurs=getData("professeurs");
+  const classes=getData("classes");
+  const devoirs=getData("devoirs");
+
+  document.getElementById("statEleves").textContent=
+    eleves.length;
+
+  document.getElementById("statProfesseurs").textContent=
+    professeurs.length;
+
+  document.getElementById("statClasses").textContent=
+    classes.length;
+
+  document.getElementById("statDevoirs").textContent=
+    devoirs.length;
+
+}
+
+
+/* =====================================================
+   ESTATISTIK
+===================================================== */
+
+function actualiserStatistiques(){
+
+  const eleves=getData("eleves");
+  const professeurs=getData("professeurs");
+  const devoirs=getData("devoirs");
+  const remises=getData("remises");
+
+  document.getElementById("totalElevesStat").textContent=
+    eleves.length;
+
+  document.getElementById("totalProfStat").textContent=
+    professeurs.length;
+
+  document.getElementById("totalDevoirStat").textContent=
+    devoirs.length;
+
+  const notes=remises
+    .filter(function(r){
+      return r.note!=="" &&
+             r.note!==undefined;
+    })
+    .map(function(r){
+      return Number(r.note);
+    });
+
+  let moyenne=0;
+
+  if(notes.length){
+
+    moyenne=
+      notes.reduce(function(a,b){
+        return a+b;
+      },0)/notes.length;
+
+  }
+
+  document.getElementById("moyenneStat").textContent=
+    moyenne.toFixed(2);
+
+}
+
+
+/* =====================================================
+   SAUVEGARDE
+===================================================== */
+
+function exporterDonnees(){
+
+  const donnees={
+
+    eleves:getData("eleves"),
+    professeurs:getData("professeurs"),
+    classes:getData("classes"),
+    matieres:getData("matieres"),
+    devoirs:getData("devoirs"),
+    remises:getData("remises")
+
+  };
+
+  const fichier=new Blob(
+
+    [JSON.stringify(donnees,null,2)],
+
+    {type:"application/json"}
+
+  );
+
+  const url=URL.createObjectURL(fichier);
+
+  const lien=document.createElement("a");
+
+  lien.href=url;
+
+  lien.download=
+    "sauvegarde-systeme-lekol.json";
+
+  lien.click();
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+function importerDonnees(){
+
+  const fichier=
+    document.getElementById("importFile").files[0];
+
+  if(!fichier){
+
+    alert("Chwazi yon fichye JSON an premye.");
+    return;
+
+  }
+
+  const lecteur=new FileReader();
+
+  lecteur.onload=function(e){
+
+    try{
+
+      const donnees=
+        JSON.parse(e.target.result);
+
+      const cles=[
+        "eleves",
+        "professeurs",
+        "classes",
+        "matieres",
+        "devoirs",
+        "remises"
+      ];
+
+      cles.forEach(function(cle){
+
+        if(Array.isArray(donnees[cle])){
+
+          saveData(
+            cle,
+            donnees[cle]
+          );
+
+        }
+
+      });
+
+      actualiserTout();
+
+      alert("Done yo restore avèk siksè.");
+
+    }catch(error){
+
+      alert(
+        "Fichye a pa valab."
+      );
+
+    }
+
+  };
+
+  lecteur.readAsText(fichier);
+
+}
+
+
+/* =====================================================
+   EFASE TOUT
+===================================================== */
+
+function effacerTout(){
+
+  const confirmation=
+    confirm(
+      "ATANSYON ! Sa ap efase tout done sistèm nan. Èske ou sèten?"
+    );
+
+  if(!confirmation)return;
+
+  localStorage.removeItem("eleves");
+  localStorage.removeItem("professeurs");
+  localStorage.removeItem("classes");
+  localStorage.removeItem("matieres");
+  localStorage.removeItem("devoirs");
+  localStorage.removeItem("remises");
+
+  initialiserDonnees();
+
+  actualiserTout();
+
+  alert("Tout done yo efase.");
+
+}
+
+
+/* =====================================================
+   DONE DEFAUT
+===================================================== */
+
+function initialiserDonnees(){
+
+  if(!localStorage.getItem("classes")){
+
+    saveData("classes",[
+
+      {
+        id:1,
+        nom:"7e AF",
+        annee:"2026-2027"
+      },
+
+      {
+        id:2,
+        nom:"8e AF",
+        annee:"2026-2027"
+      },
+
+      {
+        id:3,
+        nom:"9e AF",
+        annee:"2026-2027"
+      }
+
+    ]);
+
+  }
+
+
+  if(!localStorage.getItem("matieres")){
+
+    saveData("matieres",[
+
+      {
+        id:1,
+        nom:"Matematik"
+      },
+
+      {
+        id:2,
+        nom:"Français"
+      },
+
+      {
+        id:3,
+        nom:"Syans sosyal"
+      },
+
+      {
+        id:4,
+        nom:"Fizik"
+      },
+
+      {
+        id:5,
+        nom:"Chimi"
+      },
+
+      {
+        id:6,
+        nom:"Biyoloji"
+      }
+
+    ]);
+
+  }
+
+}
+
+
+/* =====================================================
+   ACTUALIZE TOUT
+===================================================== */
+
+function actualiserTout(){
+
+  afficherEleves();
+  afficherProfesseurs();
+  afficherClasses();
+  afficherMatieres();
   afficherDevoirs();
+  afficherRemises();
 
-  mettreAJourDashboard();
+  remplirSelects();
+
+  actualiserDashboard();
+  actualiserStatistiques();
+
 }
 
 
-/* =========================
-   SECURITE HTML
-========================= */
+/* =====================================================
+   DEMARAJ
+===================================================== */
 
-function echapper(texte){
+initialiserDonnees();
 
-  let div =
-    document.createElement("div");
-
-  div.textContent =
-    texte;
-
-  return div.innerHTML;
-}
-
-
-/* =========================
-   INITIALISATION
-========================= */
-
-chargerMatieres();
-
-afficherMatieres();
-
-afficherEleves();
-
-afficherDevoirs();
-
-mettreAJourDashboard();
+actualiserTout();
 
 </script>
 
