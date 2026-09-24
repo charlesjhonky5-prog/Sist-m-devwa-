@@ -2119,7 +2119,24 @@ initialiserDonnees();
 
 actualiserTout();
 
-</script>
 
+<<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
+  authDomain: "sis-f-a.firebaseapp.com",
+  projectId: "sis-f-a",
+  storageBucket: "sis-f-a.firebasestorage.app",
+  messagingSenderId: "505464315297",
+  appId: "1:505464315297:web:3e45543cb121eaf7243fe0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+console.log("Firebase konekte avèk siksè!");
+</script> >
 </body>
 </html>
