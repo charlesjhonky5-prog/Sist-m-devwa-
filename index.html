@@ -2124,5 +2124,61 @@ initialiserDonnees();
 actualiserTout();
 
 </script> >
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
+  authDomain: "sis-f-a.firebaseapp.com",
+  projectId: "sis-f-a",
+  storageBucket: "sis-f-a.firebasestorage.app",
+  messagingSenderId: "505464315297",
+  appId: "1:505464315297:web:3e45543cb121eaf7243fe0"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+/* Sove done nan Firebase */
+
+window.firebaseSaveData = async function(key, data) {
+
+  try {
+
+    for (const item of data) {
+
+      if (!item.id) continue;
+
+      await setDoc(
+        doc(db, key, String(item.id)),
+        item
+      );
+
+    }
+
+    console.log("Firebase OK:", key);
+
+  } catch (error) {
+
+    console.error("Firebase Error:", error);
+
+  }
+
+};
+
+console.log("Firebase konekte!");
+
+</script>
 </body>
 </html>
