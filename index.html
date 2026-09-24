@@ -352,7 +352,7 @@ footer{
            placeholder="Non konplè elèv la">
 
     <input id="ageEleve"
-           type="number"
+           type="number"bio
            placeholder="Laj">
 
     <select id="classeEleve">
@@ -746,7 +746,6 @@ function showSection(id){
 /* =====================================================
    OUTILS
 ===================================================== */
-
 function getData(key){
 
   return JSON.parse(
@@ -763,7 +762,12 @@ function saveData(key,data){
     JSON.stringify(data)
   );
 
+  if(window.firebaseSaveData){
+    window.firebaseSaveData(key,data);
+  }
+
 }
+
 
 
 function escapeHTML(text){
