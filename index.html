@@ -1465,10 +1465,10 @@ function ajouterRemise(){
 function afficherRemises(){
 
   const liste=document.getElementById("listeRemises");
-
   if(!liste)return;
 
   const remises=getData("remises");
+  alert(JSON.stringify(remises));
   const eleves=getData("eleves");
   const devoirs=getData("devoirs");
 
