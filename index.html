@@ -2151,14 +2151,15 @@ const db = getFirestore(app);
 
 
 /* Sove done nan Firebase */
-
 window.firebaseSaveData = async function(key, data) {
 
   try {
 
     for (const item of data) {
 
-      if (!item.id) continue;
+      if (!item.id) {
+        item.id = Date.now();
+      }
 
       await setDoc(
         doc(db, key, String(item.id)),
@@ -2172,6 +2173,7 @@ window.firebaseSaveData = async function(key, data) {
   } catch (error) {
 
     console.error("Firebase Error:", error);
+    alert("Erè Firebase: " + error.message);
 
   }
 
