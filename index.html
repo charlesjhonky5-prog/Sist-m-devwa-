@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sistèm Lekòl</title>
+<title>Sistèm Lekòl Firebase</title>
 
 <style>
 *{
@@ -24,43 +24,56 @@ body{
 #loginBox{
   position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
   background:#f4f6f9;
-  z-index:99999;
+  z-index:999999;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   padding:20px;
 }
 
-#loginBox h2{
-  margin-bottom:20px;
+.login-card{
+  width:100%;
+  max-width:400px;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 5px 25px #ccc;
+  text-align:center;
 }
 
-#loginBox input{
-  width:90%;
-  max-width:350px;
-  padding:12px;
-  margin:6px 0;
+.login-card h2{
+  margin-bottom:10px;
+  color:#1769aa;
+}
+
+.login-card p{
+  margin-bottom:20px;
+  color:#666;
+}
+
+.login-card input{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
   border:1px solid #ccc;
-  border-radius:6px;
+  border-radius:7px;
   font-size:16px;
 }
 
-#loginBox button{
-  padding:12px 25px;
+.login-card button{
+  width:100%;
+  padding:13px;
   margin-top:10px;
   border:none;
-  border-radius:6px;
+  border-radius:7px;
   background:#1769aa;
   color:white;
-  cursor:pointer;
   font-size:16px;
+  cursor:pointer;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header{
   background:#1769aa;
@@ -73,7 +86,7 @@ header h1{
   margin-bottom:8px;
 }
 
-/* NAVIGATION */
+/* ================= NAV ================= */
 
 nav{
   background:white;
@@ -85,7 +98,7 @@ nav{
   box-shadow:0 2px 6px #ccc;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
 }
 
 nav button{
@@ -101,7 +114,7 @@ nav button:hover{
   background:#0d4f83;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
 
 main{
   max-width:1100px;
@@ -117,7 +130,7 @@ main{
   display:block;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 
 .card{
   background:white;
@@ -131,7 +144,7 @@ main{
   margin-bottom:15px;
 }
 
-/* FORM */
+/* ================= FORM ================= */
 
 input,
 textarea,
@@ -148,7 +161,7 @@ textarea{
   resize:vertical;
 }
 
-/* BUTTONS */
+/* ================= BUTTONS ================= */
 
 .action{
   background:#1769aa;
@@ -180,7 +193,7 @@ textarea{
   background:#666;
 }
 
-/* DASHBOARD */
+/* ================= STATS ================= */
 
 .stats{
   display:grid;
@@ -203,7 +216,7 @@ textarea{
   margin-bottom:8px;
 }
 
-/* ITEMS */
+/* ================= ITEMS ================= */
 
 .item{
   border:1px solid #ddd;
@@ -221,7 +234,7 @@ textarea{
   margin:5px 0;
 }
 
-/* TABLE */
+/* ================= TABLE ================= */
 
 .table-container{
   overflow-x:auto;
@@ -245,7 +258,7 @@ th{
   color:white;
 }
 
-/* BADGES */
+/* ================= BADGES ================= */
 
 .badge{
   display:inline-block;
@@ -267,7 +280,64 @@ th{
   background:#ef6c00;
 }
 
-/* FOOTER */
+/* ================= LOADING ================= */
+
+#loading{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.95);
+  z-index:999998;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.loading-box{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 3px 15px #ccc;
+}
+
+.spinner{
+  width:45px;
+  height:45px;
+  border:5px solid #ddd;
+  border-top:5px solid #1769aa;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:0 auto 15px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* ================= USER ================= */
+
+.user-bar{
+  background:#0d4f83;
+  color:white;
+  padding:8px 15px;
+  text-align:right;
+  font-size:14px;
+}
+
+.user-bar button{
+  border:none;
+  background:#c62828;
+  color:white;
+  padding:6px 10px;
+  border-radius:5px;
+  cursor:pointer;
+  margin-left:8px;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
   text-align:center;
@@ -275,7 +345,7 @@ footer{
   color:#666;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:800px){
 
@@ -306,113 +376,250 @@ footer{
   .card{
     padding:15px;
   }
+
+  header h1{
+    font-size:23px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= LOADING ================= -->
+
+<div id="loading">
+
+  <div class="loading-box">
+
+    <div class="spinner"></div>
+
+    <h3 id="loadingText">
+      Chaje done Firebase...
+    </h3>
+
+  </div>
+
+</div>
+
+
 <!-- ================= LOGIN ================= -->
 
 <div id="loginBox">
 
-  <h2>Connexion</h2>
+  <div class="login-card">
 
-  <input
-    type="email"
-    id="emailLogin"
-    placeholder="E-mail"
-  >
+    <h2>📚 Sistèm Lekòl</h2>
 
-  <input
-    type="password"
-    id="passwordLogin"
-    placeholder="Mot de passe"
-  >
+    <p>Tanpri konekte pou antre nan sistèm nan.</p>
 
-  <button onclick="connecterUtilisateur()">
-    Se connecter
+    <input
+      type="email"
+      id="emailLogin"
+      placeholder="E-mail"
+    >
+
+    <input
+      type="password"
+      id="passwordLogin"
+      placeholder="Mot de passe"
+    >
+
+    <button onclick="connecterUtilisateur()">
+      🔐 Se connecter
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" style="display:none;">
+
+<header>
+
+  <h1>📚 Sistèm Lekòl</h1>
+
+  <p>
+    Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta
+  </p>
+
+</header>
+
+<div class="user-bar">
+
+  <span id="userEmail">
+    Utilisateur
+  </span>
+
+  <button onclick="deconnecter()">
+    Déconnexion
   </button>
 
 </div>
 
-<!-- ================= APP ================= -->
 
-<header>
-  <h1>📚 Sistèm Lekòl</h1>
-  <p>Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta</p>
-</header>
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
-  <button onclick="showSection('accueil')">🏠 Akèy</button>
-  <button onclick="showSection('eleves')">👨‍🎓 Elèv</button>
-  <button onclick="showSection('professeurs')">👨‍🏫 Pwofesè</button>
-  <button onclick="showSection('classes')">🏫 Klas</button>
-  <button onclick="showSection('matieres')">📚 Matyè</button>
-  <button onclick="showSection('devoirs')">📝 Devwa</button>
-  <button onclick="showSection('remises')">📥 Remèt</button>
-  <button onclick="showSection('resultats')">📊 Rezilta</button>
-  <button onclick="showSection('statistiques')">📈 Estatistik</button>
-  <button onclick="showSection('sauvegarde')">💾 Done</button>
+
+  <button onclick="showSection('accueil')">
+    🏠 Akèy
+  </button>
+
+  <button onclick="showSection('eleves')">
+    👨‍🎓 Elèv
+  </button>
+
+  <button onclick="showSection('professeurs')">
+    👨‍🏫 Pwofesè
+  </button>
+
+  <button onclick="showSection('classes')">
+    🏫 Klas
+  </button>
+
+  <button onclick="showSection('matieres')">
+    📚 Matyè
+  </button>
+
+  <button onclick="showSection('devoirs')">
+    📝 Devwa
+  </button>
+
+  <button onclick="showSection('remises')">
+    📥 Remèt
+  </button>
+
+  <button onclick="showSection('resultats')">
+    📊 Rezilta
+  </button>
+
+  <button onclick="showSection('statistiques')">
+    📈 Estatistik
+  </button>
+
+  <button onclick="showSection('sauvegarde')">
+    💾 Done
+  </button>
+
 </nav>
 
+
 <main>
+
+
+<!-- ================= ACCUEIL ================= -->
 
 <section id="accueil" class="section active">
 
   <div class="card">
+
     <h2>👋 Byenveni</h2>
+
     <p>
       Byenveni nan sistèm jesyon lekòl la.
-      Soti isit la ou kapab jere tout enfòmasyon lekòl la.
+      Tout done sistèm nan konekte dirèkteman ak Firebase Firestore.
     </p>
+
   </div>
+
 
   <div class="stats">
 
     <div class="stat">
-      <h3 id="statEleves">0</h3>
+
+      <h3 id="statEleves">
+        0
+      </h3>
+
       <p>👨‍🎓 Elèv</p>
+
     </div>
 
+
     <div class="stat">
-      <h3 id="statProfesseurs">0</h3>
+
+      <h3 id="statProfesseurs">
+        0
+      </h3>
+
       <p>👨‍🏫 Pwofesè</p>
+
     </div>
 
+
     <div class="stat">
-      <h3 id="statClasses">0</h3>
+
+      <h3 id="statClasses">
+        0
+      </h3>
+
       <p>🏫 Klas</p>
+
     </div>
 
+
     <div class="stat">
-      <h3 id="statDevoirs">0</h3>
+
+      <h3 id="statDevoirs">
+        0
+      </h3>
+
       <p>📝 Devwa</p>
+
     </div>
 
   </div>
 
+
   <div class="card">
+
     <h2>⚡ Aksyon rapid</h2>
 
-    <button class="action" onclick="showSection('eleves')">
+    <button
+      class="action"
+      onclick="showSection('eleves')">
+
       ➕ Ajoute elèv
+
     </button>
 
-    <button class="action" onclick="showSection('professeurs')">
+
+    <button
+      class="action"
+      onclick="showSection('professeurs')">
+
       ➕ Ajoute pwofesè
+
     </button>
 
-    <button class="action" onclick="showSection('classes')">
+
+    <button
+      class="action"
+      onclick="showSection('classes')">
+
       ➕ Ajoute klas
+
     </button>
 
-    <button class="action" onclick="showSection('devoirs')">
+
+    <button
+      class="action"
+      onclick="showSection('devoirs')">
+
       ➕ Ajoute devwa
+
     </button>
+
   </div>
 
 </section>
+
+
+<!-- ================= ELEVE ================= -->
 
 <section id="eleves" class="section">
 
@@ -420,38 +627,56 @@ footer{
 
     <h2>👨‍🎓 Jesyon Elèv</h2>
 
-    <input id="nomEleve"
-           type="text"
-           placeholder="Non konplè elèv la">
+    <input
+      id="nomEleve"
+      type="text"
+      placeholder="Non konplè elèv la"
+    >
 
-    <input id="ageEleve"
-           type="number"
-           placeholder="Laj">
+    <input
+      id="ageEleve"
+      type="number"
+      placeholder="Laj"
+    >
 
     <select id="classeEleve">
-      <option value="">Chwazi klas</option>
+
+      <option value="">
+        Chwazi klas
+      </option>
+
     </select>
 
-    <input id="telephoneEleve"
-           type="text"
-           placeholder="Telefòn">
+    <input
+      id="telephoneEleve"
+      type="text"
+      placeholder="Telefòn"
+    >
 
-    <button class="action" onclick="ajouterEleve()">
+    <button
+      class="action"
+      onclick="ajouterEleve()">
+
       ➕ Ajoute elèv
+
     </button>
 
   </div>
+
 
   <div class="card">
 
     <h2>🔎 Rechèch elèv</h2>
 
-    <input id="rechercheEleve"
-           type="text"
-           placeholder="Chèche pa non oswa klas..."
-           oninput="afficherEleves()">
+    <input
+      id="rechercheEleve"
+      type="text"
+      placeholder="Chèche pa non oswa klas..."
+      oninput="afficherEleves()"
+    >
 
   </div>
+
 
   <div class="card">
 
@@ -463,29 +688,43 @@ footer{
 
 </section>
 
+
+<!-- ================= PROFESSEUR ================= -->
+
 <section id="professeurs" class="section">
 
   <div class="card">
 
     <h2>👨‍🏫 Jesyon Pwofesè</h2>
 
-    <input id="nomProfesseur"
-           type="text"
-           placeholder="Non konplè pwofesè a">
+    <input
+      id="nomProfesseur"
+      type="text"
+      placeholder="Non konplè pwofesè a"
+    >
 
-    <input id="telephoneProfesseur"
-           type="text"
-           placeholder="Telefòn">
+    <input
+      id="telephoneProfesseur"
+      type="text"
+      placeholder="Telefòn"
+    >
 
-    <input id="matiereProfesseur"
-           type="text"
-           placeholder="Matyè li anseye">
+    <input
+      id="matiereProfesseur"
+      type="text"
+      placeholder="Matyè li anseye"
+    >
 
-    <button class="action" onclick="ajouterProfesseur()">
+    <button
+      class="action"
+      onclick="ajouterProfesseur()">
+
       ➕ Ajoute pwofesè
+
     </button>
 
   </div>
+
 
   <div class="card">
 
@@ -497,1725 +736,16 @@ footer{
 
 </section>
 
+
+<!-- ================= KLAS ================= -->
+
 <section id="classes" class="section">
 
   <div class="card">
 
     <h2>🏫 Jesyon Klas</h2>
 
-    <input id="nomClasse"
-           type="text"
-           placeholder="Egzanp: 7e AF">
-
-    <input id="anneeClasse"
-           type="text"
-           placeholder="Egzanp: 2026-2027">
-
-    <button class="action" onclick="ajouterClasse()">
-      ➕ Ajoute klas
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📋 Lis klas</h2>
-
-    <div id="listeClasses"></div>
-
-  </div>
-
-</section>
-
-<section id="matieres" class="section">
-
-  <div class="card">
-
-    <h2>📚 Jesyon Matyè</h2>
-
-    <input id="nomMatiere"
-           type="text"
-           placeholder="Non matyè a">
-
-    <button class="action" onclick="ajouterMatiere()">
-      ➕ Ajoute matyè
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📋 Lis matyè</h2>
-
-    <div id="listeMatieres"></div>
-
-  </div>
-
-</section>
-
-<section id="devoirs" class="section">
-
-  <div class="card">
-
-    <h2>📝 Ajoute yon devwa</h2>
-
-    <input id="titreDevoir"
-           type="text"
-           placeholder="Tit devwa a">
-
-    <select id="matiereDevoir">
-      <option value="">Chwazi matyè</option>
-    </select>
-
-    <select id="classeDevoir">
-      <option value="">Chwazi klas</option>
-    </select>
-
-    <input id="dateDevoir"
-           type="date">
-
-    <textarea id="descriptionDevoir"
-              rows="5"
-              placeholder="Deskripsyon devwa a"></textarea>
-
-    <button class="action" onclick="ajouterDevoir()">
-      ➕ Ajoute devwa
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>🔎 Rechèch devwa</h2>
-
-    <input id="rechercheDevoir"
-           type="text"
-           placeholder="Chèche devwa..."
-           oninput="afficherDevoirs()">
-
-  </div>
-
-  <div class="card">
-
-    <h2>📋 Lis devwa</h2>
-
-    <div id="listeDevoirs"></div>
-
-  </div>
-
-</section>
-
-<section id="remises" class="section">
-
-  <div class="card">
-
-    <h2>📥 Suivi devwa</h2>
-
-    <select id="eleveRemise">
-      <option value="">Chwazi elèv</option>
-    </select>
-
-    <select id="devoirRemise">
-      <option value="">Chwazi devwa</option>
-    </select>
-
-    <select id="statutRemise">
-      <option value="Remèt">✅ Remèt</option>
-      <option value="Pa remèt">❌ Pa remèt</option>
-    </select>
-
-    <input id="noteRemise"
-           type="number"
-           min="0"
-           max="100"
-           placeholder="Nòt /100">
-
-    <button class="action" onclick="ajouterRemise()">
-      💾 Anrejistre
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📋 Lis devwa elèv yo</h2>
-
-    <div id="listeRemises"></div>
-
-  </div>
-
-</section>
-
-<section id="resultats" class="section">
-
-  <div class="card">
-
-    <h2>📊 Rezilta Elèv</h2>
-
-    <select id="eleveResultat"
-            onchange="afficherResultatEleve()">
-
-      <option value="">Chwazi elèv</option>
-
-    </select>
-
-  </div>
-
-  <div class="card">
-
-    <div id="resultatEleve"></div>
-
-  </div>
-
-</section>
-
-<section id="statistiques" class="section">
-
-  <div class="card">
-
-    <h2>📈 Estatistik</h2>
-
-    <div class="stats">
-
-      <div class="stat">
-        <h3 id="totalElevesStat">0</h3>
-        <p>Elèv</p>
-      </div>
-
-      <div class="stat">
-        <h3 id="totalProfStat">0</h3>
-        <p>Pwofesè</p>
-      </div>
-
-      <div class="stat">
-        <h3 id="totalDevoirStat">0</h3>
-        <p>Devwa</p>
-      </div>
-
-      <div class="stat">
-        <h3 id="moyenneStat">0</h3>
-        <p>Mwayèn</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section id="sauvegarde" class="section">
-
-  <div class="card">
-
-    <h2>💾 Sauvegarde done</h2>
-
-    <p>
-      Ou kapab telechaje tout done sistèm nan kòm yon fichye.
-    </p>
-
-    <br>
-
-    <button class="action success"
-            onclick="exporterDonnees()">
-      📥 Telechaje sauvegarde
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>📤 Récupérer done</h2>
-
-    <p>
-      Chwazi yon fichye sauvegarde ou te ekspòte avan.
-    </p>
-
-    <br>
-
-    <input type="file"
-           id="importFile"
-           accept=".json">
-
-    <button class="action"
-            onclick="importerDonnees()">
-      📤 Importer done
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <h2>⚠️ Zòn danje</h2>
-
-    <p>
-      Bouton sa a ap efase tout done ki nan navigatè sa a.
-    </p>
-
-    <br>
-
-    <button class="action danger"
-            onclick="effacerTout()">
-      🗑️ Efase tout done
-    </button>
-
-  </div>
-
-</section>
-
-</main>
-
-<footer>
-  © 2026 - Sistèm Lekòl
-</footer>
-
-
-<script>
-
-/* ================= NAVIGATION ================= */
-
-function showSection(id){
-
-  document.querySelectorAll(".section").forEach(function(section){
-    section.classList.remove("active");
-  });
-
-  const section=document.getElementById(id);
-
-  if(section){
-    section.classList.add("active");
-  }
-
-  actualiserTout();
-}
-
-
-/* ================= OUTILS ================= */
-
-function getData(key){
-
-  return JSON.parse(
-    localStorage.getItem(key) || "[]"
-  );
-
-}
-
-
-function saveData(key,data){
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(data)
-  );
-
-  if(window.firebaseSaveData){
-    window.firebaseSaveData(key,data);
-  }
-
-}
-
-
-function escapeHTML(text){
-
-  if(text===undefined || text===null){
-    return "";
-  }
-
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* ================= KLAS ================= */
-
-function ajouterClasse(){
-
-  const nom=document.getElementById("nomClasse").value.trim();
-  const annee=document.getElementById("anneeClasse").value.trim();
-
-  if(nom===""){
-    alert("Tanpri antre non klas la.");
-    return;
-  }
-
-  let classes=getData("classes");
-
-  classes.push({
-    id:Date.now(),
-    nom:nom,
-    annee:annee
-  });
-
-  saveData("classes",classes);
-
-  document.getElementById("nomClasse").value="";
-  document.getElementById("anneeClasse").value="";
-
-  afficherClasses();
-  remplirSelects();
-
-  alert("Klas la ajoute avèk siksè.");
-
-}
-
-
-function afficherClasses(){
-
-  const liste=document.getElementById("listeClasses");
-
-  if(!liste)return;
-
-  const classes=getData("classes");
-
-  if(classes.length===0){
-    liste.innerHTML="<p>Pa gen klas anrejistre.</p>";
-    return;
-  }
-
-  liste.innerHTML="";
-
-  classes.forEach(function(classe){
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>🏫 ${escapeHTML(classe.nom)}</h3>
-
-        <p>
-          Ane lekòl:
-          ${escapeHTML(classe.annee || "Pa defini")}
-        </p>
-
-        <button class="action danger"
-          onclick="supprimerClasse(${classe.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerClasse(id){
-
-  if(!confirm("Èske ou vle efase klas sa a?")){
-    return;
-  }
-
-  let classes=getData("classes");
-
-  classes=classes.filter(function(c){
-    return c.id!==id;
-  });
-
-  saveData("classes",classes);
-
-  afficherClasses();
-  remplirSelects();
-
-}
-
-
-/* ================= MATYÈ ================= */
-
-function ajouterMatiere(){
-
-  const nom=document.getElementById("nomMatiere").value.trim();
-
-  if(nom===""){
-    alert("Tanpri antre non matyè a.");
-    return;
-  }
-
-  let matieres=getData("matieres");
-
-  matieres.push({
-    id:Date.now(),
-    nom:nom
-  });
-
-  saveData("matieres",matieres);
-
-  document.getElementById("nomMatiere").value="";
-
-  afficherMatieres();
-  remplirSelects();
-
-  alert("Matyè a ajoute avèk siksè.");
-
-}
-
-
-function afficherMatieres(){
-
-  const liste=document.getElementById("listeMatieres");
-
-  if(!liste)return;
-
-  const matieres=getData("matieres");
-
-  if(matieres.length===0){
-    liste.innerHTML="<p>Pa gen matyè.</p>";
-    return;
-  }
-
-  liste.innerHTML="";
-
-  matieres.forEach(function(matiere){
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>📚 ${escapeHTML(matiere.nom)}</h3>
-
-        <button class="action danger"
-          onclick="supprimerMatiere(${matiere.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerMatiere(id){
-
-  if(!confirm("Èske ou vle efase matyè sa a?")){
-    return;
-  }
-
-  let matieres=getData("matieres");
-
-  matieres=matieres.filter(function(m){
-    return m.id!==id;
-  });
-
-  saveData("matieres",matieres);
-
-  afficherMatieres();
-  remplirSelects();
-
-}
-
-
-/* ================= ELÈV ================= */
-
-function ajouterEleve(){
-
-  const nom=document.getElementById("nomEleve").value.trim();
-  const age=document.getElementById("ageEleve").value;
-  const classe=document.getElementById("classeEleve").value;
-  const telephone=document.getElementById("telephoneEleve").value.trim();
-
-  if(nom===""){
-    alert("Tanpri antre non elèv la.");
-    return;
-  }
-
-  let eleves=getData("eleves");
-
-  eleves.push({
-    id:Date.now(),
-    nom:nom,
-    age:age,
-    classe:classe,
-    telephone:telephone
-  });
-
-  saveData("eleves",eleves);
-
-  document.getElementById("nomEleve").value="";
-  document.getElementById("ageEleve").value="";
-  document.getElementById("classeEleve").value="";
-  document.getElementById("telephoneEleve").value="";
-
-  afficherEleves();
-  remplirSelects();
-  actualiserDashboard();
-
-  alert("Elèv la ajoute avèk siksè.");
-
-}
-
-
-function afficherEleves(){
-
-  const liste=document.getElementById("listeEleves");
-
-  if(!liste)return;
-
-  const recherche=
-    document.getElementById("rechercheEleve")?.value
-    .toLowerCase()
-    .trim() || "";
-
-  let eleves=getData("eleves");
-
-  eleves=eleves.filter(function(eleve){
-
-    return (
-      String(eleve.nom || "").toLowerCase().includes(recherche) ||
-      String(eleve.classe || "").toLowerCase().includes(recherche)
-    );
-
-  });
-
-  if(eleves.length===0){
-
-    liste.innerHTML="<p>Pa gen elèv ki koresponn.</p>";
-    return;
-
-  }
-
-  liste.innerHTML="";
-
-  eleves.forEach(function(eleve){
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>👨‍🎓 ${escapeHTML(eleve.nom)}</h3>
-
-        <p>
-          <b>Laj:</b>
-          ${escapeHTML(eleve.age || "Pa defini")}
-        </p>
-
-        <p>
-          <b>Klas:</b>
-          ${escapeHTML(eleve.classe || "Pa defini")}
-        </p>
-
-        <p>
-          <b>Telefòn:</b>
-          ${escapeHTML(eleve.telephone || "Pa defini")}
-        </p>
-
-        <button class="action danger"
-          onclick="supprimerEleve(${eleve.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerEleve(id){
-
-  if(!confirm("Èske ou vle efase elèv sa a?")){
-    return;
-  }
-
-  let eleves=getData("eleves");
-
-  eleves=eleves.filter(function(e){
-    return e.id!==id;
-  });
-
-  saveData("eleves",eleves);
-
-  afficherEleves();
-  remplirSelects();
-  actualiserDashboard();
-
-}
-
-
-/* ================= PWOFESÈ ================= */
-
-function ajouterProfesseur(){
-
-  const nom=
-    document.getElementById("nomProfesseur").value.trim();
-
-  const telephone=
-    document.getElementById("telephoneProfesseur").value.trim();
-
-  const matiere=
-    document.getElementById("matiereProfesseur").value.trim();
-
-  if(nom===""){
-    alert("Tanpri antre non pwofesè a.");
-    return;
-  }
-
-  let professeurs=getData("professeurs");
-
-  professeurs.push({
-    id:Date.now(),
-    nom:nom,
-    telephone:telephone,
-    matiere:matiere
-  });
-
-  saveData("professeurs",professeurs);
-
-  document.getElementById("nomProfesseur").value="";
-  document.getElementById("telephoneProfesseur").value="";
-  document.getElementById("matiereProfesseur").value="";
-
-  afficherProfesseurs();
-  actualiserDashboard();
-
-  alert("Pwofesè a ajoute avèk siksè.");
-
-}
-
-
-function afficherProfesseurs(){
-
-  const liste=document.getElementById("listeProfesseurs");
-
-  if(!liste)return;
-
-  const professeurs=getData("professeurs");
-
-  if(professeurs.length===0){
-
-    liste.innerHTML="<p>Pa gen pwofesè anrejistre.</p>";
-    return;
-
-  }
-
-  liste.innerHTML="";
-
-  professeurs.forEach(function(prof){
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>👨‍🏫 ${escapeHTML(prof.nom)}</h3>
-
-        <p>
-          <b>Matyè:</b>
-          ${escapeHTML(prof.matiere || "Pa defini")}
-        </p>
-
-        <p>
-          <b>Telefòn:</b>
-          ${escapeHTML(prof.telephone || "Pa defini")}
-        </p>
-
-        <button class="action danger"
-          onclick="supprimerProfesseur(${prof.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerProfesseur(id){
-
-  if(!confirm("Èske ou vle efase pwofesè sa a?")){
-    return;
-  }
-
-  let professeurs=getData("professeurs");
-
-  professeurs=professeurs.filter(function(p){
-    return p.id!==id;
-  });
-
-  saveData("professeurs",professeurs);
-
-  afficherProfesseurs();
-  actualiserDashboard();
-
-}
-
-
-/* ================= DEVWA ================= */
-
-function ajouterDevoir(){
-
-  const titre=
-    document.getElementById("titreDevoir").value.trim();
-
-  const matiere=
-    document.getElementById("matiereDevoir").value;
-
-  const classe=
-    document.getElementById("classeDevoir").value;
-
-  const date=
-    document.getElementById("dateDevoir").value;
-
-  const description=
-    document.getElementById("descriptionDevoir").value.trim();
-
-  if(titre===""){
-
-    alert("Tanpri antre tit devwa a.");
-    return;
-
-  }
-
-  let devoirs=getData("devoirs");
-
-  devoirs.push({
-    id:Date.now(),
-    titre:titre,
-    matiere:matiere,
-    classe:classe,
-    date:date,
-    description:description
-  });
-
-  saveData("devoirs",devoirs);
-
-  document.getElementById("titreDevoir").value="";
-  document.getElementById("dateDevoir").value="";
-  document.getElementById("descriptionDevoir").value="";
-
-  afficherDevoirs();
-  remplirSelects();
-  actualiserDashboard();
-
-  alert("Devwa a ajoute avèk siksè.");
-
-}
-
-
-function afficherDevoirs(){
-
-  const liste=document.getElementById("listeDevoirs");
-
-  if(!liste)return;
-
-  const recherche=
-    document.getElementById("rechercheDevoir")?.value
-    .toLowerCase()
-    .trim() || "";
-
-  let devoirs=getData("devoirs");
-
-  devoirs=devoirs.filter(function(d){
-
-    return (
-      String(d.titre || "").toLowerCase().includes(recherche) ||
-      String(d.matiere || "").toLowerCase().includes(recherche) ||
-      String(d.classe || "").toLowerCase().includes(recherche)
-    );
-
-  });
-
-  if(devoirs.length===0){
-
-    liste.innerHTML="<p>Pa gen devwa ki koresponn.</p>";
-    return;
-
-  }
-
-  liste.innerHTML="";
-
-  devoirs.forEach(function(devoir){
-
-    let statut="";
-
-    if(devoir.date){
-
-      const jodi=new Date();
-      const dat=new Date(devoir.date);
-
-      if(dat<jodi){
-
-        statut=
-          `<span class="badge badge-red">Dat pase</span>`;
-
-      }else{
-
-        statut=
-          `<span class="badge badge-green">A venir</span>`;
-
-      }
-
-    }
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>📝 ${escapeHTML(devoir.titre)}</h3>
-
-        <p>
-          <b>Matyè:</b>
-          ${escapeHTML(devoir.matiere || "Pa defini")}
-        </p>
-
-        <p>
-          <b>Klas:</b>
-          ${escapeHTML(devoir.classe || "Tout klas")}
-        </p>
-
-        <p>
-          <b>Dat:</b>
-          ${escapeHTML(devoir.date || "Pa defini")}
-          ${statut}
-        </p>
-
-        <p>
-          ${escapeHTML(devoir.description)}
-        </p>
-
-        <br>
-
-        <button class="action danger"
-          onclick="supprimerDevoir(${devoir.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerDevoir(id){
-
-  if(!confirm("Èske ou vle efase devwa sa a?")){
-    return;
-  }
-
-  let devoirs=getData("devoirs");
-
-  devoirs=devoirs.filter(function(d){
-    return d.id!==id;
-  });
-
-  saveData("devoirs",devoirs);
-
-  afficherDevoirs();
-  remplirSelects();
-  actualiserDashboard();
-
-}
-
-
-/* ================= REMÈT ================= */
-
-function ajouterRemise(){
-
-  const eleveId=
-    document.getElementById("eleveRemise").value;
-
-  const devoirId=
-    document.getElementById("devoirRemise").value;
-
-  const statut=
-    document.getElementById("statutRemise").value;
-
-  const note=
-    document.getElementById("noteRemise").value;
-
-  if(eleveId==="" || devoirId===""){
-
-    alert("Tanpri chwazi elèv ak devwa.");
-    return;
-
-  }
-
-  let remises=getData("remises");
-
-  const existant=remises.find(function(r){
-
-    return String(r.eleveId)===String(eleveId) &&
-           String(r.devoirId)===String(devoirId);
-
-  });
-
-  if(existant){
-
-    existant.statut=statut;
-    existant.note=note;
-
-  }else{
-
-    remises.push({
-      id:Date.now(),
-      eleveId:eleveId,
-      devoirId:devoirId,
-      statut:statut,
-      note:note
-    });
-
-  }
-
-  saveData("remises",remises);
-
-  afficherRemises();
-
-  document.getElementById("noteRemise").value="";
-
-  alert("Suivi devwa a anrejistre.");
-
-}
-
-
-function afficherRemises(){
-
-  const liste=document.getElementById("listeRemises");
-
-  if(!liste)return;
-
-  const remises=getData("remises");
-  const eleves=getData("eleves");
-  const devoirs=getData("devoirs");
-
-  if(remises.length===0){
-
-    liste.innerHTML="<p>Pa gen done sou remèt devwa.</p>";
-    return;
-
-  }
-
-  liste.innerHTML="";
-
-  remises.forEach(function(remise){
-
-    const eleve=eleves.find(function(e){
-      return String(e.id)===String(remise.eleveId);
-    });
-
-    const devoir=devoirs.find(function(d){
-      return String(d.id)===String(remise.devoirId);
-    });
-
-    if(!eleve || !devoir)return;
-
-    const badge=
-      remise.statut==="Remèt"
-      ? "badge-green"
-      : "badge-red";
-
-    liste.innerHTML+=`
-
-      <div class="item">
-
-        <h3>
-          👨‍🎓 ${escapeHTML(eleve.nom)}
-        </h3>
-
-        <p>
-          <b>Devwa:</b>
-          ${escapeHTML(devoir.titre)}
-        </p>
-
-        <p>
-          <b>Estati:</b>
-          <span class="badge ${badge}">
-            ${escapeHTML(remise.statut)}
-          </span>
-        </p>
-
-        <p>
-          <b>Nòt:</b>
-          ${escapeHTML(remise.note || "Pa gen nòt")}
-        </p>
-
-        <button class="action danger"
-          onclick="supprimerRemise(${remise.id})">
-          🗑️ Efase
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-
-function supprimerRemise(id){
-
-  if(!confirm("Efase anrejistreman sa a?")){
-    return;
-  }
-
-  let remises=getData("remises");
-
-  remises=remises.filter(function(r){
-    return r.id!==id;
-  });
-
-  saveData("remises",remises);
-
-  afficherRemises();
-
-}
-
-
-/* ================= REZILTA ================= */
-
-function afficherResultatEleve(){
-
-  const id=
-    document.getElementById("eleveResultat").value;
-
-  const resultat=
-    document.getElementById("resultatEleve");
-
-  if(!id){
-
-    resultat.innerHTML="<p>Chwazi yon elèv.</p>";
-    return;
-
-  }
-
-  const eleves=getData("eleves");
-  const devoirs=getData("devoirs");
-  const remises=getData("remises");
-
-  const eleve=eleves.find(function(e){
-    return String(e.id)===String(id);
-  });
-
-  if(!eleve)return;
-
-  const notes=remises.filter(function(r){
-
-    return String(r.eleveId)===String(id) &&
-           r.note!=="" &&
-           r.note!==undefined;
-
-  });
-
-  let total=0;
-
-  notes.forEach(function(n){
-    total+=Number(n.note);
-  });
-
-  const moyenne=
-    notes.length
-    ? (total/notes.length).toFixed(2)
-    : "0";
-
-  let html=`
-
-    <h2>📊 Rezilta: ${escapeHTML(eleve.nom)}</h2>
-
-    <p>
-      <b>Klas:</b>
-      ${escapeHTML(eleve.classe || "Pa defini")}
-    </p>
-
-    <br>
-
-    <h3>
-      Mwayèn: ${moyenne}/100
-    </h3>
-
-    <br>
-
-    <div class="table-container">
-
-    <table>
-
-      <tr>
-        <th>Devwa</th>
-        <th>Nòt</th>
-        <th>Estati</th>
-      </tr>
-  `;
-
-  notes.forEach(function(note){
-
-    const devoir=devoirs.find(function(d){
-      return String(d.id)===String(note.devoirId);
-    });
-
-    html+=`
-
-      <tr>
-
-        <td>
-          ${escapeHTML(
-            devoir ? devoir.titre : "Devwa"
-          )}
-        </td>
-
-        <td>
-          ${escapeHTML(note.note)}/100
-        </td>
-
-        <td>
-          ${escapeHTML(note.statut)}
-        </td>
-
-      </tr>
-    `;
-
-  });
-
-  html+=`
-
-    </table>
-
-    </div>
-  `;
-
-  resultat.innerHTML=html;
-
-}
-
-
-/* ================= SELECTS ================= */
-
-function remplirSelects(){
-
-  const eleves=getData("eleves");
-  const classes=getData("classes");
-  const matieres=getData("matieres");
-  const devoirs=getData("devoirs");
-
-  const classeSelects=[
-    document.getElementById("classeEleve"),
-    document.getElementById("classeDevoir")
-  ];
-
-  classeSelects.forEach(function(select){
-
-    if(!select)return;
-
-    const valeur=select.value;
-
-    select.innerHTML=
-      `<option value="">Chwazi klas</option>`;
-
-    classes.forEach(function(c){
-
-      select.innerHTML+=`
-
-        <option value="${escapeHTML(c.nom)}">
-          ${escapeHTML(c.nom)}
-        </option>
-      `;
-
-    });
-
-    select.value=valeur;
-
-  });
-
-
-  const matiereSelect=
-    document.getElementById("matiereDevoir");
-
-  if(matiereSelect){
-
-    const valeur=matiereSelect.value;
-
-    matiereSelect.innerHTML=
-      `<option value="">Chwazi matyè</option>`;
-
-    matieres.forEach(function(m){
-
-      matiereSelect.innerHTML+=`
-
-        <option value="${escapeHTML(m.nom)}">
-          ${escapeHTML(m.nom)}
-        </option>
-      `;
-
-    });
-
-    matiereSelect.value=valeur;
-
-  }
-
-
-  const eleveSelects=[
-    document.getElementById("eleveRemise"),
-    document.getElementById("eleveResultat")
-  ];
-
-  eleveSelects.forEach(function(select){
-
-    if(!select)return;
-
-    const valeur=select.value;
-
-    select.innerHTML=
-      `<option value="">Chwazi elèv</option>`;
-
-    eleves.forEach(function(e){
-
-      select.innerHTML+=`
-
-        <option value="${e.id}">
-          ${escapeHTML(e.nom)}
-        </option>
-      `;
-
-    });
-
-    select.value=valeur;
-
-  });
-
-
-  const devoirSelect=
-    document.getElementById("devoirRemise");
-
-  if(devoirSelect){
-
-    const valeur=devoirSelect.value;
-
-    devoirSelect.innerHTML=
-      `<option value="">Chwazi devwa</option>`;
-
-    devoirs.forEach(function(d){
-
-      devoirSelect.innerHTML+=`
-
-        <option value="${d.id}">
-          ${escapeHTML(d.titre)}
-        </option>
-      `;
-
-    });
-
-    devoirSelect.value=valeur;
-
-  }
-
-}
-
-
-/* ================= DASHBOARD ================= */
-
-function actualiserDashboard(){
-
-  const eleves=getData("eleves");
-  const professeurs=getData("professeurs");
-  const classes=getData("classes");
-  const devoirs=getData("devoirs");
-
-  document.getElementById("statEleves").textContent=
-    eleves.length;
-
-  document.getElementById("statProfesseurs").textContent=
-    professeurs.length;
-
-  document.getElementById("statClasses").textContent=
-    classes.length;
-
-  document.getElementById("statDevoirs").textContent=
-    devoirs.length;
-
-}
-
-
-/* ================= ESTATISTIK ================= */
-
-function actualiserStatistiques(){
-
-  const eleves=getData("eleves");
-  const professeurs=getData("professeurs");
-  const devoirs=getData("devoirs");
-  const remises=getData("remises");
-
-  document.getElementById("totalElevesStat").textContent=
-    eleves.length;
-
-  document.getElementById("totalProfStat").textContent=
-    professeurs.length;
-
-  document.getElementById("totalDevoirStat").textContent=
-    devoirs.length;
-
-  const notes=remises
-    .filter(function(r){
-      return r.note!=="" &&
-             r.note!==undefined;
-    })
-    .map(function(r){
-      return Number(r.note);
-    });
-
-  let moyenne=0;
-
-  if(notes.length){
-
-    moyenne=
-      notes.reduce(function(a,b){
-        return a+b;
-      },0)/notes.length;
-
-  }
-
-  document.getElementById("moyenneStat").textContent=
-    moyenne.toFixed(2);
-
-}
-
-
-/* ================= SAUVEGARDE ================= */
-
-function exporterDonnees(){
-
-  const donnees={
-
-    eleves:getData("eleves"),
-    professeurs:getData("professeurs"),
-    classes:getData("classes"),
-    matieres:getData("matieres"),
-    devoirs:getData("devoirs"),
-    remises:getData("remises")
-
-  };
-
-  const fichier=new Blob(
-    [JSON.stringify(donnees,null,2)],
-    {type:"application/json"}
-  );
-
-  const url=URL.createObjectURL(fichier);
-
-  const lien=document.createElement("a");
-
-  lien.href=url;
-
-  lien.download=
-    "sauvegarde-systeme-lekol.json";
-
-  lien.click();
-
-  URL.revokeObjectURL(url);
-
-}
-
-
-function importerDonnees(){
-
-  const fichier=
-    document.getElementById("importFile").files[0];
-
-  if(!fichier){
-
-    alert("Chwazi yon fichye JSON an premye.");
-    return;
-
-  }
-
-  const lecteur=new FileReader();
-
-  lecteur.onload=function(e){
-
-    try{
-
-      const donnees=
-        JSON.parse(e.target.result);
-
-      const cles=[
-        "eleves",
-        "professeurs",
-        "classes",
-        "matieres",
-        "devoirs",
-        "remises"
-      ];
-
-      cles.forEach(function(cle){
-
-        if(Array.isArray(donnees[cle])){
-
-          saveData(
-            cle,
-            donnees[cle]
-          );
-
-        }
-
-      });
-
-      actualiserTout();
-
-      alert("Done yo restore avèk siksè.");
-
-    }catch(error){
-
-      alert("Fichye a pa valab.");
-
-    }
-
-  };
-
-  lecteur.readAsText(fichier);
-
-}
-
-
-/* ================= EFASE TOUT ================= */
-
-function effacerTout(){
-
-  const confirmation=
-    confirm(
-      "ATANSYON ! Sa ap efase tout done sistèm nan. Èske ou sèten?"
-    );
-
-  if(!confirmation)return;
-
-  localStorage.removeItem("eleves");
-  localStorage.removeItem("professeurs");
-  localStorage.removeItem("classes");
-  localStorage.removeItem("matieres");
-  localStorage.removeItem("devoirs");
-  localStorage.removeItem("remises");
-
-  initialiserDonnees();
-
-  actualiserTout();
-
-  alert("Tout done yo efase.");
-
-}
-
-
-/* ================= DONE DEFAUT ================= */
-
-function initialiserDonnees(){
-
-  if(!localStorage.getItem("classes")){
-
-    saveData("classes",[
-
-      {
-        id:1,
-        nom:"7e AF",
-        annee:"2026-2027"
-      },
-
-      {
-        id:2,
-        nom:"8e AF",
-        annee:"2026-2027"
-      },
-
-      {
-        id:3,
-        nom:"9e AF",
-        annee:"2026-2027"
-      }
-
-    ]);
-
-  }
-
-
-  if(!localStorage.getItem("matieres")){
-
-    saveData("matieres",[
-
-      {
-        id:1,
-        nom:"Matematik"
-      },
-
-      {
-        id:2,
-        nom:"Français"
-      },
-
-      {
-        id:3,
-        nom:"Syans sosyal"
-      },
-
-      {
-        id:4,
-        nom:"Fizik"
-      },
-
-      {
-        id:5,
-        nom:"Chimi"
-      },
-
-      {
-        id:6,
-        nom:"Biyoloji"
-      }
-
-    ]);
-
-  }
-
-}
-
-
-/* ================= ACTUALIZE TOUT ================= */
-
-function actualiserTout(){
-
-  afficherEleves();
-  afficherProfesseurs();
-  afficherClasses();
-  afficherMatieres();
-  afficherDevoirs();
-  afficherRemises();
-
-  remplirSelects();
-
-  actualiserDashboard();
-  actualiserStatistiques();
-
-}
-
-
-/* ================= DEMARAJ ================= */
-
-initialiserDonnees();
-actualiserTout();
-
-</script>
-
-
-<!-- ================= FIREBASE ================= -->
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
-  authDomain: "sis-f-a.firebaseapp.com",
-  projectId: "sis-f-a",
-  storageBucket: "sis-f-a.firebasestorage.app",
-  messagingSenderId: "505464315297",
-  appId: "1:505464315297:web:3e45543cb121eaf7243fe0"
-};
-
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const auth = getAuth(app);
-
-
-/* ================= FIREBASE SAVE ================= */
-
-window.firebaseSaveData = async function(key,data){
-
-  try{
-
-    for(const item of data){
-
-      if(!item.id){
-        item.id=Date.now();
-      }
-
-      await setDoc(
-        doc(db,key,String(item.id)),
-        item
-      );
-
-    }
-
-    console.log("Firebase OK:",key);
-
-  }catch(error){
-
-    console.error("Firebase Error:",error);
-
-    alert(
-      "Erè Firebase: " + error.message
-    );
-
-  }
-
-};
-
-
-/* ================= LOGIN ================= */
-
-window.connecterUtilisateur = async function(){
-
-  const email=
-    document.getElementById("emailLogin").value.trim();
-
-  const motDePasse=
-    document.getElementById("passwordLogin").value;
-
-  if(email==="" || motDePasse===""){
-
-    alert(
-      "Tanpri antre e-mail ak modpas la."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      motDePasse
-    );
-
-    alert("Connexion réussie !");
-
-    document.getElementById("loginBox").style.display="none";
-
-  }catch(error){
-
-    alert(
-      "Erreur de connexion : " +
-      error.message
-    );
-
-  }
-
-};
-
-</script>
-
-</body>
-</html>
+    <input
+      id="nomClasse"
+      type="text"
+      placeholder="Egzanp: 
