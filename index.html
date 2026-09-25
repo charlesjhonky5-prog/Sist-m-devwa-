@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sistèm Lekòl Firebase</title>
+<title>Sistèm Lekòl</title>
 
 <style>
 *{
@@ -19,107 +18,132 @@ body{
   color:#222;
 }
 
-/* ================= LOGIN ================= */
+button,input,select{
+  font:inherit;
+}
 
-#loginBox{
-  position:fixed;
-  inset:0;
-  background:#f4f6f9;
-  z-index:999999;
+button{
+  cursor:pointer;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  margin-top:6px;
+  margin-bottom:12px;
+  background:#fff;
+}
+
+.login{
+  min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:20px;
 }
 
-.login-card{
+.login-box{
   width:100%;
   max-width:400px;
   background:white;
   padding:30px;
   border-radius:15px;
-  box-shadow:0 5px 25px #ccc;
-  text-align:center;
+  box-shadow:0 5px 25px rgba(0,0,0,.12);
 }
 
-.login-card h2{
-  margin-bottom:10px;
+.login-box h1{
+  text-align:center;
   color:#1769aa;
+  margin-bottom:10px;
 }
 
-.login-card p{
-  margin-bottom:20px;
-  color:#666;
-}
-
-.login-card input{
-  width:100%;
-  padding:13px;
-  margin:7px 0;
-  border:1px solid #ccc;
-  border-radius:7px;
-  font-size:16px;
-}
-
-.login-card button{
-  width:100%;
-  padding:13px;
-  margin-top:10px;
-  border:none;
-  border-radius:7px;
-  background:#1769aa;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-
-/* ================= HEADER ================= */
-
-header{
-  background:#1769aa;
-  color:white;
-  padding:22px 15px;
+.login-box p{
   text-align:center;
+  color:#777;
+  margin-bottom:25px;
 }
 
-header h1{
-  margin-bottom:8px;
-}
-
-/* ================= NAV ================= */
-
-nav{
-  background:white;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:8px;
-  padding:12px;
-  box-shadow:0 2px 6px #ccc;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-nav button{
-  border:none;
+.btn{
   background:#1769aa;
   color:white;
-  padding:10px 14px;
-  border-radius:6px;
-  cursor:pointer;
+  border:0;
+  padding:11px 16px;
+  border-radius:8px;
+  margin:3px;
 }
 
-nav button:hover{
-  background:#0d4f83;
+.btn-success{
+  background:#2e7d32;
 }
 
-/* ================= MAIN ================= */
+.btn-danger{
+  background:#d32f2f;
+}
 
-main{
-  max-width:1100px;
-  margin:20px auto;
-  padding:15px;
+.btn-warning{
+  background:#ef6c00;
+}
+
+.app{
+  display:none;
+  min-height:100vh;
+}
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:245px;
+  background:#12355b;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+
+.logo{
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:22px;
+}
+
+.menu button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:white;
+  text-align:left;
+  padding:12px;
+  border-radius:8px;
+  margin:3px 0;
+}
+
+.menu button:hover,
+.menu button.active{
+  background:#1e88e5;
+}
+
+.main{
+  margin-left:245px;
+  padding:20px;
+}
+
+.topbar{
+  background:white;
+  border-radius:12px;
+  padding:15px 20px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.topbar h2{
+  color:#12355b;
 }
 
 .section{
@@ -130,255 +154,134 @@ main{
   display:block;
 }
 
-/* ================= CARD ================= */
-
-.card{
-  background:white;
-  padding:20px;
-  margin-bottom:18px;
-  border-radius:10px;
-  box-shadow:0 2px 8px #ddd;
-}
-
-.card h2{
-  margin-bottom:15px;
-}
-
-/* ================= FORM ================= */
-
-input,
-textarea,
-select{
-  width:100%;
-  padding:12px;
-  margin:8px 0 15px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:15px;
-}
-
-textarea{
-  resize:vertical;
-}
-
-/* ================= BUTTONS ================= */
-
-.action{
-  background:#1769aa;
-  color:white;
-  border:none;
-  padding:11px 17px;
-  border-radius:6px;
-  cursor:pointer;
-  margin:3px;
-}
-
-.action:hover{
-  opacity:.9;
-}
-
-.danger{
-  background:#c62828;
-}
-
-.success{
-  background:#2e7d32;
-}
-
-.warning{
-  background:#ef6c00;
-}
-
-.gray{
-  background:#666;
-}
-
-/* ================= STATS ================= */
-
-.stats{
+.cards{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
   margin-bottom:20px;
 }
 
-.stat{
+.card{
   background:white;
-  padding:22px;
-  text-align:center;
-  border-radius:10px;
-  box-shadow:0 2px 8px #ddd;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.stat h3{
+.card h3{
+  color:#777;
+  margin-bottom:10px;
+}
+
+.number{
   font-size:30px;
+  font-weight:bold;
   color:#1769aa;
-  margin-bottom:8px;
 }
 
-/* ================= ITEMS ================= */
-
-.item{
-  border:1px solid #ddd;
-  padding:15px;
-  margin:10px 0;
-  border-radius:8px;
-  background:#fafafa;
+.box{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.item h3{
-  margin-bottom:8px;
+.box h3{
+  color:#12355b;
+  margin-bottom:15px;
 }
 
-.item p{
-  margin:5px 0;
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
-
-/* ================= TABLE ================= */
 
 .table-container{
+  width:100%;
   overflow-x:auto;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  margin-top:10px;
+  min-width:650px;
 }
 
-th,
-td{
-  border:1px solid #ddd;
-  padding:10px;
+th,td{
+  padding:11px;
+  border-bottom:1px solid #ddd;
   text-align:left;
 }
 
 th{
-  background:#1769aa;
-  color:white;
+  background:#eef4fa;
+  color:#12355b;
 }
 
-/* ================= BADGES ================= */
+.search{
+  max-width:400px;
+}
 
 .badge{
-  display:inline-block;
   padding:5px 9px;
-  border-radius:15px;
-  font-size:12px;
-  color:white;
+  border-radius:20px;
+  background:#e3f2fd;
+  color:#1769aa;
 }
 
-.badge-green{
-  background:#2e7d32;
-}
-
-.badge-red{
-  background:#c62828;
-}
-
-.badge-orange{
-  background:#ef6c00;
-}
-
-/* ================= LOADING ================= */
-
-#loading{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.95);
-  z-index:999998;
+.message{
   display:none;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
+  padding:10px;
+  border-radius:8px;
+  margin-top:12px;
 }
 
-.loading-box{
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 3px 15px #ccc;
+.error{
+  background:#ffebee;
+  color:#c62828;
 }
 
-.spinner{
-  width:45px;
-  height:45px;
-  border:5px solid #ddd;
-  border-top:5px solid #1769aa;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:0 auto 15px;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* ================= USER ================= */
-
-.user-bar{
-  background:#0d4f83;
-  color:white;
-  padding:8px 15px;
-  text-align:right;
-  font-size:14px;
-}
-
-.user-bar button{
-  border:none;
-  background:#c62828;
-  color:white;
-  padding:6px 10px;
-  border-radius:5px;
-  cursor:pointer;
-  margin-left:8px;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:#666;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:800px){
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
+@media(max-width:900px){
+  .sidebar{
+    width:210px;
   }
 
-  nav{
-    position:static;
+  .main{
+    margin-left:210px;
   }
 
-  nav button{
-    flex:1 1 30%;
-  }
-}
-
-@media(max-width:500px){
-
-  .stats{
+  .cards{
     grid-template-columns:1fr 1fr;
   }
+}
 
-  nav button{
-    flex:1 1 45%;
-    font-size:13px;
+@media(max-width:650px){
+  .sidebar{
+    position:relative;
+    width:100%;
   }
 
-  .card{
-    padding:15px;
+  .main{
+    margin-left:0;
+    padding:12px;
   }
 
-  header h1{
-    font-size:23px;
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:420px){
+  .cards{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -386,366 +289,2354 @@ footer{
 
 <body>
 
-<!-- ================= LOADING ================= -->
-
-<div id="loading">
-
-  <div class="loading-box">
-
-    <div class="spinner"></div>
-
-    <h3 id="loadingText">
-      Chaje done Firebase...
-    </h3>
-
-  </div>
-
-</div>
-
-
 <!-- ================= LOGIN ================= -->
 
-<div id="loginBox">
+<div id="loginPage" class="login">
 
-  <div class="login-card">
+  <div class="login-box">
 
-    <h2>📚 Sistèm Lekòl</h2>
+    <h1>🏫 Sistèm Lekòl</h1>
 
-    <p>Tanpri konekte pou antre nan sistèm nan.</p>
+    <p>Konekte pou antre nan sistèm nan</p>
 
+    <label>Email</label>
     <input
       type="email"
-      id="emailLogin"
-      placeholder="E-mail"
+      id="loginEmail"
+      placeholder="admin@gmail.com"
     >
 
+    <label>Modpas</label>
     <input
       type="password"
-      id="passwordLogin"
-      placeholder="Mot de passe"
+      id="loginPassword"
+      placeholder="Modpas"
     >
 
-    <button onclick="connecterUtilisateur()">
-      🔐 Se connecter
+    <button
+      class="btn"
+      style="width:100%;"
+      onclick="login()"
+    >
+      🔐 Konekte
     </button>
+
+    <div id="loginMessage" class="message"></div>
 
   </div>
 
 </div>
 
 
-<!-- ================= APPLICATION ================= -->
+<!-- ================= APP ================= -->
 
-<div id="app" style="display:none;">
+<div id="app" class="app">
 
-<header>
+  <aside class="sidebar">
 
-  <h1>📚 Sistèm Lekòl</h1>
+    <div class="logo">
+      🏫 Sistèm Lekòl
+    </div>
 
-  <p>
-    Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta
-  </p>
+    <div class="menu">
 
-</header>
+      <button
+        class="active"
+        onclick="showSection('home',this)"
+      >
+        🏠 Akèy
+      </button>
 
-<div class="user-bar">
+      <button onclick="showSection('eleves',this)">
+        👨‍🎓 Elèv
+      </button>
 
-  <span id="userEmail">
-    Utilisateur
-  </span>
+      <button onclick="showSection('professeurs',this)">
+        👨‍🏫 Pwofesè
+      </button>
 
-  <button onclick="deconnecter()">
-    Déconnexion
-  </button>
+      <button onclick="showSection('classes',this)">
+        🏫 Klas
+      </button>
+
+      <button onclick="showSection('matieres',this)">
+        📚 Matyè
+      </button>
+
+      <button onclick="showSection('devoirs',this)">
+        📝 Devwa
+      </button>
+
+      <button onclick="showSection('remises',this)">
+        📤 Remèt
+      </button>
+
+      <button onclick="showSection('resultats',this)">
+        📊 Rezilta
+      </button>
+
+      <button onclick="showSection('statistiques',this)">
+        📈 Estatistik
+      </button>
+
+      <button onclick="showSection('donnees',this)">
+        💾 Done
+      </button>
+
+      <button onclick="logout()">
+        🚪 Dekonekte
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <main class="main">
+
+    <div class="topbar">
+
+      <h2 id="pageTitle">
+        Akèy
+      </h2>
+
+      <span id="userEmail"></span>
+
+    </div>
+
+
+    <!-- ================= AKÈY ================= -->
+
+    <section id="home" class="section active">
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>👨‍🎓 Elèv</h3>
+          <div id="countEleves" class="number">0</div>
+        </div>
+
+        <div class="card">
+          <h3>👨‍🏫 Pwofesè</h3>
+          <div id="countProfesseurs" class="number">0</div>
+        </div>
+
+        <div class="card">
+          <h3>🏫 Klas</h3>
+          <div id="countClasses" class="number">0</div>
+        </div>
+
+        <div class="card">
+          <h3>📚 Matyè</h3>
+          <div id="countMatieres" class="number">0</div>
+        </div>
+
+      </div>
+
+      <div class="box">
+
+        <h3>Byenveni</h3>
+
+        <p>
+          Sistèm sa a pèmèt ou jere elèv,
+          pwofesè, klas, matyè, devwa,
+          remèt ak rezilta.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ELÈV ================= -->
+
+    <section id="eleves" class="section">
+
+      <div class="box">
+
+        <h3>➕ Ajoute Elèv</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>Non</label>
+            <input id="eleveNom">
+          </div>
+
+          <div>
+            <label>Prénom</label>
+            <input id="elevePrenom">
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="eleveEmail" type="email">
+          </div>
+
+          <div>
+            <label>Klas</label>
+            <select id="eleveClasse">
+              <option value="">Chwazi klas</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterEleve()"
+        >
+          ➕ Ajoute
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Elèv yo</h3>
+
+        <input
+          class="search"
+          id="searchEleve"
+          placeholder="🔎 Chèche..."
+          oninput="afficherEleves()"
+        >
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Non</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Klas</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableEleves"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PWOFESÈ ================= -->
+
+    <section id="professeurs" class="section">
+
+      <div class="box">
+
+        <h3>➕ Ajoute Pwofesè</h3>
+
+        <div class="form-grid">
+
+          <div>
+            <label>Non</label>
+            <input id="profNom">
+          </div>
+
+          <div>
+            <label>Prénom</label>
+            <input id="profPrenom">
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="profEmail" type="email">
+          </div>
+
+          <div>
+            <label>Telefòn</label>
+            <input id="profTelephone">
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterProfesseur()"
+        >
+          ➕ Ajoute
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Pwofesè yo</h3>
+
+        <input
+          class="search"
+          id="searchProf"
+          placeholder="🔎 Chèche..."
+          oninput="afficherProfesseurs()"
+        >
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Non</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Telefòn</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableProfesseurs"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= KLAS ================= -->
+
+    <section id="classes" class="section">
+
+      <div class="box">
+
+        <h3>➕ Ajoute Klas</h3>
+
+        <label>Non klas</label>
+
+        <input
+          id="classeNom"
+          placeholder="Egzanp: 9ème AF"
+        >
+
+        <label>Nivo</label>
+
+        <input
+          id="classeNiveau"
+          placeholder="Egzanp: Fondamental"
+        >
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterClasse()"
+        >
+          ➕ Ajoute
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Klas yo</h3>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Non</th>
+                <th>Nivo</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableClasses"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MATYÈ ================= -->
+
+    <section id="matieres" class="section">
+
+      <div class="box">
+
+        <h3>➕ Ajoute Matyè</h3>
+
+        <label>Non matyè</label>
+
+        <input
+          id="matiereNom"
+          placeholder="Matematik"
+        >
+
+        <label>Kòd</label>
+
+        <input
+          id="matiereCode"
+          placeholder="MATH01"
+        >
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterMatiere()"
+        >
+          ➕ Ajoute
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Matyè yo</h3>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Matyè</th>
+                <th>Kòd</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableMatieres"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DEVWA ================= -->
+
+    <section id="devoirs" class="section">
+
+      <div class="box">
+
+        <h3>➕ Kreye Devwa</h3>
+
+        <label>Tit</label>
+
+        <input id="devoirTitre">
+
+        <label>Matyè</label>
+
+        <select id="devoirMatiere">
+          <option value="">Chwazi matyè</option>
+        </select>
+
+        <label>Klas</label>
+
+        <select id="devoirClasse">
+          <option value="">Chwazi klas</option>
+        </select>
+
+        <label>Dat pou remèt</label>
+
+        <input
+          type="date"
+          id="devoirDate"
+        >
+
+        <label>Deskripsyon</label>
+
+        <input id="devoirDescription">
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterDevoir()"
+        >
+          ➕ Kreye
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Devwa yo</h3>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Tit</th>
+                <th>Matyè</th>
+                <th>Klas</th>
+                <th>Dat</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableDevoirs"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= REMÈT ================= -->
+
+    <section id="remises" class="section">
+
+      <div class="box">
+
+        <h3>📤 Anrejistre Remèt Devwa</h3>
+
+        <label>Elèv</label>
+
+        <select id="eleveRemise">
+          <option value="">Chwazi elèv</option>
+        </select>
+
+        <label>Devwa</label>
+
+        <select id="devoirRemise">
+          <option value="">Chwazi devwa</option>
+        </select>
+
+        <label>Estati</label>
+
+        <select id="statutRemise">
+
+          <option value="Remèt">
+            Remèt
+          </option>
+
+          <option value="Pa remèt">
+            Pa remèt
+          </option>
+
+          <option value="An reta">
+            An reta
+          </option>
+
+        </select>
+
+        <label>Nòt</label>
+
+        <input
+          type="number"
+          id="noteRemise"
+          min="0"
+          max="100"
+        >
+
+        <button
+          class="btn btn-success"
+          onclick="ajouterRemise()"
+        >
+          ➕ Anrejistre
+        </button>
+
+      </div>
+
+
+      <div class="box">
+
+        <h3>Lis Remèt yo</h3>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Elèv</th>
+                <th>Devwa</th>
+                <th>Estati</th>
+                <th>Nòt</th>
+                <th>Aksyon</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableRemises"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= REZILTA ================= -->
+
+    <section id="resultats" class="section">
+
+      <div class="box">
+
+        <h3>📊 Rezilta</h3>
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Elèv</th>
+                <th>Klas</th>
+                <th>Devwa</th>
+                <th>Nòt</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="tableResultats"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= STATISTIK ================= -->
+
+    <section id="statistiques" class="section">
+
+      <div class="cards">
+
+        <div class="card">
+
+          <h3>Total Elèv</h3>
+
+          <div
+            id="statEleves"
+            class="number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>Total Devwa</h3>
+
+          <div
+            id="statDevoirs"
+            class="number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>Total Remèt</h3>
+
+          <div
+            id="statRemises"
+            class="number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>Mwayèn</h3>
+
+          <div
+            id="statMoyenne"
+            class="number"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DONE ================= -->
+
+    <section id="donnees" class="section">
+
+      <div class="box">
+
+        <h3>💾 Done</h3>
+
+        <p>
+          Fè yon backup done sistèm nan.
+        </p>
+
+        <br>
+
+        <button
+          class="btn"
+          onclick="exporterDonnees()"
+        >
+          📥 Ekspòte JSON
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
 
 </div>
 
 
-<!-- ================= NAVIGATION ================= -->
+<!-- ================= FIREBASE ================= -->
 
-<nav>
+<script type="module">
 
-  <button onclick="showSection('accueil')">
-    🏠 Akèy
-  </button>
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-  <button onclick="showSection('eleves')">
-    👨‍🎓 Elèv
-  </button>
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-  <button onclick="showSection('professeurs')">
-    👨‍🏫 Pwofesè
-  </button>
-
-  <button onclick="showSection('classes')">
-    🏫 Klas
-  </button>
-
-  <button onclick="showSection('matieres')">
-    📚 Matyè
-  </button>
-
-  <button onclick="showSection('devoirs')">
-    📝 Devwa
-  </button>
-
-  <button onclick="showSection('remises')">
-    📥 Remèt
-  </button>
-
-  <button onclick="showSection('resultats')">
-    📊 Rezilta
-  </button>
-
-  <button onclick="showSection('statistiques')">
-    📈 Estatistik
-  </button>
-
-  <button onclick="showSection('sauvegarde')">
-    💾 Done
-  </button>
-
-</nav>
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-<main>
+/* ================= CONFIG ================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
+
+  authDomain:
+    "sis-f-a.firebaseapp.com",
+
+  projectId:
+    "sis-f-a",
+
+  storageBucket:
+    "sis-f-a.firebasestorage.app",
+
+  messagingSenderId:
+    "505464315297",
+
+  appId:
+    "1:505464315297:web:3e45543cb121eaf7243fe0"
+
+};
 
 
-<!-- ================= ACCUEIL ================= -->
+/* ================= FIREBASE ================= */
 
-<section id="accueil" class="section active">
+const app =
+  initializeApp(firebaseConfig);
 
-  <div class="card">
+const auth =
+  getAuth(app);
 
-    <h2>👋 Byenveni</h2>
-
-    <p>
-      Byenveni nan sistèm jesyon lekòl la.
-      Tout done sistèm nan konekte dirèkteman ak Firebase Firestore.
-    </p>
-
-  </div>
+const db =
+  getFirestore(app);
 
 
-  <div class="stats">
+/* ================= LOGIN ================= */
 
-    <div class="stat">
+window.login = async function(){
 
-      <h3 id="statEleves">
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+  const msg =
+    document.getElementById(
+      "loginMessage"
+    );
+
+  if(!email || !password){
+
+    msg.className =
+      "message error";
+
+    msg.innerText =
+      "Antre email ak modpas.";
+
+    msg.style.display =
+      "block";
+
+    return;
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    msg.className =
+      "message error";
+
+    msg.innerText =
+      "Email oswa modpas pa kòrèk.";
+
+    msg.style.display =
+      "block";
+
+  }
+
+};
+
+
+/* ================= AUTH ================= */
+
+onAuthStateChanged(
+  auth,
+  async user=>{
+
+    if(user){
+
+      document
+        .getElementById("loginPage")
+        .style.display="none";
+
+      document
+        .getElementById("app")
+        .style.display="block";
+
+      document
+        .getElementById("userEmail")
+        .innerText =
+        user.email || "";
+
+      await chargerTout();
+
+    }else{
+
+      document
+        .getElementById("loginPage")
+        .style.display="flex";
+
+      document
+        .getElementById("app")
+        .style.display="none";
+
+    }
+
+  }
+);
+
+
+/* ================= LOGOUT ================= */
+
+window.logout = async function(){
+
+  await signOut(auth);
+
+};
+
+
+/* ================= NAVIGATION ================= */
+
+window.showSection =
+function(id,button){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(x=>{
+      x.classList.remove("active");
+    });
+
+  document
+    .querySelectorAll(".menu button")
+    .forEach(x=>{
+      x.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  const titles={
+
+    home:"Akèy",
+    eleves:"Elèv",
+    professeurs:"Pwofesè",
+    classes:"Klas",
+    matieres:"Matyè",
+    devoirs:"Devwa",
+    remises:"Remèt",
+    resultats:"Rezilta",
+    statistiques:"Estatistik",
+    donnees:"Done"
+
+  };
+
+  document
+    .getElementById("pageTitle")
+    .innerText =
+    titles[id] || "Sistèm Lekòl";
+
+};
+
+
+/* ================= GET DATA ================= */
+
+async function getData(name){
+
+  const snap =
+    await getDocs(
+      collection(db,name)
+    );
+
+  return snap.docs.map(x=>({
+
+    id:x.id,
+
+    ...x.data()
+
+  }));
+
+}
+
+
+/* ================= SAFE TEXT ================= */
+
+function safe(value){
+
+  if(value === undefined ||
+     value === null){
+
+    return "";
+
+  }
+
+  return String(value)
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ================= ELÈV ================= */
+
+window.ajouterEleve =
+async function(){
+
+  const nom =
+    document.getElementById(
+      "eleveNom"
+    ).value.trim();
+
+  const prenom =
+    document.getElementById(
+      "elevePrenom"
+    ).value.trim();
+
+  const email =
+    document.getElementById(
+      "eleveEmail"
+    ).value.trim();
+
+  const classeId =
+    document.getElementById(
+      "eleveClasse"
+    ).value;
+
+  if(!nom || !prenom){
+
+    alert(
+      "Mete non ak prénom elèv la."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"eleves"),
+      {
+        nom,
+        prenom,
+        email,
+        classeId,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "eleveNom"
+    ).value="";
+
+    document.getElementById(
+      "elevePrenom"
+    ).value="";
+
+    document.getElementById(
+      "eleveEmail"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Elèv la ajoute."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Firebase pa pèmèt ajoute done a."
+    );
+
+  }
+
+};
+
+
+window.afficherEleves =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableEleves"
+    );
+
+  tbody.innerHTML="";
+
+  const [
+    eleves,
+    classes
+  ] =
+    await Promise.all([
+      getData("eleves"),
+      getData("classes")
+    ]);
+
+  const search =
+    (
+      document.getElementById(
+        "searchEleve"
+      ).value || ""
+    ).toLowerCase();
+
+  eleves
+    .filter(e=>
+      `${e.nom} ${e.prenom} ${e.email}`
+      .toLowerCase()
+      .includes(search)
+    )
+    .forEach(e=>{
+
+      const classe =
+        classes.find(
+          c=>c.id===e.classeId
+        );
+
+      const tr =
+        document.createElement("tr");
+
+      tr.innerHTML=`
+
+        <td>${safe(e.nom)}</td>
+
+        <td>${safe(e.prenom)}</td>
+
+        <td>${safe(e.email)}</td>
+
+        <td>
+          ${safe(
+            classe?.nom || "—"
+          )}
+        </td>
+
+        <td>
+
+          <button
+            class="btn btn-danger"
+            onclick="supprimer('eleves','${e.id}')"
+          >
+            🗑️
+          </button>
+
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+
+    });
+
+};
+
+
+/* ================= PROFESÈ ================= */
+
+window.ajouterProfesseur =
+async function(){
+
+  const nom =
+    document.getElementById(
+      "profNom"
+    ).value.trim();
+
+  const prenom =
+    document.getElementById(
+      "profPrenom"
+    ).value.trim();
+
+  const email =
+    document.getElementById(
+      "profEmail"
+    ).value.trim();
+
+  const telephone =
+    document.getElementById(
+      "profTelephone"
+    ).value.trim();
+
+  if(!nom || !prenom){
+
+    alert(
+      "Mete non ak prénom pwofesè a."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"professeurs"),
+      {
+        nom,
+        prenom,
+        email,
+        telephone,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "profNom"
+    ).value="";
+
+    document.getElementById(
+      "profPrenom"
+    ).value="";
+
+    document.getElementById(
+      "profEmail"
+    ).value="";
+
+    document.getElementById(
+      "profTelephone"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Pwofesè a ajoute."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè Firebase."
+    );
+
+  }
+
+};
+
+
+window.afficherProfesseurs =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableProfesseurs"
+    );
+
+  tbody.innerHTML="";
+
+  const profs =
+    await getData(
+      "professeurs"
+    );
+
+  const search =
+    (
+      document.getElementById(
+        "searchProf"
+      ).value || ""
+    ).toLowerCase();
+
+  profs
+    .filter(p=>
+      `${p.nom} ${p.prenom} ${p.email}`
+      .toLowerCase()
+      .includes(search)
+    )
+    .forEach(p=>{
+
+      const tr =
+        document.createElement("tr");
+
+      tr.innerHTML=`
+
+        <td>${safe(p.nom)}</td>
+
+        <td>${safe(p.prenom)}</td>
+
+        <td>${safe(p.email)}</td>
+
+        <td>${safe(p.telephone)}</td>
+
+        <td>
+
+          <button
+            class="btn btn-danger"
+            onclick="supprimer('professeurs','${p.id}')"
+          >
+            🗑️
+          </button>
+
+        </td>
+
+      `;
+
+      tbody.appendChild(tr);
+
+    });
+
+};
+
+
+/* ================= KLAS ================= */
+
+window.ajouterClasse =
+async function(){
+
+  const nom =
+    document.getElementById(
+      "classeNom"
+    ).value.trim();
+
+  const niveau =
+    document.getElementById(
+      "classeNiveau"
+    ).value.trim();
+
+  if(!nom){
+
+    alert(
+      "Mete non klas la."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"classes"),
+      {
+        nom,
+        niveau,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "classeNom"
+    ).value="";
+
+    document.getElementById(
+      "classeNiveau"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Klas la ajoute."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè Firebase."
+    );
+
+  }
+
+};
+
+
+window.afficherClasses =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableClasses"
+    );
+
+  tbody.innerHTML="";
+
+  const classes =
+    await getData("classes");
+
+  classes.forEach(c=>{
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML=`
+
+      <td>${safe(c.nom)}</td>
+
+      <td>${safe(c.niveau)}</td>
+
+      <td>
+
+        <button
+          class="btn btn-danger"
+          onclick="supprimer('classes','${c.id}')"
+        >
+          🗑️
+        </button>
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+};
+
+
+/* ================= MATYÈ ================= */
+
+window.ajouterMatiere =
+async function(){
+
+  const nom =
+    document.getElementById(
+      "matiereNom"
+    ).value.trim();
+
+  const code =
+    document.getElementById(
+      "matiereCode"
+    ).value.trim();
+
+  if(!nom){
+
+    alert(
+      "Mete non matyè a."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"matieres"),
+      {
+        nom,
+        code,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "matiereNom"
+    ).value="";
+
+    document.getElementById(
+      "matiereCode"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Matyè a ajoute."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè Firebase."
+    );
+
+  }
+
+};
+
+
+window.afficherMatieres =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableMatieres"
+    );
+
+  tbody.innerHTML="";
+
+  const matieres =
+    await getData("matieres");
+
+  matieres.forEach(m=>{
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML=`
+
+      <td>${safe(m.nom)}</td>
+
+      <td>${safe(m.code)}</td>
+
+      <td>
+
+        <button
+          class="btn btn-danger"
+          onclick="supprimer('matieres','${m.id}')"
+        >
+          🗑️
+        </button>
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+};
+
+
+/* ================= DEVWA ================= */
+
+window.ajouterDevoir =
+async function(){
+
+  const titre =
+    document.getElementById(
+      "devoirTitre"
+    ).value.trim();
+
+  const matiereId =
+    document.getElementById(
+      "devoirMatiere"
+    ).value;
+
+  const classeId =
+    document.getElementById(
+      "devoirClasse"
+    ).value;
+
+  const date =
+    document.getElementById(
+      "devoirDate"
+    ).value;
+
+  const description =
+    document.getElementById(
+      "devoirDescription"
+    ).value.trim();
+
+  if(
+    !titre ||
+    !matiereId ||
+    !classeId
+  ){
+
+    alert(
+      "Ranpli enfòmasyon obligatwa yo."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"devoirs"),
+      {
+        titre,
+        matiereId,
+        classeId,
+        date,
+        description,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "devoirTitre"
+    ).value="";
+
+    document.getElementById(
+      "devoirMatiere"
+    ).value="";
+
+    document.getElementById(
+      "devoirClasse"
+    ).value="";
+
+    document.getElementById(
+      "devoirDate"
+    ).value="";
+
+    document.getElementById(
+      "devoirDescription"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Devwa a kreye."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè Firebase."
+    );
+
+  }
+
+};
+
+
+window.afficherDevoirs =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableDevoirs"
+    );
+
+  tbody.innerHTML="";
+
+  const [
+    devoirs,
+    matieres,
+    classes
+  ] =
+    await Promise.all([
+
+      getData("devoirs"),
+      getData("matieres"),
+      getData("classes")
+
+    ]);
+
+  devoirs.forEach(d=>{
+
+    const matiere =
+      matieres.find(
+        m=>m.id===d.matiereId
+      );
+
+    const classe =
+      classes.find(
+        c=>c.id===d.classeId
+      );
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML=`
+
+      <td>${safe(d.titre)}</td>
+
+      <td>
+        ${safe(
+          matiere?.nom || "—"
+        )}
+      </td>
+
+      <td>
+        ${safe(
+          classe?.nom || "—"
+        )}
+      </td>
+
+      <td>
+        ${safe(d.date || "—")}
+      </td>
+
+      <td>
+
+        <button
+          class="btn btn-danger"
+          onclick="supprimer('devoirs','${d.id}')"
+        >
+          🗑️
+        </button>
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+};
+
+
+/* ================= REMÈT ================= */
+
+window.ajouterRemise =
+async function(){
+
+  const eleveId =
+    document.getElementById(
+      "eleveRemise"
+    ).value;
+
+  const devoirId =
+    document.getElementById(
+      "devoirRemise"
+    ).value;
+
+  const statut =
+    document.getElementById(
+      "statutRemise"
+    ).value;
+
+  const noteValue =
+    document.getElementById(
+      "noteRemise"
+    ).value;
+
+  if(!eleveId || !devoirId){
+
+    alert(
+      "Chwazi elèv ak devwa."
+    );
+
+    return;
+
+  }
+
+  let note=null;
+
+  if(noteValue !== ""){
+
+    note=Number(noteValue);
+
+    if(
+      isNaN(note) ||
+      note<0 ||
+      note>100
+    ){
+
+      alert(
+        "Nòt la dwe ant 0 ak 100."
+      );
+
+      return;
+
+    }
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"remises"),
+      {
+        eleveId,
+        devoirId,
+        statut,
+        note,
+        createdAt:
+          new Date().toISOString()
+      }
+    );
+
+    document.getElementById(
+      "eleveRemise"
+    ).value="";
+
+    document.getElementById(
+      "devoirRemise"
+    ).value="";
+
+    document.getElementById(
+      "noteRemise"
+    ).value="";
+
+    await chargerTout();
+
+    alert(
+      "Remèt la anrejistre."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè Firebase."
+    );
+
+  }
+
+};
+
+
+window.afficherRemises =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableRemises"
+    );
+
+  tbody.innerHTML="";
+
+  const [
+    remises,
+    eleves,
+    devoirs
+  ] =
+    await Promise.all([
+
+      getData("remises"),
+      getData("eleves"),
+      getData("devoirs")
+
+    ]);
+
+  remises.forEach(r=>{
+
+    const eleve =
+      eleves.find(
+        e=>e.id===r.eleveId
+      );
+
+    const devoir =
+      devoirs.find(
+        d=>d.id===r.devoirId
+      );
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML=`
+
+      <td>
+        ${safe(
+          eleve
+          ? eleve.nom+" "+eleve.prenom
+          : "—"
+        )}
+      </td>
+
+      <td>
+        ${safe(
+          devoir?.titre || "—"
+        )}
+      </td>
+
+      <td>
+        <span class="badge">
+          ${safe(r.statut)}
+        </span>
+      </td>
+
+      <td>
+        ${
+          r.note === null ||
+          r.note === undefined
+          ? "—"
+          : safe(r.note)
+        }
+      </td>
+
+      <td>
+
+        <button
+          class="btn btn-danger"
+          onclick="supprimer('remises','${r.id}')"
+        >
+          🗑️
+        </button>
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+};
+
+
+/* ================= REZILTA ================= */
+
+window.afficherResultats =
+async function(){
+
+  const tbody =
+    document.getElementById(
+      "tableResultats"
+    );
+
+  tbody.innerHTML="";
+
+  const [
+    remises,
+    eleves,
+    devoirs,
+    classes
+  ] =
+    await Promise.all([
+
+      getData("remises"),
+      getData("eleves"),
+      getData("devoirs"),
+      getData("classes")
+
+    ]);
+
+  remises
+    .filter(r=>
+      r.note !== null &&
+      r.note !== undefined
+    )
+    .forEach(r=>{
+
+      const eleve =
+        eleves.find(
+          e=>e.id===r.eleveId
+        );
+
+      const devoir =
+        devoirs.find(
+          d=>d.id===r.devoirId
+        );
+
+      const classe =
+        classes.find(
+          c=>c.id===eleve?.classeId
+        );
+
+      const tr =
+        document.createElement("tr");
+
+      tr.innerHTML=`
+
+        <td>
+          ${safe(
+            eleve
+            ? eleve.nom+" "+eleve.prenom
+            : "—"
+          )}
+        </td>
+
+        <td>
+          ${safe(
+            classe?.nom || "—"
+          )}
+        </td>
+
+        <td>
+          ${safe(
+            devoir?.titre || "—"
+          )}
+        </td>
+
+        <td>
+          <strong>
+            ${safe(r.note)}
+          </strong>
+        </td>
+
+      `;
+
+      tbody.appendChild(tr);
+
+    });
+
+};
+
+
+/* ================= STATISTIK ================= */
+
+async function afficherStatistik(){
+
+  const [
+    eleves,
+    devoirs,
+    remises
+  ] =
+    await Promise.all([
+
+      getData("eleves"),
+      getData("devoirs"),
+      getData("remises")
+
+    ]);
+
+  const notes =
+    remises
+      .filter(r=>
+        r.note !== null &&
+        r.note !== undefined &&
+        !isNaN(Number(r.note))
+      )
+      .map(r=>Number(r.note));
+
+  let moyenne=0;
+
+  if(notes.length){
+
+    moyenne =
+      notes.reduce(
+        (a,b)=>a+b,
         0
-      </h3>
+      ) / notes.length;
 
-      <p>👨‍🎓 Elèv</p>
+  }
 
-    </div>
+  document.getElementById(
+    "statEleves"
+  ).innerText =
+    eleves.length;
 
+  document.getElementById(
+    "statDevoirs"
+  ).innerText =
+    devoirs.length;
 
-    <div class="stat">
+  document.getElementById(
+    "statRemises"
+  ).innerText =
+    remises.length;
 
-      <h3 id="statProfesseurs">
-        0
-      </h3>
+  document.getElementById(
+    "statMoyenne"
+  ).innerText =
+    moyenne.toFixed(2);
 
-      <p>👨‍🏫 Pwofesè</p>
+}
 
-    </div>
 
+/* ================= SUPPRIME ================= */
 
-    <div class="stat">
+window.supprimer =
+async function(
+  collectionName,
+  id
+){
 
-      <h3 id="statClasses">
-        0
-      </h3>
+  if(
+    !confirm(
+      "Èske ou sèten ou vle efase sa?"
+    )
+  ){
 
-      <p>🏫 Klas</p>
+    return;
 
-    </div>
+  }
 
+  try{
 
-    <div class="stat">
+    await deleteDoc(
+      doc(
+        db,
+        collectionName,
+        id
+      )
+    );
 
-      <h3 id="statDevoirs">
-        0
-      </h3>
+    await chargerTout();
 
-      <p>📝 Devwa</p>
+    alert(
+      "Done a efase."
+    );
 
-    </div>
+  }catch(error){
 
-  </div>
+    console.error(error);
 
+    alert(
+      "Pa kapab efase done a."
+    );
 
-  <div class="card">
+  }
 
-    <h2>⚡ Aksyon rapid</h2>
+};
 
-    <button
-      class="action"
-      onclick="showSection('eleves')">
 
-      ➕ Ajoute elèv
+/* ================= OPTIONS ================= */
 
-    </button>
+async function chargerOptions(){
 
+  const [
+    eleves,
+    classes,
+    matieres,
+    devoirs
+  ] =
+    await Promise.all([
 
-    <button
-      class="action"
-      onclick="showSection('professeurs')">
+      getData("eleves"),
+      getData("classes"),
+      getData("matieres"),
+      getData("devoirs")
 
-      ➕ Ajoute pwofesè
+    ]);
 
-    </button>
 
+  const eleveClasse =
+    document.getElementById(
+      "eleveClasse"
+    );
 
-    <button
-      class="action"
-      onclick="showSection('classes')">
+  const devoirClasse =
+    document.getElementById(
+      "devoirClasse"
+    );
 
-      ➕ Ajoute klas
+  const devoirMatiere =
+    document.getElementById(
+      "devoirMatiere"
+    );
 
-    </button>
+  const eleveRemise =
+    document.getElementById(
+      "eleveRemise"
+    );
 
+  const devoirRemise =
+    document.getElementById(
+      "devoirRemise"
+    );
 
-    <button
-      class="action"
-      onclick="showSection('devoirs')">
 
-      ➕ Ajoute devwa
+  eleveClasse.innerHTML =
+    '<option value="">Chwazi klas</option>';
 
-    </button>
+  devoirClasse.innerHTML =
+    '<option value="">Chwazi klas</option>';
 
-  </div>
+  classes.forEach(c=>{
 
-</section>
+    const option =
+      `<option value="${c.id}">
+        ${safe(c.nom)}
+      </option>`;
 
+    eleveClasse.innerHTML +=
+      option;
 
-<!-- ================= ELEVE ================= -->
+    devoirClasse.innerHTML +=
+      option;
 
-<section id="eleves" class="section">
+  });
 
-  <div class="card">
 
-    <h2>👨‍🎓 Jesyon Elèv</h2>
+  devoirMatiere.innerHTML =
+    '<option value="">Chwazi matyè</option>';
 
-    <input
-      id="nomEleve"
-      type="text"
-      placeholder="Non konplè elèv la"
-    >
+  matieres.forEach(m=>{
 
-    <input
-      id="ageEleve"
-      type="number"
-      placeholder="Laj"
-    >
+    devoirMatiere.innerHTML +=
 
-    <select id="classeEleve">
+      `<option value="${m.id}">
+        ${safe(m.nom)}
+      </option>`;
 
-      <option value="">
-        Chwazi klas
-      </option>
+  });
 
-    </select>
 
-    <input
-      id="telephoneEleve"
-      type="text"
-      placeholder="Telefòn"
-    >
+  eleveRemise.innerHTML =
+    '<option value="">Chwazi elèv</option>';
 
-    <button
-      class="action"
-      onclick="ajouterEleve()">
+  eleves.forEach(e=>{
 
-      ➕ Ajoute elèv
+    eleveRemise.innerHTML +=
 
-    </button>
+      `<option value="${e.id}">
+        ${safe(e.nom)}
+        ${safe(e.prenom)}
+      </option>`;
 
-  </div>
+  });
 
 
-  <div class="card">
+  devoirRemise.innerHTML =
+    '<option value="">Chwazi devwa</option>';
 
-    <h2>🔎 Rechèch elèv</h2>
+  devoirs.forEach(d=>{
 
-    <input
-      id="rechercheEleve"
-      type="text"
-      placeholder="Chèche pa non oswa klas..."
-      oninput="afficherEleves()"
-    >
+    devoirRemise.innerHTML +=
 
-  </div>
+      `<option value="${d.id}">
+        ${safe(d.titre)}
+      </option>`;
 
+  });
 
-  <div class="card">
+}
 
-    <h2>📋 Lis elèv</h2>
 
-    <div id="listeEleves"></div>
+/* ================= DASHBOARD ================= */
 
-  </div>
+async function chargerDashboard(){
 
-</section>
+  const [
+    eleves,
+    professeurs,
+    classes,
+    matieres
+  ] =
+    await Promise.all([
 
+      getData("eleves"),
+      getData("professeurs"),
+      getData("classes"),
+      getData("matieres")
 
-<!-- ================= PROFESSEUR ================= -->
+    ]);
 
-<section id="professeurs" class="section">
+  document.getElementById(
+    "countEleves"
+  ).innerText =
+    eleves.length;
 
-  <div class="card">
+  document.getElementById(
+    "countProfesseurs"
+  ).innerText =
+    professeurs.length;
 
-    <h2>👨‍🏫 Jesyon Pwofesè</h2>
+  document.getElementById(
+    "countClasses"
+  ).innerText =
+    classes.length;
 
-    <input
-      id="nomProfesseur"
-      type="text"
-      placeholder="Non konplè pwofesè a"
-    >
+  document.getElementById(
+    "countMatieres"
+  ).innerText =
+    matieres.length;
 
-    <input
-      id="telephoneProfesseur"
-      type="text"
-      placeholder="Telefòn"
-    >
+}
 
-    <input
-      id="matiereProfesseur"
-      type="text"
-      placeholder="Matyè li anseye"
-    >
 
-    <button
-      class="action"
-      onclick="ajouterProfesseur()">
+/* ================= CHARGE TOUT ================= */
 
-      ➕ Ajoute pwofesè
+async function chargerTout(){
 
-    </button>
+  try{
 
-  </div>
+    await chargerDashboard();
 
+    await afficherEleves();
 
-  <div class="card">
+    await afficherProfesseurs();
 
-    <h2>📋 Lis pwofesè</h2>
+    await afficherClasses();
 
-    <div id="listeProfesseurs"></div>
+    await afficherMatieres();
 
-  </div>
+    await afficherDevoirs();
 
-</section>
+    await afficherRemises();
 
+    await afficherResultats();
 
-<!-- ================= KLAS ================= -->
+    await afficherStatistik();
 
-<section id="classes" class="section">
+    await chargerOptions();
 
-  <div class="card">
+  }catch(error){
 
-    <h2>🏫 Jesyon Klas</h2>
+    console.error(
+      "Erreur chargement Firebase:",
+      error
+    );
 
-    <input
-      id="nomClasse"
-      type="text"
-      placeholder="Egzanp: 
+  }
+
+}
+
+
+/* ================= EXPORT ================= */
+
+window.exporterDonnees =
+async function(){
+
+  try{
+
+    const data={
+
+      eleves:
+        await getData("eleves"),
+
+      professeurs:
+        await getData("professeurs"),
+
+      classes:
+        await getData("classes"),
+
+      matieres:
+        await getData("matieres"),
+
+      devoirs:
+        await getData("devoirs"),
+
+      remises:
+        await getData("remises")
+
+    };
+
+    const blob =
+      new Blob(
+        [
+          JSON.stringify(
+            data,
+            null,
+            2
+          )
+        ],
+        {
+          type:
+            "application/json"
+        }
+      );
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href=url;
+
+    a.download =
+      "backup-sistem-lekol.json";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Pa kapab fè backup la."
+    );
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
