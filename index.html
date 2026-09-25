@@ -19,7 +19,49 @@ body{
   color:#222;
 }
 
+/* ================= LOGIN ================= */
+
+#loginBox{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:#f4f6f9;
+  z-index:99999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+#loginBox h2{
+  margin-bottom:20px;
+}
+
+#loginBox input{
+  width:90%;
+  max-width:350px;
+  padding:12px;
+  margin:6px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:16px;
+}
+
+#loginBox button{
+  padding:12px 25px;
+  margin-top:10px;
+  border:none;
+  border-radius:6px;
+  background:#1769aa;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
 /* HEADER */
+
 header{
   background:#1769aa;
   color:white;
@@ -32,6 +74,7 @@ header h1{
 }
 
 /* NAVIGATION */
+
 nav{
   background:white;
   display:flex;
@@ -59,6 +102,7 @@ nav button:hover{
 }
 
 /* MAIN */
+
 main{
   max-width:1100px;
   margin:20px auto;
@@ -74,6 +118,7 @@ main{
 }
 
 /* CARD */
+
 .card{
   background:white;
   padding:20px;
@@ -87,6 +132,7 @@ main{
 }
 
 /* FORM */
+
 input,
 textarea,
 select{
@@ -103,6 +149,7 @@ textarea{
 }
 
 /* BUTTONS */
+
 .action{
   background:#1769aa;
   color:white;
@@ -134,6 +181,7 @@ textarea{
 }
 
 /* DASHBOARD */
+
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -156,6 +204,7 @@ textarea{
 }
 
 /* ITEMS */
+
 .item{
   border:1px solid #ddd;
   padding:15px;
@@ -173,6 +222,7 @@ textarea{
 }
 
 /* TABLE */
+
 .table-container{
   overflow-x:auto;
 }
@@ -196,6 +246,7 @@ th{
 }
 
 /* BADGES */
+
 .badge{
   display:inline-block;
   padding:5px 9px;
@@ -217,6 +268,7 @@ th{
 }
 
 /* FOOTER */
+
 footer{
   text-align:center;
   padding:30px;
@@ -224,6 +276,7 @@ footer{
 }
 
 /* MOBILE */
+
 @media(max-width:800px){
 
   .stats{
@@ -259,6 +312,32 @@ footer{
 
 <body>
 
+<!-- ================= LOGIN ================= -->
+
+<div id="loginBox">
+
+  <h2>Connexion</h2>
+
+  <input
+    type="email"
+    id="emailLogin"
+    placeholder="E-mail"
+  >
+
+  <input
+    type="password"
+    id="passwordLogin"
+    placeholder="Mot de passe"
+  >
+
+  <button onclick="connecterUtilisateur()">
+    Se connecter
+  </button>
+
+</div>
+
+<!-- ================= APP ================= -->
+
 <header>
   <h1>📚 Sistèm Lekòl</h1>
   <p>Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta</p>
@@ -278,8 +357,6 @@ footer{
 </nav>
 
 <main>
-
-<!-- ================= AKÈY ================= -->
 
 <section id="accueil" class="section active">
 
@@ -333,13 +410,9 @@ footer{
     <button class="action" onclick="showSection('devoirs')">
       ➕ Ajoute devwa
     </button>
-
   </div>
 
 </section>
-
-
-<!-- ================= ELÈV ================= -->
 
 <section id="eleves" class="section">
 
@@ -352,7 +425,7 @@ footer{
            placeholder="Non konplè elèv la">
 
     <input id="ageEleve"
-           type="number"bio
+           type="number"
            placeholder="Laj">
 
     <select id="classeEleve">
@@ -390,9 +463,6 @@ footer{
 
 </section>
 
-
-<!-- ================= PWOFESÈ ================= -->
-
 <section id="professeurs" class="section">
 
   <div class="card">
@@ -427,9 +497,6 @@ footer{
 
 </section>
 
-
-<!-- ================= KLAS ================= -->
-
 <section id="classes" class="section">
 
   <div class="card">
@@ -460,9 +527,6 @@ footer{
 
 </section>
 
-
-<!-- ================= MATYÈ ================= -->
-
 <section id="matieres" class="section">
 
   <div class="card">
@@ -488,9 +552,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= DEVWA ================= -->
 
 <section id="devoirs" class="section">
 
@@ -544,9 +605,6 @@ footer{
 
 </section>
 
-
-<!-- ================= REMÈT DEVWA ================= -->
-
 <section id="remises" class="section">
 
   <div class="card">
@@ -588,9 +646,6 @@ footer{
 
 </section>
 
-
-<!-- ================= REZILTA ================= -->
-
 <section id="resultats" class="section">
 
   <div class="card">
@@ -613,9 +668,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= ESTATISTIK ================= -->
 
 <section id="statistiques" class="section">
 
@@ -650,9 +702,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= SAUVEGARDE ================= -->
 
 <section id="sauvegarde" class="section">
 
@@ -715,7 +764,6 @@ footer{
 
 </main>
 
-
 <footer>
   © 2026 - Sistèm Lekòl
 </footer>
@@ -723,9 +771,7 @@ footer{
 
 <script>
 
-/* =====================================================
-   FONKSYON NAVIGATION
-===================================================== */
+/* ================= NAVIGATION ================= */
 
 function showSection(id){
 
@@ -743,9 +789,8 @@ function showSection(id){
 }
 
 
-/* =====================================================
-   OUTILS
-===================================================== */
+/* ================= OUTILS ================= */
+
 function getData(key){
 
   return JSON.parse(
@@ -769,7 +814,6 @@ function saveData(key,data){
 }
 
 
-
 function escapeHTML(text){
 
   if(text===undefined || text===null){
@@ -786,9 +830,7 @@ function escapeHTML(text){
 }
 
 
-/* =====================================================
-   KLASS
-===================================================== */
+/* ================= KLAS ================= */
 
 function ajouterClasse(){
 
@@ -830,10 +872,8 @@ function afficherClasses(){
   const classes=getData("classes");
 
   if(classes.length===0){
-
     liste.innerHTML="<p>Pa gen klas anrejistre.</p>";
     return;
-
   }
 
   liste.innerHTML="";
@@ -885,9 +925,7 @@ function supprimerClasse(id){
 }
 
 
-/* =====================================================
-   MATYÈ
-===================================================== */
+/* ================= MATYÈ ================= */
 
 function ajouterMatiere(){
 
@@ -926,10 +964,8 @@ function afficherMatieres(){
   const matieres=getData("matieres");
 
   if(matieres.length===0){
-
     liste.innerHTML="<p>Pa gen matyè.</p>";
     return;
-
   }
 
   liste.innerHTML="";
@@ -976,9 +1012,7 @@ function supprimerMatiere(id){
 }
 
 
-/* =====================================================
-   ELÈV
-===================================================== */
+/* ================= ELÈV ================= */
 
 function ajouterEleve(){
 
@@ -995,13 +1029,11 @@ function ajouterEleve(){
   let eleves=getData("eleves");
 
   eleves.push({
-
     id:Date.now(),
     nom:nom,
     age:age,
     classe:classe,
     telephone:telephone
-
   });
 
   saveData("eleves",eleves);
@@ -1036,8 +1068,8 @@ function afficherEleves(){
   eleves=eleves.filter(function(eleve){
 
     return (
-      eleve.nom.toLowerCase().includes(recherche) ||
-      String(eleve.classe).toLowerCase().includes(recherche)
+      String(eleve.nom || "").toLowerCase().includes(recherche) ||
+      String(eleve.classe || "").toLowerCase().includes(recherche)
     );
 
   });
@@ -1109,9 +1141,7 @@ function supprimerEleve(id){
 }
 
 
-/* =====================================================
-   PWOFESÈ
-===================================================== */
+/* ================= PWOFESÈ ================= */
 
 function ajouterProfesseur(){
 
@@ -1132,12 +1162,10 @@ function ajouterProfesseur(){
   let professeurs=getData("professeurs");
 
   professeurs.push({
-
     id:Date.now(),
     nom:nom,
     telephone:telephone,
     matiere:matiere
-
   });
 
   saveData("professeurs",professeurs);
@@ -1223,9 +1251,7 @@ function supprimerProfesseur(id){
 }
 
 
-/* =====================================================
-   DEVWA
-===================================================== */
+/* ================= DEVWA ================= */
 
 function ajouterDevoir(){
 
@@ -1254,14 +1280,12 @@ function ajouterDevoir(){
   let devoirs=getData("devoirs");
 
   devoirs.push({
-
     id:Date.now(),
     titre:titre,
     matiere:matiere,
     classe:classe,
     date:date,
     description:description
-
   });
 
   saveData("devoirs",devoirs);
@@ -1295,9 +1319,9 @@ function afficherDevoirs(){
   devoirs=devoirs.filter(function(d){
 
     return (
-      d.titre.toLowerCase().includes(recherche) ||
-      String(d.matiere).toLowerCase().includes(recherche) ||
-      String(d.classe).toLowerCase().includes(recherche)
+      String(d.titre || "").toLowerCase().includes(recherche) ||
+      String(d.matiere || "").toLowerCase().includes(recherche) ||
+      String(d.classe || "").toLowerCase().includes(recherche)
     );
 
   });
@@ -1397,9 +1421,7 @@ function supprimerDevoir(id){
 }
 
 
-/* =====================================================
-   REMÈT DEVWA
-===================================================== */
+/* ================= REMÈT ================= */
 
 function ajouterRemise(){
 
@@ -1439,19 +1461,16 @@ function ajouterRemise(){
   }else{
 
     remises.push({
-
       id:Date.now(),
       eleveId:eleveId,
       devoirId:devoirId,
       statut:statut,
       note:note
-
     });
 
   }
 
   saveData("remises",remises);
-  alert(JSON.stringify(remises));
 
   afficherRemises();
 
@@ -1465,10 +1484,10 @@ function ajouterRemise(){
 function afficherRemises(){
 
   const liste=document.getElementById("listeRemises");
+
   if(!liste)return;
 
   const remises=getData("remises");
-  alert(JSON.stringify(remises));
   const eleves=getData("eleves");
   const devoirs=getData("devoirs");
 
@@ -1556,9 +1575,7 @@ function supprimerRemise(id){
 }
 
 
-/* =====================================================
-   REZILTA
-===================================================== */
+/* ================= REZILTA ================= */
 
 function afficherResultatEleve(){
 
@@ -1630,15 +1647,12 @@ function afficherResultatEleve(){
         <th>Nòt</th>
         <th>Estati</th>
       </tr>
-
   `;
 
   notes.forEach(function(note){
 
     const devoir=devoirs.find(function(d){
-
       return String(d.id)===String(note.devoirId);
-
     });
 
     html+=`
@@ -1660,7 +1674,6 @@ function afficherResultatEleve(){
         </td>
 
       </tr>
-
     `;
 
   });
@@ -1670,7 +1683,6 @@ function afficherResultatEleve(){
     </table>
 
     </div>
-
   `;
 
   resultat.innerHTML=html;
@@ -1678,9 +1690,7 @@ function afficherResultatEleve(){
 }
 
 
-/* =====================================================
-   SELECTS
-===================================================== */
+/* ================= SELECTS ================= */
 
 function remplirSelects(){
 
@@ -1688,8 +1698,6 @@ function remplirSelects(){
   const classes=getData("classes");
   const matieres=getData("matieres");
   const devoirs=getData("devoirs");
-
-  /* CLASSES */
 
   const classeSelects=[
     document.getElementById("classeEleve"),
@@ -1712,7 +1720,6 @@ function remplirSelects(){
         <option value="${escapeHTML(c.nom)}">
           ${escapeHTML(c.nom)}
         </option>
-
       `;
 
     });
@@ -1721,8 +1728,6 @@ function remplirSelects(){
 
   });
 
-
-  /* MATIÈRES */
 
   const matiereSelect=
     document.getElementById("matiereDevoir");
@@ -1741,7 +1746,6 @@ function remplirSelects(){
         <option value="${escapeHTML(m.nom)}">
           ${escapeHTML(m.nom)}
         </option>
-
       `;
 
     });
@@ -1751,13 +1755,9 @@ function remplirSelects(){
   }
 
 
-  /* ELÈVES */
-
   const eleveSelects=[
-
     document.getElementById("eleveRemise"),
     document.getElementById("eleveResultat")
-
   ];
 
   eleveSelects.forEach(function(select){
@@ -1776,7 +1776,6 @@ function remplirSelects(){
         <option value="${e.id}">
           ${escapeHTML(e.nom)}
         </option>
-
       `;
 
     });
@@ -1785,8 +1784,6 @@ function remplirSelects(){
 
   });
 
-
-  /* DEVWA */
 
   const devoirSelect=
     document.getElementById("devoirRemise");
@@ -1805,7 +1802,6 @@ function remplirSelects(){
         <option value="${d.id}">
           ${escapeHTML(d.titre)}
         </option>
-
       `;
 
     });
@@ -1817,9 +1813,7 @@ function remplirSelects(){
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
+/* ================= DASHBOARD ================= */
 
 function actualiserDashboard(){
 
@@ -1843,9 +1837,7 @@ function actualiserDashboard(){
 }
 
 
-/* =====================================================
-   ESTATISTIK
-===================================================== */
+/* ================= ESTATISTIK ================= */
 
 function actualiserStatistiques(){
 
@@ -1889,9 +1881,7 @@ function actualiserStatistiques(){
 }
 
 
-/* =====================================================
-   SAUVEGARDE
-===================================================== */
+/* ================= SAUVEGARDE ================= */
 
 function exporterDonnees(){
 
@@ -1907,11 +1897,8 @@ function exporterDonnees(){
   };
 
   const fichier=new Blob(
-
     [JSON.stringify(donnees,null,2)],
-
     {type:"application/json"}
-
   );
 
   const url=URL.createObjectURL(fichier);
@@ -1979,9 +1966,7 @@ function importerDonnees(){
 
     }catch(error){
 
-      alert(
-        "Fichye a pa valab."
-      );
+      alert("Fichye a pa valab.");
 
     }
 
@@ -1992,9 +1977,7 @@ function importerDonnees(){
 }
 
 
-/* =====================================================
-   EFASE TOUT
-===================================================== */
+/* ================= EFASE TOUT ================= */
 
 function effacerTout(){
 
@@ -2021,9 +2004,7 @@ function effacerTout(){
 }
 
 
-/* =====================================================
-   DONE DEFAUT
-===================================================== */
+/* ================= DONE DEFAUT ================= */
 
 function initialiserDonnees(){
 
@@ -2095,9 +2076,7 @@ function initialiserDonnees(){
 }
 
 
-/* =====================================================
-   ACTUALIZE TOUT
-===================================================== */
+/* ================= ACTUALIZE TOUT ================= */
 
 function actualiserTout(){
 
@@ -2116,25 +2095,27 @@ function actualiserTout(){
 }
 
 
-/* =====================================================
-   DEMARAJ
-===================================================== */
+/* ================= DEMARAJ ================= */
 
 initialiserDonnees();
-
 actualiserTout();
 
-</script> >
-  <script type="module">
+</script>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 import {
   getAuth,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 import {
   getFirestore,
-  collection,
   doc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
@@ -2151,45 +2132,67 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
+
 const auth = getAuth(app);
 
-/* Sove done nan Firebase */
-window.firebaseSaveData = async function(key, data) {
 
-  try {
+/* ================= FIREBASE SAVE ================= */
 
-    for (const item of data) {
+window.firebaseSaveData = async function(key,data){
 
-      if (!item.id) {
-        item.id = Date.now();
+  try{
+
+    for(const item of data){
+
+      if(!item.id){
+        item.id=Date.now();
       }
 
       await setDoc(
-        doc(db, key, String(item.id)),
+        doc(db,key,String(item.id)),
         item
       );
 
     }
 
-    console.log("Firebase OK:", key);
+    console.log("Firebase OK:",key);
 
-  } catch (error) {
+  }catch(error){
 
-    console.error("Firebase Error:", error);
-    alert("Erè Firebase: " + error.message);
+    console.error("Firebase Error:",error);
+
+    alert(
+      "Erè Firebase: " + error.message
+    );
 
   }
 
 };
 
-console.log("Firebase konekte!");
-window.connecterUtilisateur = async function() {
 
-  const email = document.getElementById("emailLogin").value;
-  const motDePasse = document.getElementById("passwordLogin").value;
+/* ================= LOGIN ================= */
 
-  try {
+window.connecterUtilisateur = async function(){
+
+  const email=
+    document.getElementById("emailLogin").value.trim();
+
+  const motDePasse=
+    document.getElementById("passwordLogin").value;
+
+  if(email==="" || motDePasse===""){
+
+    alert(
+      "Tanpri antre e-mail ak modpas la."
+    );
+
+    return;
+
+  }
+
+  try{
 
     await signInWithEmailAndPassword(
       auth,
@@ -2198,33 +2201,21 @@ window.connecterUtilisateur = async function() {
     );
 
     alert("Connexion réussie !");
-document.getElementById("loginBox").style.display = "none";
-  } catch (error) {
 
-    alert("Erreur de connexion : " + error.message);
+    document.getElementById("loginBox").style.display="none";
+
+  }catch(error){
+
+    alert(
+      "Erreur de connexion : " +
+      error.message
+    );
 
   }
 
 };
+
 </script>
-<div id="loginBox">
-  <h2>Connexion</h2>
 
-  <input
-    type="email"
-    id="emailLogin"
-    placeholder="E-mail"
-  >
-
-  <input
-    type="password"
-    id="passwordLogin"
-    placeholder="Mot de passe"
-  >
-
-  <button onclick="connecterUtilisateur()">
-    Se connecter
-  </button>
-</div>
 </body>
 </html>
