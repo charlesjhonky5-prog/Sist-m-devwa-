@@ -2646,4 +2646,851 @@ async function(){
       "remises",
       item
     )
- 
+  ){
+
+    if(existing){
+
+      const index =
+        window.data.remises.indexOf(
+          existing
+        );
+
+      window.data.remises[index]=item;
+
+    }else{
+
+      window.data.remises.push(item);
+
+    }
+
+
+    document.getElementById(
+      "noteRemise"
+    ).value="";
+
+
+    actualiserTout();
+
+
+    alert(
+      "Suivi devwa a anrejistre."
+    );
+
+  }
+
+};
+
+
+/* ======================================================
+   DISPLAY SUBMISSIONS
+====================================================== */
+
+window.afficherRemises=function(){
+
+  const liste =
+    document.getElementById(
+      "listeRemises"
+    );
+
+  if(!liste)return;
+
+
+  if(window.data.remises.length===0){
+
+    liste.innerHTML =
+      "<p>Pa gen done sou remèt devwa.</p>";
+
+    return;
+
+  }
+
+
+  liste.innerHTML="";
+
+
+  window.data.remises.forEach(
+    function(r){
+
+      const eleve =
+        window.data.eleves.find(
+          e =>
+            String(e.id)===
+            String(r.eleveId)
+        );
+
+
+      const devoir =
+        window.data.devoirs.find(
+          d =>
+            String(d.id)===
+            String(r.devoirId)
+        );
+
+
+      if(!eleve || !devoir)return;
+
+
+      const badge =
+        r.statut==="Remèt"
+        ? "badge-green"
+        : "badge-red";
+
+
+      liste.innerHTML+=`
+
+        <div class="item">
+
+          <h3>
+            👨‍🎓
+            ${escapeHTML(eleve.nom)}
+          </h3>
+
+          <p>
+            <b>Devwa:</b>
+            ${escapeHTML(devoir.titre)}
+          </p>
+
+          <p>
+            <b>Estati:</b>
+
+            <span class="badge ${badge}">
+              ${escapeHTML(r.statut)}
+            </span>
+
+          </p>
+
+          <p>
+            <b>Nòt:</b>
+            ${escapeHTML(
+              r.note || "Pa gen nòt"
+            )}
+          </p>
+
+          <button
+            class="action danger"
+            onclick="supprimerRemise('${r.id}')">
+
+            🗑️ Efase
+
+          </button>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+};
+
+
+/* ======================================================
+   DELETE SUBMISSION
+====================================================== */
+
+window.supprimerRemise =
+async function(id){
+
+  if(!confirm(
+    "Efase anrejistreman sa a?"
+  ))return;
+
+
+  if(
+    await firebaseDelete(
+      "remises",
+      id
+    )
+  ){
+
+    window.data.remises =
+      window.data.remises.filter(
+        r => String(r.id)!==String(id)
+      );
+
+    actualiserTout();
+
+  }
+
+};
+
+
+/* ======================================================
+   RESULT
+====================================================== */
+
+window.afficherResultatEleve=function(){
+
+  const id =
+    document.getElementById(
+      "eleveResultat"
+    ).value;
+
+
+  const resultat =
+    document.getElementById(
+      "resultatEleve"
+    );
+
+
+  if(!id){
+
+    resultat.innerHTML =
+      "<p>Chwazi yon elèv.</p>";
+
+    return;
+
+  }
+
+
+  const eleve =
+    window.data.eleves.find(
+      e =>
+        String(e.id)===
+        String(id)
+    );
+
+
+  if(!eleve)return;
+
+
+  const notes =
+    window.data.remises.filter(
+      function(r){
+
+        return (
+          String(r.eleveId)===
+          String(id)
+
+          &&
+
+          r.note!=="" &&
+          r.note!==undefined
+        );
+
+      }
+    );
+
+
+  let total=0;
+
+
+  notes.forEach(
+    n => total += Number(n.note)
+  );
+
+
+  const moyenne =
+    notes.length
+    ? (total / notes.length)
+        .toFixed(2)
+    : "0";
+
+
+  let html=`
+
+    <h2>
+      📊 Rezilta:
+      ${escapeHTML(eleve.nom)}
+    </h2>
+
+    <p>
+      <b>Klas:</b>
+      ${escapeHTML(
+        eleve.classe || "Pa defini"
+      )}
+    </p>
+
+    <br>
+
+    <h3>
+      Mwayèn: ${moyenne}/100
+    </h3>
+
+    <br>
+
+    <div class="table-container">
+
+      <table>
+
+        <tr>
+
+          <th>
+            Devwa
+          </th>
+
+          <th>
+            Nòt
+          </th>
+
+          <th>
+            Estati
+          </th>
+
+        </tr>
+
+  `;
+
+
+  notes.forEach(
+    function(n){
+
+      const devoir =
+        window.data.devoirs.find(
+          d =>
+            String(d.id)===
+            String(n.devoirId)
+        );
+
+
+      html+=`
+
+        <tr>
+
+          <td>
+            ${escapeHTML(
+              devoir
+              ? devoir.titre
+              : "Devwa"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(n.note)}/100
+          </td>
+
+          <td>
+            ${escapeHTML(n.statut)}
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+
+  html+=`
+
+      </table>
+
+    </div>
+
+  `;
+
+
+  resultat.innerHTML=html;
+
+};
+
+
+/* ======================================================
+   SELECTS
+====================================================== */
+
+window.remplirSelects=function(){
+
+  const classes =
+    window.data.classes;
+
+  const matieres =
+    window.data.matieres;
+
+  const eleves =
+    window.data.eleves;
+
+  const devoirs =
+    window.data.devoirs;
+
+
+  /* CLASSES */
+
+  [
+    document.getElementById(
+      "classeEleve"
+    ),
+
+    document.getElementById(
+      "classeDevoir"
+    )
+
+  ].forEach(function(select){
+
+    if(!select)return;
+
+
+    const old =
+      select.value;
+
+
+    select.innerHTML =
+      `<option value="">
+        Chwazi klas
+      </option>`;
+
+
+    classes.forEach(function(c){
+
+      select.innerHTML+=`
+
+        <option value="${escapeHTML(c.nom)}">
+
+          ${escapeHTML(c.nom)}
+
+        </option>
+
+      `;
+
+    });
+
+
+    select.value=old;
+
+  });
+
+
+  /* MATIERES */
+
+  const matiereSelect =
+    document.getElementById(
+      "matiereDevoir"
+    );
+
+
+  if(matiereSelect){
+
+    const old =
+      matiereSelect.value;
+
+
+    matiereSelect.innerHTML =
+      `<option value="">
+        Chwazi matyè
+      </option>`;
+
+
+    matieres.forEach(function(m){
+
+      matiereSelect.innerHTML+=`
+
+        <option value="${escapeHTML(m.nom)}">
+
+          ${escapeHTML(m.nom)}
+
+        </option>
+
+      `;
+
+    });
+
+
+    matiereSelect.value=old;
+
+  }
+
+
+  /* ELEVES */
+
+  [
+    document.getElementById(
+      "eleveRemise"
+    ),
+
+    document.getElementById(
+      "eleveResultat"
+    )
+
+  ].forEach(function(select){
+
+    if(!select)return;
+
+
+    const old =
+      select.value;
+
+
+    select.innerHTML =
+      `<option value="">
+        Chwazi elèv
+      </option>`;
+
+
+    eleves.forEach(function(e){
+
+      select.innerHTML+=`
+
+        <option value="${e.id}">
+
+          ${escapeHTML(e.nom)}
+
+        </option>
+
+      `;
+
+    });
+
+
+    select.value=old;
+
+  });
+
+
+  /* DEVOIRS */
+
+  const devoirSelect =
+    document.getElementById(
+      "devoirRemise"
+    );
+
+
+  if(devoirSelect){
+
+    const old =
+      devoirSelect.value;
+
+
+    devoirSelect.innerHTML =
+      `<option value="">
+        Chwazi devwa
+      </option>`;
+
+
+    devoirs.forEach(function(d){
+
+      devoirSelect.innerHTML+=`
+
+        <option value="${d.id}">
+
+          ${escapeHTML(d.titre)}
+
+        </option>
+
+      `;
+
+    });
+
+
+    devoirSelect.value=old;
+
+  }
+
+};
+
+
+/* ======================================================
+   DASHBOARD
+====================================================== */
+
+window.actualiserDashboard=function(){
+
+  document.getElementById(
+    "statEleves"
+  ).textContent =
+    window.data.eleves.length;
+
+
+  document.getElementById(
+    "statProfesseurs"
+  ).textContent =
+    window.data.professeurs.length;
+
+
+  document.getElementById(
+    "statClasses"
+  ).textContent =
+    window.data.classes.length;
+
+
+  document.getElementById(
+    "statDevoirs"
+  ).textContent =
+    window.data.devoirs.length;
+
+};
+
+
+/* ======================================================
+   STATISTICS
+====================================================== */
+
+window.actualiserStatistiques=function(){
+
+  const notes =
+    window.data.remises
+
+      .filter(
+        r =>
+          r.note!=="" &&
+          r.note!==undefined
+      )
+
+      .map(
+        r => Number(r.note)
+      );
+
+
+  let moyenne=0;
+
+
+  if(notes.length){
+
+    moyenne =
+      notes.reduce(
+        (a,b)=>a+b,
+        0
+      ) / notes.length;
+
+  }
+
+
+  document.getElementById(
+    "totalElevesStat"
+  ).textContent =
+    window.data.eleves.length;
+
+
+  document.getElementById(
+    "totalProfStat"
+  ).textContent =
+    window.data.professeurs.length;
+
+
+  document.getElementById(
+    "totalDevoirStat"
+  ).textContent =
+    window.data.devoirs.length;
+
+
+  document.getElementById(
+    "moyenneStat"
+  ).textContent =
+    moyenne.toFixed(2);
+
+};
+
+
+/* ======================================================
+   UPDATE EVERYTHING
+====================================================== */
+
+window.actualiserTout=function(){
+
+  afficherEleves();
+
+  afficherProfesseurs();
+
+  afficherClasses();
+
+  afficherMatieres();
+
+  afficherDevoirs();
+
+  afficherRemises();
+
+  remplirSelects();
+
+  actualiserDashboard();
+
+  actualiserStatistiques();
+
+};
+
+
+/* ======================================================
+   EXPORT FIREBASE DATA
+====================================================== */
+
+window.exporterDonnees=function(){
+
+  const donnees = {
+
+    eleves:
+      window.data.eleves,
+
+    professeurs:
+      window.data.professeurs,
+
+    classes:
+      window.data.classes,
+
+    matieres:
+      window.data.matieres,
+
+    devoirs:
+      window.data.devoirs,
+
+    remises:
+      window.data.remises
+
+  };
+
+
+  const fichier =
+    new Blob(
+      [
+        JSON.stringify(
+          donnees,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      fichier
+    );
+
+
+  const lien =
+    document.createElement(
+      "a"
+    );
+
+
+  lien.href=url;
+
+  lien.download =
+    "sauvegarde-systeme-lekol.json";
+
+
+  lien.click();
+
+
+  URL.revokeObjectURL(url);
+
+};
+
+
+/* ======================================================
+   IMPORT DATA TO FIREBASE
+====================================================== */
+
+window.importerDonnees =
+async function(){
+
+  const fichier =
+    document.getElementById(
+      "importFile"
+    ).files[0];
+
+
+  if(!fichier){
+
+    alert(
+      "Chwazi yon fichye JSON an premye."
+    );
+
+    return;
+
+  }
+
+
+  const lecteur =
+    new FileReader();
+
+
+  lecteur.onload =
+  async function(e){
+
+    try{
+
+      const donnees =
+        JSON.parse(
+          e.target.result
+        );
+
+
+      const collections=[
+        "eleves",
+        "professeurs",
+        "classes",
+        "matieres",
+        "devoirs",
+        "remises"
+      ];
+
+
+      showLoading(
+        "Importasyon done yo..."
+      );
+
+
+      for(
+        const collectionName
+        of collections
+      ){
+
+        if(
+          !Array.isArray(
+            donnees[collectionName]
+          )
+        )continue;
+
+
+        for(
+          const item
+          of donnees[collectionName]
+        ){
+
+          const copy={
+            ...item,
+            id:String(
+              item.id || Date.now()
+            )
+          };
+
+
+          await firebaseSave(
+            collectionName,
+            copy
+          );
+
+        }
+
+      }
+
+
+      await chargerToutFirebase();
+
+
+      hideLoading();
+
+
+      alert(
+        "Done yo antre nan Firebase avèk siksè."
+      );
+
+
+    }catch(error){
+
+      hideLoading();
+
+      console.error(error);
+
+      alert(
+        "Fichye a pa valab:\n"+
+        error.message
+      );
+
+    }
+
+  };
+
+
+  lecteur.readAsText(
+    fichier
+  );
+
+};
+
+</script>
+
+</body>
+</html>
