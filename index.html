@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sistèm Lekòl Firebase</title>
+<title>Sistèm Aprantisaj Firebase</title>
 
 <style>
 *{
@@ -50,6 +50,7 @@ body{
 .login-card p{
   margin-bottom:20px;
   color:#666;
+  line-height:1.5;
 }
 
 .login-card button{
@@ -66,6 +67,11 @@ body{
 
 .login-card button:hover{
   background:#0d4f83;
+}
+
+.login-card button:disabled{
+  opacity:.7;
+  cursor:not-allowed;
 }
 
 /* ================= HEADER ================= */
@@ -280,7 +286,7 @@ th{
 #loading{
   position:fixed;
   inset:0;
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.96);
   z-index:999998;
   display:none;
   justify-content:center;
@@ -294,6 +300,8 @@ th{
   padding:25px;
   border-radius:12px;
   box-shadow:0 3px 15px #ccc;
+  width:100%;
+  max-width:350px;
 }
 
 .spinner{
@@ -390,7 +398,7 @@ footer{
     <div class="spinner"></div>
 
     <h3 id="loadingText">
-      Chaje done Firebase...
+      Chaje Sistèm Aprantisaj...
     </h3>
 
   </div>
@@ -404,14 +412,19 @@ footer{
 
   <div class="login-card">
 
-    <h2>📚 Sistèm Lekòl</h2>
+    <h2>📚 Sistèm Aprantisaj</h2>
 
     <p>
-      Tanpri konekte ak kont Google ou pou antre nan sistèm nan.
+      Tanpri konekte ak kont Google ou pou antre
+      nan sistèm aprantisaj la.
     </p>
 
-    <button onclick="connecterAvecGoogle()">
+    <button
+      id="googleButton"
+      onclick="connecterAvecGoogle()">
+
       🔵 Konekte ak Google
+
     </button>
 
   </div>
@@ -425,10 +438,11 @@ footer{
 
 <header>
 
-  <h1>📚 Sistèm Lekòl</h1>
+  <h1>📚 Sistèm Aprantisaj</h1>
 
   <p>
-    Platfòm pou jere elèv, pwofesè, klas, devwa ak rezilta
+    Platfòm pou jere elèv, pwofesè, klas,
+    devwa ak rezilta
   </p>
 
 </header>
@@ -495,7 +509,6 @@ footer{
 
 <main>
 
-
 <!-- ================= ACCUEIL ================= -->
 
 <section id="accueil" class="section active">
@@ -505,8 +518,8 @@ footer{
     <h2>👋 Byenveni</h2>
 
     <p>
-      Byenveni nan sistèm jesyon lekòl la.
-      Tout done sistèm nan konekte dirèkteman ak Firebase Firestore.
+      Byenveni nan Sistèm Aprantisaj la.
+      Tout done sistèm nan konekte ak Firebase Firestore.
     </p>
 
   </div>
@@ -515,46 +528,23 @@ footer{
   <div class="stats">
 
     <div class="stat">
-
-      <h3 id="statEleves">
-        0
-      </h3>
-
+      <h3 id="statEleves">0</h3>
       <p>👨‍🎓 Elèv</p>
-
     </div>
 
-
     <div class="stat">
-
-      <h3 id="statProfesseurs">
-        0
-      </h3>
-
+      <h3 id="statProfesseurs">0</h3>
       <p>👨‍🏫 Pwofesè</p>
-
     </div>
 
-
     <div class="stat">
-
-      <h3 id="statClasses">
-        0
-      </h3>
-
+      <h3 id="statClasses">0</h3>
       <p>🏫 Klas</p>
-
     </div>
 
-
     <div class="stat">
-
-      <h3 id="statDevoirs">
-        0
-      </h3>
-
+      <h3 id="statDevoirs">0</h3>
       <p>📝 Devwa</p>
-
     </div>
 
   </div>
@@ -567,36 +557,25 @@ footer{
     <button
       class="action"
       onclick="showSection('eleves')">
-
       ➕ Ajoute elèv
-
     </button>
-
 
     <button
       class="action"
       onclick="showSection('professeurs')">
-
       ➕ Ajoute pwofesè
-
     </button>
-
 
     <button
       class="action"
       onclick="showSection('classes')">
-
       ➕ Ajoute klas
-
     </button>
-
 
     <button
       class="action"
       onclick="showSection('devoirs')">
-
       ➕ Ajoute devwa
-
     </button>
 
   </div>
@@ -615,35 +594,26 @@ footer{
     <input
       id="nomEleve"
       type="text"
-      placeholder="Non konplè elèv la"
-    >
+      placeholder="Non konplè elèv la">
 
     <input
       id="ageEleve"
       type="number"
-      placeholder="Laj"
-    >
+      placeholder="Laj">
 
     <select id="classeEleve">
-
-      <option value="">
-        Chwazi klas
-      </option>
-
+      <option value="">Chwazi klas</option>
     </select>
 
     <input
       id="telephoneEleve"
       type="text"
-      placeholder="Telefòn"
-    >
+      placeholder="Telefòn">
 
     <button
       class="action"
       onclick="ajouterEleve()">
-
       ➕ Ajoute elèv
-
     </button>
 
   </div>
@@ -657,8 +627,7 @@ footer{
       id="rechercheEleve"
       type="text"
       placeholder="Chèche pa non oswa klas..."
-      oninput="afficherEleves()"
-    >
+      oninput="afficherEleves()">
 
   </div>
 
@@ -685,27 +654,22 @@ footer{
     <input
       id="nomProfesseur"
       type="text"
-      placeholder="Non konplè pwofesè a"
-    >
+      placeholder="Non konplè pwofesè a">
 
     <input
       id="telephoneProfesseur"
       type="text"
-      placeholder="Telefòn"
-    >
+      placeholder="Telefòn">
 
     <input
       id="matiereProfesseur"
       type="text"
-      placeholder="Matyè li anseye"
-    >
+      placeholder="Matyè li anseye">
 
     <button
       class="action"
       onclick="ajouterProfesseur()">
-
       ➕ Ajoute pwofesè
-
     </button>
 
   </div>
@@ -733,21 +697,17 @@ footer{
     <input
       id="nomClasse"
       type="text"
-      placeholder="Egzanp: 7e AF"
-    >
+      placeholder="Egzanp: 7e AF">
 
     <input
       id="anneeClasse"
       type="text"
-      placeholder="Egzanp: 2026-2027"
-    >
+      placeholder="Egzanp: 2026-2027">
 
     <button
       class="action"
       onclick="ajouterClasse()">
-
       ➕ Ajoute klas
-
     </button>
 
   </div>
@@ -775,15 +735,12 @@ footer{
     <input
       id="nomMatiere"
       type="text"
-      placeholder="Non matyè a"
-    >
+      placeholder="Non matyè a">
 
     <button
       class="action"
       onclick="ajouterMatiere()">
-
       ➕ Ajoute matyè
-
     </button>
 
   </div>
@@ -811,46 +768,29 @@ footer{
     <input
       id="titreDevoir"
       type="text"
-      placeholder="Tit devwa a"
-    >
+      placeholder="Tit devwa a">
 
     <select id="matiereDevoir">
-
-      <option value="">
-        Chwazi matyè
-      </option>
-
+      <option value="">Chwazi matyè</option>
     </select>
-
 
     <select id="classeDevoir">
-
-      <option value="">
-        Chwazi klas
-      </option>
-
+      <option value="">Chwazi klas</option>
     </select>
-
 
     <input
       id="dateDevoir"
-      type="date"
-    >
-
+      type="date">
 
     <textarea
       id="descriptionDevoir"
       rows="5"
-      placeholder="Deskripsyon devwa a">
-    </textarea>
-
+      placeholder="Deskripsyon devwa a"></textarea>
 
     <button
       class="action"
       onclick="ajouterDevoir()">
-
       ➕ Ajoute devwa
-
     </button>
 
   </div>
@@ -864,8 +804,7 @@ footer{
       id="rechercheDevoir"
       type="text"
       placeholder="Chèche devwa..."
-      oninput="afficherDevoirs()"
-    >
+      oninput="afficherDevoirs()">
 
   </div>
 
@@ -889,24 +828,13 @@ footer{
 
     <h2>📥 Suivi devwa</h2>
 
-
     <select id="eleveRemise">
-
-      <option value="">
-        Chwazi elèv
-      </option>
-
+      <option value="">Chwazi elèv</option>
     </select>
-
 
     <select id="devoirRemise">
-
-      <option value="">
-        Chwazi devwa
-      </option>
-
+      <option value="">Chwazi devwa</option>
     </select>
-
 
     <select id="statutRemise">
 
@@ -920,22 +848,17 @@ footer{
 
     </select>
 
-
     <input
       id="noteRemise"
       type="number"
       min="0"
       max="100"
-      placeholder="Nòt /100"
-    >
-
+      placeholder="Nòt /100">
 
     <button
       class="action"
       onclick="ajouterRemise()">
-
       💾 Anrejistre
-
     </button>
 
   </div>
@@ -996,50 +919,26 @@ footer{
 
     <h2>📈 Estatistik</h2>
 
-
     <div class="stats">
 
       <div class="stat">
-
-        <h3 id="totalElevesStat">
-          0
-        </h3>
-
+        <h3 id="totalElevesStat">0</h3>
         <p>Elèv</p>
-
       </div>
 
-
       <div class="stat">
-
-        <h3 id="totalProfStat">
-          0
-        </h3>
-
+        <h3 id="totalProfStat">0</h3>
         <p>Pwofesè</p>
-
       </div>
 
-
       <div class="stat">
-
-        <h3 id="totalDevoirStat">
-          0
-        </h3>
-
+        <h3 id="totalDevoirStat">0</h3>
         <p>Devwa</p>
-
       </div>
 
-
       <div class="stat">
-
-        <h3 id="moyenneStat">
-          0
-        </h3>
-
+        <h3 id="moyenneStat">0</h3>
         <p>Mwayèn</p>
-
       </div>
 
     </div>
@@ -1058,7 +957,7 @@ footer{
     <h2>💾 Sauvegarde</h2>
 
     <p>
-      Done yo deja estoke sou Firebase.
+      Done yo estoke sou Firebase.
     </p>
 
     <br>
@@ -1066,9 +965,7 @@ footer{
     <button
       class="action success"
       onclick="exporterDonnees()">
-
       📥 Telechaje sauvegarde JSON
-
     </button>
 
   </div>
@@ -1087,15 +984,12 @@ footer{
     <input
       type="file"
       id="importFile"
-      accept=".json"
-    >
+      accept=".json">
 
     <button
       class="action"
       onclick="importerDonnees()">
-
       📤 Importer
-
     </button>
 
   </div>
@@ -1106,9 +1000,7 @@ footer{
 
 
 <footer>
-
-  © 2026 - Sistèm Lekòl
-
+  © 2026 - Sistèm Aprantisaj
 </footer>
 
 </div>
@@ -1124,16 +1016,16 @@ import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithRedirect,
   getRedirectResult,
   onAuthStateChanged,
-  signOut
+  signOut,
+  setPersistence,
+  browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
 
 import {
   getFirestore,
@@ -1141,8 +1033,7 @@ import {
   getDocs,
   doc,
   setDoc,
-  deleteDoc,
-  writeBatch
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
@@ -1174,7 +1065,7 @@ const firebaseConfig = {
 
 
 /* ======================================================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ====================================================== */
 
 const app =
@@ -1188,7 +1079,7 @@ const db =
 
 
 /* ======================================================
-   GOOGLE AUTHENTICATION
+   GOOGLE PROVIDER
 ====================================================== */
 
 const googleProvider =
@@ -1200,7 +1091,7 @@ googleProvider.setCustomParameters({
 
 
 /* ======================================================
-   GLOBAL DATA
+   DATA
 ====================================================== */
 
 window.db = db;
@@ -1224,19 +1115,31 @@ window.data = {
 
 function showLoading(message){
 
-  document.getElementById("loadingText")
-    .textContent=message;
+  const box =
+    document.getElementById("loading");
 
-  document.getElementById("loading")
-    .style.display="flex";
+  const text =
+    document.getElementById("loadingText");
+
+  if(text){
+    text.textContent = message;
+  }
+
+  if(box){
+    box.style.display = "flex";
+  }
 
 }
 
 
 function hideLoading(){
 
-  document.getElementById("loading")
-    .style.display="none";
+  const box =
+    document.getElementById("loading");
+
+  if(box){
+    box.style.display = "none";
+  }
 
 }
 
@@ -1262,7 +1165,7 @@ window.escapeHTML=function(text){
 
 
 /* ======================================================
-   LOAD COLLECTION
+   FIREBASE COLLECTION
 ====================================================== */
 
 async function chargerCollection(nom){
@@ -1289,7 +1192,7 @@ async function chargerCollection(nom){
 
 
 /* ======================================================
-   LOAD ALL FIREBASE DATA
+   LOAD FIREBASE
 ====================================================== */
 
 async function chargerToutFirebase(){
@@ -1297,12 +1200,15 @@ async function chargerToutFirebase(){
   try{
 
     showLoading(
-      "Chaje done yo soti Firebase..."
+      "Chaje done Sistèm Aprantisaj..."
     );
 
-    for(const nom of Object.keys(window.data)){
+    for(
+      const nom
+      of Object.keys(window.data)
+    ){
 
-      window.data[nom]=
+      window.data[nom] =
         await chargerCollection(nom);
 
     }
@@ -1313,12 +1219,15 @@ async function chargerToutFirebase(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Firestore error:",
+      error
+    );
 
     hideLoading();
 
     alert(
-      "Firebase pa ka chaje done yo.\n\n"+
+      "Koneksyon Firebase la gen yon pwoblèm.\n\n"+
       error.message
     );
 
@@ -1328,15 +1237,20 @@ async function chargerToutFirebase(){
 
 
 /* ======================================================
-   SAVE DOCUMENT
+   SAVE
 ====================================================== */
 
-async function firebaseSave(collectionName,item){
+async function firebaseSave(
+  collectionName,
+  item
+){
 
   try{
 
     const id =
-      String(item.id || Date.now());
+      String(
+        item.id || Date.now()
+      );
 
     item.id=id;
 
@@ -1368,10 +1282,13 @@ async function firebaseSave(collectionName,item){
 
 
 /* ======================================================
-   DELETE DOCUMENT
+   DELETE
 ====================================================== */
 
-async function firebaseDelete(collectionName,id){
+async function firebaseDelete(
+  collectionName,
+  id
+){
 
   try{
 
@@ -1408,11 +1325,37 @@ async function firebaseDelete(collectionName,id){
 window.connecterAvecGoogle =
 async function(){
 
+  const button =
+    document.getElementById(
+      "googleButton"
+    );
+
   try{
+
+    if(button){
+      button.disabled=true;
+      button.textContent=
+        "⏳ Koneksyon...";
+    }
 
     showLoading(
       "Konekte ak Google..."
     );
+
+
+    /*
+      Kenbe sesyon Google la nan navigatè a.
+    */
+
+    await setPersistence(
+      auth,
+      browserLocalPersistence
+    );
+
+
+    /*
+      Redireksyon itilizatè a sou Google.
+    */
 
     await signInWithRedirect(
       auth,
@@ -1421,12 +1364,23 @@ async function(){
 
   }catch(error){
 
+    console.error(
+      "Google Login Error:",
+      error
+    );
+
     hideLoading();
 
-    console.error(error);
+    if(button){
+      button.disabled=false;
+      button.textContent=
+        "🔵 Konekte ak Google";
+    }
 
     alert(
-      "Google pa kapab konekte:\n\n"+
+      "Google pa kapab konekte.\n\n"+
+      error.code+
+      "\n\n"+
       error.message
     );
 
@@ -1436,29 +1390,48 @@ async function(){
 
 
 /* ======================================================
-   GOOGLE REDIRECT RESULT
+   REDIRECT RESULT
 ====================================================== */
 
-getRedirectResult(auth)
+async function verifyRedirect(){
 
-  .then(function(result){
+  try{
+
+    showLoading(
+      "Verifye koneksyon Google..."
+    );
+
+    const result =
+      await getRedirectResult(auth);
+
+    if(result && result.user){
+
+      console.log(
+        "Google login OK:",
+        result.user.email
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Redirect error:",
+      error
+    );
 
     hideLoading();
-
-  })
-
-  .catch(function(error){
-
-    hideLoading();
-
-    console.error(error);
 
     alert(
-      "Google pa kapab konekte:\n\n"+
+      "Koneksyon Google la pa fini.\n\n"+
+      error.code+
+      "\n\n"+
       error.message
     );
 
-  });
+  }
+
+}
 
 
 /* ======================================================
@@ -1470,9 +1443,17 @@ async function(){
 
   try{
 
+    showLoading(
+      "Déconnexion..."
+    );
+
     await signOut(auth);
 
+    hideLoading();
+
   }catch(error){
+
+    hideLoading();
 
     alert(
       "Erreur:\n"+
@@ -1492,7 +1473,20 @@ onAuthStateChanged(
   auth,
   async function(user){
 
+    console.log(
+      "Auth state:",
+      user
+        ? user.email
+        : "Pa gen itilizatè"
+    );
+
+
     if(user){
+
+      /*
+        Itilizatè konekte:
+        retire login epi montre aplikasyon an.
+      */
 
       document.getElementById(
         "loginBox"
@@ -1502,14 +1496,25 @@ onAuthStateChanged(
         "app"
       ).style.display="block";
 
+
       document.getElementById(
         "userEmail"
       ).textContent =
-        user.email || "Utilisateur";
+        user.email ||
+        "Utilisateur";
+
+
+      /*
+        Chaje done Firebase.
+      */
 
       await chargerToutFirebase();
 
     }else{
+
+      /*
+        Pa gen itilizatè.
+      */
 
       document.getElementById(
         "loginBox"
@@ -1518,6 +1523,22 @@ onAuthStateChanged(
       document.getElementById(
         "app"
       ).style.display="none";
+
+      hideLoading();
+
+      const button =
+        document.getElementById(
+          "googleButton"
+        );
+
+      if(button){
+
+        button.disabled=false;
+
+        button.textContent=
+          "🔵 Konekte ak Google";
+
+      }
 
     }
 
@@ -1533,13 +1554,15 @@ window.showSection=function(id){
 
   document
     .querySelectorAll(".section")
-    .forEach(function(section){
+    .forEach(
+      function(section){
 
-      section.classList.remove(
-        "active"
-      );
+        section.classList.remove(
+          "active"
+        );
 
-    });
+      }
+    );
 
 
   const section =
@@ -1588,14 +1611,14 @@ async function(){
   }
 
 
-  const id =
-    String(Date.now());
-
-
   const item={
-    id:id,
+
+    id:String(Date.now()),
+
     nom:nom,
+
     annee:annee
+
   };
 
 
@@ -1641,11 +1664,9 @@ window.afficherClasses=function(){
   if(!liste)return;
 
 
-  const classes =
-    window.data.classes;
-
-
-  if(classes.length===0){
+  if(
+    window.data.classes.length===0
+  ){
 
     liste.innerHTML =
       "<p>Pa gen klas anrejistre.</p>";
@@ -1658,36 +1679,38 @@ window.afficherClasses=function(){
   liste.innerHTML="";
 
 
-  classes.forEach(function(c){
+  window.data.classes.forEach(
+    function(c){
 
-    liste.innerHTML+=`
+      liste.innerHTML+=`
 
-      <div class="item">
+        <div class="item">
 
-        <h3>
-          🏫 ${escapeHTML(c.nom)}
-        </h3>
+          <h3>
+            🏫 ${escapeHTML(c.nom)}
+          </h3>
 
-        <p>
-          <b>Ane lekòl:</b>
-          ${escapeHTML(
-            c.annee || "Pa defini"
-          )}
-        </p>
+          <p>
+            <b>Ane lekòl:</b>
+            ${escapeHTML(
+              c.annee || "Pa defini"
+            )}
+          </p>
 
-        <button
-          class="action danger"
-          onclick="supprimerClasse('${c.id}')">
+          <button
+            class="action danger"
+            onclick="supprimerClasse('${c.id}')">
 
-          🗑️ Efase
+            🗑️ Efase
 
-        </button>
+          </button>
 
-      </div>
+        </div>
 
-    `;
+      `;
 
-  });
+    }
+  );
 
 };
 
@@ -1713,7 +1736,9 @@ async function(id){
 
     window.data.classes =
       window.data.classes.filter(
-        c => String(c.id)!==String(id)
+        c =>
+          String(c.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -1748,8 +1773,11 @@ async function(){
 
 
   const item={
+
     id:String(Date.now()),
+
     nom:nom
+
   };
 
 
@@ -1791,7 +1819,9 @@ window.afficherMatieres=function(){
   if(!liste)return;
 
 
-  if(window.data.matieres.length===0){
+  if(
+    window.data.matieres.length===0
+  ){
 
     liste.innerHTML =
       "<p>Pa gen matyè.</p>";
@@ -1854,7 +1884,9 @@ async function(id){
 
     window.data.matieres =
       window.data.matieres.filter(
-        m => String(m.id)!==String(id)
+        m =>
+          String(m.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -1927,7 +1959,6 @@ async function(){
 
     window.data.eleves.push(item);
 
-
     document.getElementById(
       "nomEleve"
     ).value="";
@@ -1946,7 +1977,6 @@ async function(){
 
 
     actualiserTout();
-
 
     alert(
       "Elèv la ajoute avèk siksè."
@@ -2077,7 +2107,9 @@ async function(id){
 
     window.data.eleves =
       window.data.eleves.filter(
-        e => String(e.id)!==String(id)
+        e =>
+          String(e.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -2143,7 +2175,6 @@ async function(){
 
     window.data.professeurs.push(item);
 
-
     document.getElementById(
       "nomProfesseur"
     ).value="";
@@ -2156,9 +2187,7 @@ async function(){
       "matiereProfesseur"
     ).value="";
 
-
     actualiserTout();
-
 
     alert(
       "Pwofesè a ajoute avèk siksè."
@@ -2183,7 +2212,9 @@ window.afficherProfesseurs=function(){
   if(!liste)return;
 
 
-  if(window.data.professeurs.length===0){
+  if(
+    window.data.professeurs.length===0
+  ){
 
     liste.innerHTML =
       "<p>Pa gen pwofesè anrejistre.</p>";
@@ -2260,7 +2291,9 @@ async function(id){
 
     window.data.professeurs =
       window.data.professeurs.filter(
-        p => String(p.id)!==String(id)
+        p =>
+          String(p.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -2340,7 +2373,6 @@ async function(){
 
     window.data.devoirs.push(item);
 
-
     document.getElementById(
       "titreDevoir"
     ).value="";
@@ -2353,9 +2385,7 @@ async function(){
       "descriptionDevoir"
     ).value="";
 
-
     actualiserTout();
-
 
     alert(
       "Devwa a ajoute avèk siksè."
@@ -2440,7 +2470,9 @@ window.afficherDevoirs=function(){
         new Date();
 
       const date =
-        new Date(d.date);
+        new Date(
+          d.date + "T23:59:59"
+        );
 
       if(date < today){
 
@@ -2537,7 +2569,9 @@ async function(id){
 
     window.data.devoirs =
       window.data.devoirs.filter(
-        d => String(d.id)!==String(id)
+        d =>
+          String(d.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -2695,7 +2729,9 @@ window.afficherRemises=function(){
   if(!liste)return;
 
 
-  if(window.data.remises.length===0){
+  if(
+    window.data.remises.length===0
+  ){
 
     liste.innerHTML =
       "<p>Pa gen done sou remèt devwa.</p>";
@@ -2805,7 +2841,9 @@ async function(id){
 
     window.data.remises =
       window.data.remises.filter(
-        r => String(r.id)!==String(id)
+        r =>
+          String(r.id)!==
+          String(id)
       );
 
     actualiserTout();
@@ -2915,17 +2953,11 @@ window.afficherResultatEleve=function(){
 
         <tr>
 
-          <th>
-            Devwa
-          </th>
+          <th>Devwa</th>
 
-          <th>
-            Nòt
-          </th>
+          <th>Nòt</th>
 
-          <th>
-            Estati
-          </th>
+          <th>Estati</th>
 
         </tr>
 
@@ -3120,7 +3152,7 @@ window.remplirSelects=function(){
 
       select.innerHTML+=`
 
-        <option value="${e.id}">
+        <option value="${escapeHTML(e.id)}">
 
           ${escapeHTML(e.nom)}
 
@@ -3160,7 +3192,7 @@ window.remplirSelects=function(){
 
       devoirSelect.innerHTML+=`
 
-        <option value="${d.id}">
+        <option value="${escapeHTML(d.id)}">
 
           ${escapeHTML(d.titre)}
 
@@ -3298,12 +3330,12 @@ window.actualiserTout=function(){
 
 
 /* ======================================================
-   EXPORT FIREBASE DATA
+   EXPORT
 ====================================================== */
 
 window.exporterDonnees=function(){
 
-  const donnees = {
+  const donnees={
 
     eleves:
       window.data.eleves,
@@ -3349,19 +3381,19 @@ window.exporterDonnees=function(){
 
 
   const lien =
-    document.createElement(
-      "a"
-    );
+    document.createElement("a");
 
 
   lien.href=url;
 
-  lien.download =
-    "sauvegarde-systeme-lekol.json";
+  lien.download=
+    "sauvegarde-sistem-aprantisaj.json";
 
+  document.body.appendChild(lien);
 
   lien.click();
 
+  lien.remove();
 
   URL.revokeObjectURL(url);
 
@@ -3369,7 +3401,7 @@ window.exporterDonnees=function(){
 
 
 /* ======================================================
-   IMPORT DATA TO FIREBASE
+   IMPORT
 ====================================================== */
 
 window.importerDonnees =
@@ -3440,10 +3472,13 @@ async function(){
         ){
 
           const copy={
+
             ...item,
+
             id:String(
               item.id || Date.now()
             )
+
           };
 
 
@@ -3458,7 +3493,6 @@ async function(){
 
 
       await chargerToutFirebase();
-
 
       hideLoading();
 
@@ -3489,6 +3523,18 @@ async function(){
   );
 
 };
+
+
+/* ======================================================
+   START APPLICATION
+====================================================== */
+
+/*
+  Verifye si gen yon rezilta Google Redirect
+  lè paj la fin retounen.
+*/
+
+verifyRedirect();
 
 </script>
 
