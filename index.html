@@ -2128,7 +2128,10 @@ actualiserTout();
   <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -2149,7 +2152,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const auth = getAuth(app);
 
 /* Sove done nan Firebase */
 window.firebaseSaveData = async function(key, data) {
@@ -2181,7 +2184,47 @@ window.firebaseSaveData = async function(key, data) {
 };
 
 console.log("Firebase konekte!");
+window.connecterUtilisateur = async function() {
 
+  const email = document.getElementById("emailLogin").value;
+  const motDePasse = document.getElementById("passwordLogin").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      motDePasse
+    );
+
+    alert("Connexion réussie !");
+
+  } catch (error) {
+
+    alert("Erreur de connexion : " + error.message);
+
+  }
+
+}
 </script>
+  <div id="loginBox">
+  <h2>Connexion</h2>
+
+  <input
+    type="email"
+    id="emailLogin"
+    placeholder="E-mail"
+  >
+
+  <input
+    type="password"
+    id="passwordLogin"
+    placeholder="Mot de passe"
+  >
+
+  <button onclick="connecterUtilisateur()">
+    Se connecter
+  </button>
+</div>
 </body>
 </html>
