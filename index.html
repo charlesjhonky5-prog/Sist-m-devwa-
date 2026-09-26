@@ -4843,30 +4843,41 @@ function isStudent(){
 
 
 /* ================= LOGIN EMAIL ================= */
-
 window.connexionEmail = async function(){
 
-  const email =
-    document.getElementById("loginEmail")
-      .value.trim();
+  const emailInput =
+    document.getElementById("emailLogin");
 
-  const password =
-    document.getElementById("loginPassword")
-      .value;
+  const passwordInput =
+    document.getElementById("passwordLogin");
 
+  if(!emailInput || !passwordInput){
 
-  if(!email || !password){
-
-    alert(
-      "Tanpri mete email ak modpas."
-    );
+    alert("Chan email oswa modpas la pa jwenn.");
 
     return;
-
   }
 
+  const email =
+    emailInput.value.trim();
+
+  const password =
+    passwordInput.value;
+
+  if(email === "" || password === ""){
+
+    alert("Tanpri antre email ak modpas ou.");
+
+    return;
+  }
 
   try{
+
+    const {
+      signInWithEmailAndPassword
+    } = await import(
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js"
+    );
 
     await signInWithEmailAndPassword(
       auth,
@@ -4879,13 +4890,14 @@ window.connexionEmail = async function(){
     console.error(error);
 
     alert(
-      "Koneksyon echwe.\n\n"
-      + error.message
+      "Koneksyon pa mache.\n\n" +
+      error.message
     );
 
   }
 
 };
+
 
 
 /* ================= LOGIN GOOGLE ================= */
@@ -4914,44 +4926,50 @@ window.connexionGoogle = async function(){
 
 
 /* ================= CREER COMPTE ================= */
-
 window.creerCompte = async function(){
 
-  const email =
-    document.getElementById(
-      "registerEmail"
-    ).value.trim();
+  const emailInput =
+    document.getElementById("emailLogin");
 
+  const passwordInput =
+    document.getElementById("passwordLogin");
 
-  const password =
-    document.getElementById(
-      "registerPassword"
-    ).value;
+  if(!emailInput || !passwordInput){
 
-
-  if(!email || !password){
-
-    alert(
-      "Mete email ak modpas."
-    );
+    alert("Chan email oswa modpas la pa jwenn.");
 
     return;
-
   }
 
+  const email =
+    emailInput.value.trim();
+
+  const password =
+    passwordInput.value;
+
+  if(email === "" || password === ""){
+
+    alert("Antre email ak modpas la.");
+
+    return;
+  }
 
   if(password.length < 6){
 
     alert(
-      "Modpas la dwe genyen omwen 6 karaktè."
+      "Modpas la dwe gen omwen 6 karaktè."
     );
 
     return;
-
   }
 
-
   try{
+
+    const {
+      createUserWithEmailAndPassword
+    } = await import(
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js"
+    );
 
     const result =
       await createUserWithEmailAndPassword(
@@ -4960,55 +4978,39 @@ window.creerCompte = async function(){
         password
       );
 
-
-    const user = result.user;
-
+    const user =
+      result.user;
 
     await setDoc(
-      doc(db,"users",user.uid),
+      doc(db, "users", user.uid),
       {
-
-        email:
-          user.email || email,
-
-        displayName:
-          user.displayName || "",
-
-        role:
-          "attente",
-
-        createdAt:
+        uid: user.uid,
+        email: user.email,
+        nom: user.displayName || "",
+        role: "attente",
+        dateCreation:
           new Date().toISOString()
-
-      }
+      },
+      { merge: true }
     );
-
 
     alert(
-      "Kont lan kreye avèk siksè.\n\n"
-      +
-      "Kont lan nan ATTENTE.\n"
-      +
-      "Admin lan dwe apwouve li."
+      "Kont lan kreye avèk siksè.\n\n" +
+      "Administratè a dwe valide kont lan."
     );
-
-
-    await signOut(auth);
-
 
   }catch(error){
 
     console.error(error);
 
     alert(
-      "Kreyasyon kont echwe.\n\n"
-      + error.message
+      "Kreyasyon kont lan pa mache.\n\n" +
+      error.message
     );
 
   }
 
 };
-
 
 /* ================= AUTH STATE ================= */
 
