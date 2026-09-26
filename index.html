@@ -19,23 +19,27 @@ body{
   color:#222;
 }
 
+button,input,select{
+  font-size:16px;
+}
+
+button{
+  cursor:pointer;
+}
+
 header{
-  background:#2563eb;
+  background:#1769aa;
   color:white;
-  padding:16px;
+  padding:20px;
   text-align:center;
-  position:sticky;
-  top:0;
-  z-index:10;
 }
 
 header h1{
-  font-size:22px;
+  font-size:28px;
 }
 
 header p{
   margin-top:5px;
-  font-size:14px;
 }
 
 #loginPage{
@@ -44,46 +48,39 @@ header p{
   align-items:center;
   justify-content:center;
   padding:20px;
+  background:linear-gradient(135deg,#1769aa,#42a5f5);
 }
 
 .loginBox{
+  background:white;
   width:100%;
   max-width:430px;
-  background:white;
   padding:25px;
   border-radius:15px;
-  box-shadow:0 5px 25px rgba(0,0,0,.12);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 .loginBox h2{
   text-align:center;
   margin-bottom:20px;
-  color:#2563eb;
+  color:#1769aa;
 }
 
-input,select,textarea{
+.loginBox input{
   width:100%;
-  padding:12px;
+  padding:13px;
   margin:7px 0;
   border:1px solid #ccc;
   border-radius:8px;
-  font-size:15px;
-}
-
-textarea{
-  min-height:90px;
-  resize:vertical;
 }
 
 button{
-  border:none;
-  border-radius:8px;
+  border:0;
   padding:11px 15px;
-  cursor:pointer;
-  font-size:14px;
-  margin:4px;
-  background:#2563eb;
+  border-radius:8px;
+  background:#1769aa;
   color:white;
+  margin:4px 0;
 }
 
 button:hover{
@@ -91,29 +88,30 @@ button:hover{
 }
 
 .btnGoogle{
+  background:#db4437;
   width:100%;
-  background:#dc2626;
-  margin-top:10px;
-}
-
-.btnLogout{
-  background:#dc2626;
-}
-
-.btnDelete{
-  background:#dc2626;
-}
-
-.btnEdit{
-  background:#f59e0b;
 }
 
 .btnGreen{
-  background:#16a34a;
+  background:#2e7d32;
+}
+
+.btnRed{
+  background:#c62828;
+}
+
+.btnOrange{
+  background:#ef6c00;
 }
 
 .btnGray{
-  background:#64748b;
+  background:#555;
+}
+
+.divider{
+  text-align:center;
+  margin:15px 0;
+  color:#777;
 }
 
 .hidden{
@@ -124,45 +122,38 @@ button:hover{
   display:none;
 }
 
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:15px;
-}
-
 .userBar{
   background:white;
-  padding:12px;
-  margin:15px 0;
-  border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  padding:12px 18px;
+  border-bottom:1px solid #ddd;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
   flex-wrap:wrap;
-}
-
-.role{
-  font-weight:bold;
-  color:#2563eb;
+  gap:10px;
 }
 
 nav{
+  background:#263238;
+  padding:10px;
   display:flex;
   gap:6px;
   overflow-x:auto;
-  padding-bottom:10px;
-  margin-bottom:10px;
 }
 
 nav button{
+  background:#37474f;
   white-space:nowrap;
-  background:#334155;
 }
 
 nav button.active{
-  background:#2563eb;
+  background:#1769aa;
+}
+
+.container{
+  padding:20px;
+  max-width:1200px;
+  margin:auto;
 }
 
 .section{
@@ -175,21 +166,103 @@ nav button.active{
 
 .card{
   background:white;
-  padding:18px;
+  padding:20px;
   border-radius:12px;
-  margin-bottom:15px;
-  box-shadow:0 2px 12px rgba(0,0,0,.07);
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .card h2{
   margin-bottom:15px;
-  color:#1e40af;
+  color:#1769aa;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.stat{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.stat strong{
+  display:block;
+  font-size:30px;
+  color:#1769aa;
+  margin-top:8px;
 }
 
 .formGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:10px;
+}
+
+.formGrid input,
+.formGrid select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccc;
+  border-radius:7px;
+}
+
+.item{
+  background:#f8fafc;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:15px;
+  margin:10px 0;
+}
+
+.item b{
+  color:#1769aa;
+}
+
+.actions{
+  margin-top:10px;
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.empty{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  background:#eee;
+  font-size:13px;
+}
+
+.badgeAdmin{
+  background:#e3f2fd;
+  color:#1565c0;
+}
+
+.badgeProf{
+  background:#e8f5e9;
+  color:#2e7d32;
+}
+
+.badgeEleve{
+  background:#fff3e0;
+  color:#ef6c00;
+}
+
+.badgeAttente{
+  background:#ffebee;
+  color:#c62828;
 }
 
 .tableWrap{
@@ -199,97 +272,47 @@ nav button.active{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:650px;
+  background:white;
 }
 
 th,td{
   border:1px solid #ddd;
-  padding:9px;
+  padding:10px;
   text-align:left;
 }
 
 th{
-  background:#eff6ff;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
-}
-
-.stat{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
-}
-
-.stat strong{
-  display:block;
-  font-size:28px;
-  color:#2563eb;
-}
-
-.pending{
-  border-left:5px solid #f59e0b;
-}
-
-.approved{
-  border-left:5px solid #16a34a;
-}
-
-.info{
-  background:#eff6ff;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:10px;
-}
-
-.warning{
-  background:#fff7ed;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:10px;
+  background:#1769aa;
+  color:white;
 }
 
 .success{
-  background:#f0fdf4;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:10px;
+  color:#2e7d32;
+  font-weight:bold;
 }
 
-.danger{
-  background:#fef2f2;
-  padding:12px;
-  border-radius:8px;
+.error{
+  color:#c62828;
+  font-weight:bold;
 }
 
-.small{
-  font-size:13px;
-  color:#64748b;
-}
-
-.item{
-  background:#f8fafc;
-  padding:12px;
-  border-radius:8px;
-  margin:8px 0;
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
 }
 
 @media(max-width:600px){
   header h1{
-    font-size:19px;
+    font-size:22px;
   }
 
   .container{
-    padding:10px;
+    padding:12px;
   }
 
-  button{
-    padding:10px 12px;
+  .card{
+    padding:15px;
   }
 }
 </style>
@@ -297,527 +320,666 @@ th{
 
 <body>
 
-<header>
-  <h1>📚 Sistèm Aprantisaj</h1>
-  <p>Platfòm lekòl la</p>
-</header>
+<!-- ================= LOGIN ================= -->
 
-<!-- LOGIN -->
 <div id="loginPage">
 
   <div class="loginBox">
 
-    <h2>🔐 Konekte</h2>
+    <h2>📚 Sistèm Aprantisaj</h2>
 
-    <div class="info">
-      Konekte ak kont ou pou antre nan Sistèm Aprantisaj.
-    </div>
+    <p style="text-align:center;margin-bottom:15px;">
+      Platfòm lekòl la
+    </p>
 
-    <input id="loginEmail"
-           type="email"
-           placeholder="Adrès email">
+    <h3>🔐 Konekte</h3>
 
-    <input id="loginPassword"
-           type="password"
-           placeholder="Modpas">
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="Email"
+    >
 
-    <button style="width:100%"
-            onclick="connexionEmail()">
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Modpas"
+    >
+
+    <button
+      style="width:100%;"
+      onclick="connexionEmail()"
+    >
       Konekte
     </button>
 
-    <button class="btnGoogle"
-            onclick="connexionGoogle()">
+    <div class="divider">— OSWA —</div>
+
+    <button
+      class="btnGoogle"
+      onclick="connexionGoogle()"
+    >
       🔴 Konekte ak Google
     </button>
 
-    <hr style="margin:20px 0;border:none;border-top:1px solid #ddd">
+    <hr style="margin:20px 0;">
 
-    <h3 style="text-align:center">
-      Premye fwa isit la?
-    </h3>
+    <h3>📝 Kreye kont</h3>
 
-    <input id="registerEmail"
-           type="email"
-           placeholder="Nouvo email">
+    <input
+      type="email"
+      id="registerEmail"
+      placeholder="Nouvo email"
+    >
 
-    <input id="registerPassword"
-           type="password"
-           placeholder="Kreye yon modpas">
+    <input
+      type="password"
+      id="registerPassword"
+      placeholder="Nouvo modpas (6+ karaktè)"
+    >
 
-    <button class="btnGreen"
-            style="width:100%"
-            onclick="creerCompte()">
+    <button
+      class="btnGreen"
+      style="width:100%;"
+      onclick="creerCompte()"
+    >
       Kreye kont
     </button>
 
-    <p class="small" style="margin-top:12px;text-align:center">
-      Apre premye koneksyon an, kont lan ap tann validasyon Admin.
-    </p>
-
   </div>
+
 </div>
 
 
-<!-- APPLICATION -->
+<!-- ================= APPLICATION ================= -->
+
 <div id="app">
+
+<header>
+
+  <h1>📚 Sistèm Aprantisaj</h1>
+
+  <p>Platfòm lekòl la</p>
+
+</header>
+
+
+<div class="userBar">
+
+  <div>
+    👤 <b id="userEmail"></b>
+    &nbsp; | &nbsp;
+    <span id="userRole"></span>
+  </div>
+
+  <button
+    class="btnRed"
+    onclick="deconnexion()"
+  >
+    🚪 Dekonekte
+  </button>
+
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+  <button
+    data-section="accueil"
+    onclick="showSection('accueil')"
+  >
+    🏠 Akèy
+  </button>
+
+  <button
+    data-section="eleves"
+    data-role="admin,professeur"
+    onclick="showSection('eleves')"
+  >
+    👨‍🎓 Elèv
+  </button>
+
+  <button
+    data-section="professeurs"
+    data-role="admin,professeur"
+    onclick="showSection('professeurs')"
+  >
+    👨‍🏫 Pwofesè
+  </button>
+
+  <button
+    data-section="classes"
+    data-role="admin,professeur,eleve"
+    onclick="showSection('classes')"
+  >
+    🏫 Klas
+  </button>
+
+  <button
+    data-section="matieres"
+    data-role="admin,professeur,eleve"
+    onclick="showSection('matieres')"
+  >
+    📚 Matyè
+  </button>
+
+  <button
+    data-section="devoirs"
+    data-role="admin,professeur,eleve"
+    onclick="showSection('devoirs')"
+  >
+    📝 Devwa
+  </button>
+
+  <button
+    data-section="remises"
+    data-role="admin,professeur,eleve"
+    onclick="showSection('remises')"
+  >
+    📤 Remiz
+  </button>
+
+  <button
+    data-section="resultats"
+    data-role="admin,professeur,eleve"
+    onclick="showSection('resultats')"
+  >
+    📊 Rezilta
+  </button>
+
+  <button
+    data-section="utilisateurs"
+    data-role="admin"
+    onclick="showSection('utilisateurs')"
+  >
+    👥 Itilizatè
+  </button>
+
+</nav>
+
 
 <div class="container">
 
-  <div class="userBar">
 
-    <div>
-      👤 <span id="userEmail"></span>
-      <br>
-      Wòl:
-      <span id="userRole" class="role"></span>
+<!-- ================= AKÈY ================= -->
+
+<section
+  id="accueil"
+  class="section active"
+>
+
+  <div class="card">
+
+    <h2>👋 Byenveni</h2>
+
+    <p id="welcomeText"></p>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="stat">
+      👨‍🎓 Elèv
+      <strong id="countEleves">0</strong>
     </div>
 
-    <button class="btnLogout"
-            onclick="deconnexion()">
-      🚪 Dekonekte
+    <div class="stat">
+      👨‍🏫 Pwofesè
+      <strong id="countProfesseurs">0</strong>
+    </div>
+
+    <div class="stat">
+      🏫 Klas
+      <strong id="countClasses">0</strong>
+    </div>
+
+    <div class="stat">
+      📚 Matyè
+      <strong id="countMatieres">0</strong>
+    </div>
+
+    <div class="stat">
+      📝 Devwa
+      <strong id="countDevoirs">0</strong>
+    </div>
+
+    <div class="stat">
+      📤 Remiz
+      <strong id="countRemises">0</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ELÈV ================= -->
+
+<section
+  id="eleves"
+  class="section"
+  data-role="admin,professeur"
+>
+
+  <div class="card">
+
+    <h2>👨‍🎓 Jesyon Elèv</h2>
+
+    <div
+      class="formGrid"
+      data-role="admin"
+    >
+
+      <input
+        id="eleveNom"
+        placeholder="Non"
+      >
+
+      <input
+        id="elevePrenom"
+        placeholder="Prenon"
+      >
+
+      <input
+        id="eleveEmail"
+        type="email"
+        placeholder="Email"
+      >
+
+      <input
+        id="eleveTelephone"
+        placeholder="Telefòn"
+      >
+
+      <select id="eleveClasse">
+        <option value="">Chwazi klas</option>
+      </select>
+
+    </div>
+
+    <button
+      class="btnGreen"
+      data-role="admin"
+      onclick="ajouterEleve()"
+    >
+      ➕ Ajoute elèv
     </button>
 
   </div>
 
 
-  <!-- NAVIGATION -->
-  <nav>
+  <div class="card">
 
-    <button data-section="accueil"
-            onclick="showSection('accueil')">
-      🏠 Akèy
+    <h2>📋 Lis elèv yo</h2>
+
+    <div id="listeEleves"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PWOFESÈ ================= -->
+
+<section
+  id="professeurs"
+  class="section"
+  data-role="admin,professeur"
+>
+
+  <div class="card">
+
+    <h2>👨‍🏫 Jesyon Pwofesè</h2>
+
+    <div
+      class="formGrid"
+      data-role="admin"
+    >
+
+      <input
+        id="profNom"
+        placeholder="Non"
+      >
+
+      <input
+        id="profPrenom"
+        placeholder="Prenon"
+      >
+
+      <input
+        id="profEmail"
+        type="email"
+        placeholder="Email"
+      >
+
+      <input
+        id="profTelephone"
+        placeholder="Telefòn"
+      >
+
+      <input
+        id="profMatiere"
+        placeholder="Matyè"
+      >
+
+    </div>
+
+    <button
+      class="btnGreen"
+      data-role="admin"
+      onclick="ajouterProfesseur()"
+    >
+      ➕ Ajoute pwofesè
     </button>
 
-    <button data-section="eleves"
-            data-role="admin,professeur"
-            onclick="showSection('eleves')">
-      👨‍🎓 Elèv
+  </div>
+
+
+  <div class="card">
+
+    <h2>📋 Lis pwofesè yo</h2>
+
+    <div id="listeProfesseurs"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= KLAS ================= -->
+
+<section
+  id="classes"
+  class="section"
+  data-role="admin,professeur,eleve"
+>
+
+  <div
+    class="card"
+    data-role="admin"
+  >
+
+    <h2>🏫 Ajoute Klas</h2>
+
+    <input
+      id="classeNom"
+      placeholder="Non klas la"
+      style="width:100%;padding:11px;border:1px solid #ccc;border-radius:7px;"
+    >
+
+    <button
+      class="btnGreen"
+      onclick="ajouterClasse()"
+    >
+      ➕ Ajoute klas
     </button>
 
-    <button data-section="professeurs"
-            data-role="admin,professeur"
-            onclick="showSection('professeurs')">
-      👨‍🏫 Pwofesè
+  </div>
+
+
+  <div class="card">
+
+    <h2>📋 Lis klas yo</h2>
+
+    <div id="listeClasses"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MATYÈ ================= -->
+
+<section
+  id="matieres"
+  class="section"
+  data-role="admin,professeur,eleve"
+>
+
+  <div
+    class="card"
+    data-role="admin"
+  >
+
+    <h2>📚 Ajoute Matyè</h2>
+
+    <input
+      id="matiereNom"
+      placeholder="Non matyè a"
+      style="width:100%;padding:11px;border:1px solid #ccc;border-radius:7px;"
+    >
+
+    <button
+      class="btnGreen"
+      onclick="ajouterMatiere()"
+    >
+      ➕ Ajoute matyè
     </button>
 
-    <button data-section="classes"
-            data-role="admin,professeur"
-            onclick="showSection('classes')">
-      🏫 Klas
-    </button>
+  </div>
 
-    <button data-section="matieres"
-            data-role="admin,professeur"
-            onclick="showSection('matieres')">
-      📚 Matyè
-    </button>
 
-    <button data-section="devoirs"
-            data-role="admin,professeur,eleve"
-            onclick="showSection('devoirs')">
-      📝 Devwa
-    </button>
+  <div class="card">
 
-    <button data-section="remises"
-            data-role="admin,professeur,eleve"
-            onclick="showSection('remises')">
-      📤 Remiz
-    </button>
+    <h2>📋 Lis matyè yo</h2>
 
-    <button data-section="resultats"
-            data-role="admin,professeur,eleve"
-            onclick="showSection('resultats')">
-      📊 Rezilta
-    </button>
+    <div id="listeMatieres"></div>
 
-    <button data-section="utilisateurs"
-            data-role="admin"
-            onclick="showSection('utilisateurs')">
-      👥 Itilizatè
-    </button>
+  </div>
 
-  </nav>
+</section>
 
 
-  <!-- ACCUEIL -->
-  <section id="accueil" class="section active">
+<!-- ================= DEVWA ================= -->
 
-    <div class="card">
-      <h2>🏠 Byenveni nan Sistèm Aprantisaj</h2>
+<section
+  id="devoirs"
+  class="section"
+  data-role="admin,professeur,eleve"
+>
 
-      <div id="welcomeText"></div>
-    </div>
+  <div
+    class="card"
+    data-role="admin,professeur"
+  >
 
-    <div class="stats">
+    <h2>📝 Kreye Devwa</h2>
 
-      <div class="stat">
-        <strong id="statEleves">0</strong>
-        Elèv
-      </div>
+    <div class="formGrid">
 
-      <div class="stat">
-        <strong id="statProfesseurs">0</strong>
-        Pwofesè
-      </div>
+      <input
+        id="devoirTitre"
+        placeholder="Tit devwa"
+      >
 
-      <div class="stat">
-        <strong id="statClasses">0</strong>
-        Klas
-      </div>
+      <input
+        id="devoirDate"
+        type="date"
+      >
 
-      <div class="stat">
-        <strong id="statDevoirs">0</strong>
-        Devwa
-      </div>
-
-      <div class="stat">
-        <strong id="statUsers">0</strong>
-        Itilizatè
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ELEVES -->
-  <section id="eleves" class="section">
-
-    <div class="card" data-role="admin">
-
-      <h2>👨‍🎓 Ajoute Elèv</h2>
-
-      <div class="formGrid">
-
-        <input id="eleveNom"
-               placeholder="Non">
-
-        <input id="elevePrenom"
-               placeholder="Prénom">
-
-        <input id="eleveEmail"
-               type="email"
-               placeholder="Email">
-
-        <select id="eleveClasse"></select>
-
-      </div>
-
-      <button onclick="ajouterEleve()">
-        ➕ Ajoute Elèv
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>👨‍🎓 Lis Elèv yo</h2>
-
-      <div class="tableWrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Non</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th>Klas</th>
-              <th>Aksyon</th>
-            </tr>
-          </thead>
-
-          <tbody id="listeEleves"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROFESSEURS -->
-  <section id="professeurs" class="section">
-
-    <div class="card" data-role="admin">
-
-      <h2>👨‍🏫 Ajoute Pwofesè</h2>
-
-      <div class="formGrid">
-
-        <input id="profNom"
-               placeholder="Non">
-
-        <input id="profPrenom"
-               placeholder="Prénom">
-
-        <input id="profEmail"
-               type="email"
-               placeholder="Email">
-
-        <input id="profTelephone"
-               placeholder="Telefòn">
-
-      </div>
-
-      <button onclick="ajouterProfesseur()">
-        ➕ Ajoute Pwofesè
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>👨‍🏫 Lis Pwofesè yo</h2>
-
-      <div class="tableWrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Non</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th>Telefòn</th>
-              <th>Aksyon</th>
-            </tr>
-          </thead>
-
-          <tbody id="listeProfesseurs"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CLASSES -->
-  <section id="classes" class="section">
-
-    <div class="card" data-role="admin">
-
-      <h2>🏫 Ajoute Klas</h2>
-
-      <input id="classeNom"
-             placeholder="Non klas la">
-
-      <button onclick="ajouterClasse()">
-        ➕ Ajoute Klas
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>🏫 Klas yo</h2>
-
-      <div id="listeClasses"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- MATIERES -->
-  <section id="matieres" class="section">
-
-    <div class="card" data-role="admin">
-
-      <h2>📚 Ajoute Matyè</h2>
-
-      <input id="matiereNom"
-             placeholder="Non matyè a">
-
-      <button onclick="ajouterMatiere()">
-        ➕ Ajoute Matyè
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>📚 Matyè yo</h2>
-
-      <div id="listeMatieres"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- DEVOIRS -->
-  <section id="devoirs" class="section">
-
-    <div class="card"
-         data-role="admin,professeur">
-
-      <h2>📝 Kreye Devwa</h2>
-
-      <input id="devoirTitre"
-             placeholder="Tit devwa">
-
-      <textarea id="devoirDescription"
-                placeholder="Deskripsyon devwa"></textarea>
-
-      <div class="formGrid">
-
-        <select id="devoirMatiere"></select>
-
-        <select id="devoirClasse"></select>
-
-        <input id="devoirDate"
-               type="date">
-
-      </div>
-
-      <button onclick="ajouterDevoir()">
-        ➕ Kreye Devwa
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>📝 Devwa yo</h2>
-
-      <div id="listeDevoirs"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- REMISES -->
-  <section id="remises" class="section">
-
-    <div class="card"
-         data-role="admin,professeur">
-
-      <h2>📤 Anrejistre Remiz / Nòt</h2>
-
-      <div class="formGrid">
-
-        <select id="remiseEleve"></select>
-
-        <select id="remiseDevoir"></select>
-
-        <select id="remiseStatut">
-
-          <option value="remis">
-            Remèt
-          </option>
-
-          <option value="non_remis">
-            Pa remèt
-          </option>
-
-        </select>
-
-        <input id="remiseNote"
-               type="number"
-               min="0"
-               max="100"
-               placeholder="Nòt /100">
-
-      </div>
-
-      <button onclick="ajouterRemise()">
-        💾 Anrejistre
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>📤 Remiz yo</h2>
-
-      <div id="listeRemises"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- RESULTATS -->
-  <section id="resultats" class="section">
-
-    <div class="card">
-
-      <h2>📊 Rezilta Elèv</h2>
-
-      <select id="resultatEleve"
-              data-role="admin,professeur"
-              onchange="afficherResultat()">
+      <select id="devoirClasse">
+        <option value="">Chwazi klas</option>
       </select>
 
-      <div id="resultatContenu"></div>
+      <select id="devoirMatiere">
+        <option value="">Chwazi matyè</option>
+      </select>
 
     </div>
 
-  </section>
+    <textarea
+      id="devoirDescription"
+      placeholder="Deskripsyon devwa a"
+      style="width:100%;margin-top:10px;padding:11px;min-height:100px;border:1px solid #ccc;border-radius:7px;"
+    ></textarea>
+
+    <button
+      class="btnGreen"
+      onclick="ajouterDevoir()"
+    >
+      ➕ Kreye devwa
+    </button>
+
+  </div>
 
 
-  <!-- UTILISATEURS -->
-  <section id="utilisateurs" class="section">
+  <div class="card">
 
-    <div class="card">
+    <h2>📋 Lis devwa yo</h2>
 
-      <h2>👥 Jesyon Itilizatè</h2>
+    <div id="listeDevoirs"></div>
 
-      <div class="warning">
+  </div>
 
-        <b>Fonksyònman:</b><br>
+</section>
 
-        Lè yon nouvo moun kreye kont oswa konekte ak Google,
-        sistèm nan mete kont lan kòm
-        <b>ATTENTE</b>.
 
-        Admin lan dwe chwazi wòl li epi asosye l ak elèv oswa
-        pwofesè ki koresponn lan.
+<!-- ================= REMIZ ================= -->
 
-      </div>
+<section
+  id="remises"
+  class="section"
+  data-role="admin,professeur,eleve"
+>
 
-      <button onclick="chargerUtilisateurs()">
-        🔄 Rafrechi itilizatè yo
-      </button>
+  <div
+    class="card"
+    data-role="admin,professeur"
+  >
+
+    <h2>📤 Anrejistre Remiz</h2>
+
+    <div class="formGrid">
+
+      <select id="remiseEleve">
+        <option value="">Chwazi elèv</option>
+      </select>
+
+      <select id="remiseDevoir">
+        <option value="">Chwazi devwa</option>
+      </select>
+
+      <select id="remiseStatut">
+
+        <option value="Remèt">
+          Remèt
+        </option>
+
+        <option value="Pa remèt">
+          Pa remèt
+        </option>
+
+        <option value="Anreta">
+          Anreta
+        </option>
+
+      </select>
+
+      <input
+        id="remiseNote"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="Nòt / 100"
+      >
 
     </div>
 
+    <button
+      class="btnGreen"
+      onclick="ajouterRemise()"
+    >
+      ➕ Anrejistre remiz
+    </button>
 
-    <div class="card">
+  </div>
 
-      <h2>👥 Itilizatè yo</h2>
 
-      <div id="listeUtilisateurs"></div>
+  <div class="card">
 
-    </div>
+    <h2>📋 Remiz yo</h2>
 
-  </section>
+    <div id="listeRemises"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= REZILTA ================= -->
+
+<section
+  id="resultats"
+  class="section"
+  data-role="admin,professeur,eleve"
+>
+
+  <div class="card">
+
+    <h2>📊 Rezilta</h2>
+
+    <div id="listeResultats"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ITILIZATÈ ================= -->
+
+<section
+  id="utilisateurs"
+  class="section"
+  data-role="admin"
+>
+
+  <div class="card">
+
+    <h2>👥 Itilizatè</h2>
+
+    <p>
+      Nouvo kont yo antre otomatikman nan
+      <b>ATTENTE</b>.
+      Admin lan ka ba yo wòl.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📋 Kont itilizatè yo</h2>
+
+    <div id="listeUtilisateurs"></div>
+
+  </div>
+
+</section>
 
 
 </div>
+
+
+<footer>
+  © 2026 Sistèm Aprantisaj
+</footer>
+
 </div>
 
 
-<!-- FIREBASE -->
+<!-- ================= FIREBASE ================= -->
+
 <script type="module">
 
 import {
   initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
 import {
   getAuth,
@@ -827,7 +989,10 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -836,25 +1001,38 @@ import {
   getDoc,
   getDocs,
   setDoc,
-  deleteDoc,
-  query,
-  where
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  deleteDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
-  authDomain: "sis-f-a.firebaseapp.com",
-  projectId: "sis-f-a",
-  storageBucket: "sis-f-a.firebasestorage.app",
-  messagingSenderId: "505464315297",
-  appId: "1:505464315297:web:3e45543cb121eaf7243fe0"
+
+  apiKey:
+  "AIzaSyDAp0p5YyL4MbZKdcXwtO-Q6IDRaHc2VMw",
+
+  authDomain:
+  "sis-f-a.firebaseapp.com",
+
+  projectId:
+  "sis-f-a",
+
+  storageBucket:
+  "sis-f-a.firebasestorage.app",
+
+  messagingSenderId:
+  "505464315297",
+
+  appId:
+  "1:505464315297:web:3e45543cb121eaf7243fe0"
+
 };
 
+
+/* ================= INITIALIZE ================= */
 
 const app = initializeApp(firebaseConfig);
 
@@ -866,19 +1044,17 @@ const googleProvider =
   new GoogleAuthProvider();
 
 
-/* =========================
-   DATA
-========================= */
+/* ================= DATA ================= */
 
 window.data = {
 
-  users: [],
   eleves: [],
   professeurs: [],
   classes: [],
   matieres: [],
   devoirs: [],
-  remises: []
+  remises: [],
+  users: []
 
 };
 
@@ -887,45 +1063,11 @@ window.currentUser = null;
 window.profile = null;
 
 
-/* =========================
-   UTIL
-========================= */
-
-function uid(){
-
-  return Date.now().toString()
-    + Math.random()
-      .toString(36)
-      .substring(2,8);
-
-}
-
-
-function roleLabel(role){
-
-  if(role==="admin")
-    return "Administratè";
-
-  if(role==="professeur")
-    return "Pwofesè";
-
-  if(role==="eleve")
-    return "Elèv";
-
-  if(role==="attente")
-    return "⏳ Attente";
-
-  return role || "";
-
-}
-
+/* ================= UTILITAIRES ================= */
 
 function esc(value){
 
-  if(value===undefined || value===null)
-    return "";
-
-  return String(value)
+  return String(value ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -935,27 +1077,73 @@ function esc(value){
 }
 
 
-/* =========================
-   LOGIN EMAIL
-========================= */
+function roleLabel(role){
 
-window.connexionEmail =
-async function(){
+  if(role==="admin") return "Administratè";
+
+  if(role==="professeur") return "Pwofesè";
+
+  if(role==="eleve") return "Elèv";
+
+  return "An attente";
+
+}
+
+
+function generateId(){
+
+  return Date.now().toString()
+    +"_"+Math.random()
+    .toString(36)
+    .substring(2,9);
+
+}
+
+
+function isAdmin(){
+
+  return window.profile?.role==="admin";
+
+}
+
+
+function isTeacher(){
+
+  return window.profile?.role==="professeur";
+
+}
+
+
+function isStudent(){
+
+  return window.profile?.role==="eleve";
+
+}
+
+
+/* ================= LOGIN EMAIL ================= */
+
+window.connexionEmail = async function(){
 
   const email =
     document.getElementById("loginEmail")
-    .value.trim();
+      .value.trim();
 
   const password =
     document.getElementById("loginPassword")
-    .value;
+      .value;
+
 
   if(!email || !password){
 
-    alert("Tanpri mete email ak modpas.");
+    alert(
+      "Tanpri mete email ak modpas."
+    );
 
     return;
+
   }
+
 
   try{
 
@@ -979,12 +1167,9 @@ async function(){
 };
 
 
-/* =========================
-   GOOGLE
-========================= */
+/* ================= LOGIN GOOGLE ================= */
 
-window.connexionGoogle =
-async function(){
+window.connexionGoogle = async function(){
 
   try{
 
@@ -1007,27 +1192,32 @@ async function(){
 };
 
 
-/* =========================
-   CREATE ACCOUNT
-========================= */
+/* ================= CREER COMPTE ================= */
 
-window.creerCompte =
-async function(){
+window.creerCompte = async function(){
 
   const email =
-    document.getElementById("registerEmail")
-    .value.trim();
+    document.getElementById(
+      "registerEmail"
+    ).value.trim();
+
 
   const password =
-    document.getElementById("registerPassword")
-    .value;
+    document.getElementById(
+      "registerPassword"
+    ).value;
+
 
   if(!email || !password){
 
-    alert("Mete email ak modpas.");
+    alert(
+      "Mete email ak modpas."
+    );
 
     return;
+
   }
+
 
   if(password.length < 6){
 
@@ -1036,7 +1226,9 @@ async function(){
     );
 
     return;
+
   }
+
 
   try{
 
@@ -1047,23 +1239,22 @@ async function(){
         password
       );
 
-    const user =
-      result.user;
 
-    /*
-      Kreye pwofil ATTENTE.
-    */
+    const user = result.user;
+
 
     await setDoc(
       doc(db,"users",user.uid),
       {
 
-        email:user.email || email,
+        email:
+          user.email || email,
 
         displayName:
           user.displayName || "",
 
-        role:"attente",
+        role:
+          "attente",
 
         createdAt:
           new Date().toISOString()
@@ -1071,13 +1262,18 @@ async function(){
       }
     );
 
+
     alert(
       "Kont lan kreye avèk siksè.\n\n"
-      + "Li kounye a nan ATTENTE.\n"
-      + "Admin lan dwe apwouve kont lan."
+      +
+      "Kont lan nan ATTENTE.\n"
+      +
+      "Admin lan dwe apwouve li."
     );
 
+
     await signOut(auth);
+
 
   }catch(error){
 
@@ -1093,9 +1289,7 @@ async function(){
 };
 
 
-/* =========================
-   AUTH STATE
-========================= */
+/* ================= AUTH STATE ================= */
 
 onAuthStateChanged(
   auth,
@@ -1104,6 +1298,8 @@ onAuthStateChanged(
     if(!user){
 
       window.currentUser = null;
+
+      window.profile = null;
 
       document.getElementById(
         "loginPage"
@@ -1114,6 +1310,7 @@ onAuthStateChanged(
       ).style.display="none";
 
       return;
+
     }
 
 
@@ -1123,20 +1320,12 @@ onAuthStateChanged(
     try{
 
       const ref =
-        doc(
-          db,
-          "users",
-          user.uid
-        );
+        doc(db,"users",user.uid);
+
 
       const snap =
         await getDoc(ref);
 
-
-      /*
-        Si pwofil la pa egziste,
-        kreye l kòm ATTENTE.
-      */
 
       if(!snap.exists()){
 
@@ -1144,12 +1333,14 @@ onAuthStateChanged(
           ref,
           {
 
-            email:user.email || "",
+            email:
+              user.email || "",
 
             displayName:
               user.displayName || "",
 
-            role:"attente",
+            role:
+              "attente",
 
             createdAt:
               new Date().toISOString()
@@ -1159,13 +1350,14 @@ onAuthStateChanged(
 
 
         alert(
-          "Kont ou an ap tann apwobasyon Admin.\n\n"
-          + "Ou pa ka antre nan sistèm nan jiskaske Admin lan valide w."
+          "Kont ou an ap tann apwobasyon Admin."
         );
+
 
         await signOut(auth);
 
         return;
+
       }
 
 
@@ -1173,49 +1365,52 @@ onAuthStateChanged(
         snap.data();
 
 
-      /*
-        ATTENTE
-      */
-
-      if(window.profile.role==="attente"){
+      if(
+        window.profile.role==="attente"
+      ){
 
         alert(
           "Kont ou an toujou nan ATTENTE.\n\n"
-          + "Tanpri kontakte administratè a."
+          +
+          "Admin lan dwe valide kont ou."
         );
+
 
         await signOut(auth);
 
         return;
+
       }
 
 
-      /*
-        Verify role
-      */
-
-      const roles = [
-        "admin",
-        "professeur",
-        "eleve"
-      ];
+      const roles =
+        [
+          "admin",
+          "professeur",
+          "eleve"
+        ];
 
 
-      if(!roles.includes(
-        window.profile.role
-      )){
+      if(
+        !roles.includes(
+          window.profile.role
+        )
+      ){
 
         alert(
           "Kont sa a pa gen yon wòl valab."
         );
 
+
         await signOut(auth);
 
         return;
+
       }
 
 
       await ouvrirApplication();
+
 
     }catch(error){
 
@@ -1226,6 +1421,7 @@ onAuthStateChanged(
         + error.message
       );
 
+
       await signOut(auth);
 
     }
@@ -1234,15 +1430,14 @@ onAuthStateChanged(
 );
 
 
-/* =========================
-   OPEN APP
-========================= */
+/* ================= OUVRI APPLICATION ================= */
 
 async function ouvrirApplication(){
 
   document.getElementById(
     "loginPage"
   ).style.display="none";
+
 
   document.getElementById(
     "app"
@@ -1258,7 +1453,9 @@ async function ouvrirApplication(){
   document.getElementById(
     "userRole"
   ).textContent =
-    roleLabel(window.profile.role);
+    roleLabel(
+      window.profile.role
+    );
 
 
   document.getElementById(
@@ -1266,30 +1463,41 @@ async function ouvrirApplication(){
   ).innerHTML =
 
     "Byenveni <b>"
-    + esc(
-        window.currentUser.displayName
-        || window.currentUser.email
+    +
+    esc(
+      window.currentUser.displayName
+      ||
+      window.currentUser.email
+    )
+    +
+    "</b>.<br><br>"
+    +
+    "Wòl ou: <b>"
+    +
+    esc(
+      roleLabel(
+        window.profile.role
       )
-    + "</b>.<br><br>"
-    + "Wòl ou: <b>"
-    + esc(roleLabel(window.profile.role))
-    + "</b>.";
+    )
+    +
+    "</b>.";
 
 
   applyRoleUI();
 
+
   await chargerToutFirebase();
 
+
   actualiserTout();
+
 
   showSection("accueil");
 
 }
 
 
-/* =========================
-   ROLE UI
-========================= */
+/* ================= ROLE UI ================= */
 
 function applyRoleUI(){
 
@@ -1299,7 +1507,7 @@ function applyRoleUI(){
 
   document
     .querySelectorAll("[data-role]")
-    .forEach(el => {
+    .forEach(el=>{
 
       const roles =
         el.dataset.role
@@ -1307,78 +1515,58 @@ function applyRoleUI(){
           .map(x=>x.trim());
 
 
-      if(roles.includes(role)){
+      if(
+        roles.includes(role)
+      ){
 
-        el.classList.remove("hidden");
+        el.classList.remove(
+          "hidden"
+        );
 
       }else{
 
-        el.classList.add("hidden");
+        el.classList.add(
+          "hidden"
+        );
 
       }
 
     });
 
-
-  /*
-    Pou admin sèlman
-  */
-
-  if(role==="admin"){
-
-    document
-      .querySelectorAll(
-        '[data-section="utilisateurs"]'
-      )
-      .forEach(el =>
-        el.classList.remove("hidden")
-      );
-
-  }
-
 }
 
 
-/* =========================
-   SHOW SECTION
-========================= */
+/* ================= SHOW SECTION ================= */
 
-window.showSection =
-function(id){
+window.showSection = function(id){
 
   const role =
     window.profile?.role;
 
 
+  if(
+    id==="utilisateurs"
+    &&
+    role!=="admin"
+  ){
+
+    return;
+
+  }
+
+
   const section =
     document.getElementById(id);
 
-  if(!section)
-    return;
 
-
-  const allowed =
-    section.querySelector(
-      "[data-role]"
-    );
-
-
-  /*
-    Seksyon utilisateurs
-  */
-
-  if(id==="utilisateurs"
-     && role!=="admin"){
-
-    return;
-  }
+  if(!section) return;
 
 
   document
     .querySelectorAll(".section")
-    .forEach(s =>
-      s.classList.remove("active")
-    );
+    .forEach(s=>{
+      s.classList.remove("active");
+    });
 
 
   section.classList.add("active");
@@ -1386,9 +1574,9 @@ function(id){
 
   document
     .querySelectorAll("nav button")
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
 
 
   const btn =
@@ -1396,26 +1584,33 @@ function(id){
       `nav button[data-section="${id}"]`
     );
 
-  if(btn)
+
+  if(btn){
+
     btn.classList.add("active");
 
+  }
 
-  if(id==="utilisateurs")
+
+  if(id==="utilisateurs"){
+
     afficherUtilisateurs();
 
-  if(id==="resultats")
+  }
+
+
+  if(id==="resultats"){
+
     afficherResultat();
+
+  }
 
 };
 
 
-/* =========================
-   FIREBASE LOAD
-========================= */
+/* ================= FIRESTORE LOAD ================= */
 
-async function chargerCollection(
-  name
-){
+async function chargerCollection(name){
 
   const snap =
     await getDocs(
@@ -1425,7 +1620,7 @@ async function chargerCollection(
 
   window.data[name] =
     snap.docs.map(
-      d => ({
+      d=>({
         id:d.id,
         ...d.data()
       })
@@ -1436,22 +1631,21 @@ async function chargerCollection(
 
 async function chargerToutFirebase(){
 
-  /*
-    Tout moun ka li done ki nesesè yo,
-    selon Firestore Rules yo.
-  */
-
   const collections = [
+
     "eleves",
     "professeurs",
     "classes",
     "matieres",
     "devoirs",
     "remises"
+
   ];
 
 
-  for(const name of collections){
+  for(
+    const name of collections
+  ){
 
     try{
 
@@ -1472,15 +1666,13 @@ async function chargerToutFirebase(){
   }
 
 
-  /*
-    USERS sèlman Admin
-  */
-
-  if(window.profile.role==="admin"){
+  if(isAdmin()){
 
     try{
 
-      await chargerCollection("users");
+      await chargerCollection(
+        "users"
+      );
 
     }catch(error){
 
@@ -1495,9 +1687,7 @@ async function chargerToutFirebase(){
 }
 
 
-/* =========================
-   SAVE
-========================= */
+/* ================= SAVE ================= */
 
 async function firebaseSave(
   collectionName,
@@ -1516,9 +1706,7 @@ async function firebaseSave(
 }
 
 
-/* =========================
-   DELETE
-========================= */
+/* ================= DELETE ================= */
 
 async function firebaseDelete(
   collectionName,
@@ -1536,49 +1724,65 @@ async function firebaseDelete(
 }
 
 
-/* =========================
-   ADD ELEVE
-========================= */
+/* ================= AJOUTE ELÈV ================= */
 
-window.ajouterEleve =
-async function(){
+window.ajouterEleve = async function(){
 
-  if(window.profile.role!=="admin"){
+  if(!isAdmin()){
 
-    alert("Se Admin ka ajoute elèv.");
+    alert(
+      "Se Admin ki ka ajoute elèv."
+    );
 
     return;
+
   }
 
 
   const nom =
-    document.getElementById("eleveNom")
-    .value.trim();
+    document.getElementById(
+      "eleveNom"
+    ).value.trim();
+
 
   const prenom =
-    document.getElementById("elevePrenom")
-    .value.trim();
+    document.getElementById(
+      "elevePrenom"
+    ).value.trim();
+
 
   const email =
-    document.getElementById("eleveEmail")
-    .value.trim();
+    document.getElementById(
+      "eleveEmail"
+    ).value.trim();
+
+
+  const telephone =
+    document.getElementById(
+      "eleveTelephone"
+    ).value.trim();
+
 
   const classeId =
-    document.getElementById("eleveClasse")
-    .value;
+    document.getElementById(
+      "eleveClasse"
+    ).value;
 
 
   if(!nom || !prenom){
 
-    alert("Mete non ak prénom elèv la.");
+    alert(
+      "Mete non ak prenon elèv la."
+    );
 
     return;
+
   }
 
 
-  const item = {
+  const item={
 
-    id:uid(),
+    id:generateId(),
 
     nom,
 
@@ -1586,7 +1790,12 @@ async function(){
 
     email,
 
-    classeId
+    telephone,
+
+    classeId,
+
+    createdAt:
+      new Date().toISOString()
 
   };
 
@@ -1598,98 +1807,37 @@ async function(){
       item
     );
 
+
     window.data.eleves.push(item);
 
-    actualiserTout();
 
     document.getElementById(
       "eleveNom"
     ).value="";
 
+
     document.getElementById(
       "elevePrenom"
     ).value="";
+
 
     document.getElementById(
       "eleveEmail"
     ).value="";
 
 
-    alert("Elèv la anrejistre.");
+    document.getElementById(
+      "eleveTelephone"
+    ).value="";
 
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Elèv la pa anrejistre nan Firebase.\n\n"
-      + error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   ADD PROF
-========================= */
-
-window.ajouterProfesseur =
-async function(){
-
-  if(window.profile.role!=="admin"){
-
-    alert("Se Admin ka ajoute pwofesè.");
-
-    return;
-  }
-
-
-  const item={
-
-    id:uid(),
-
-    nom:
-      document.getElementById("profNom").value.trim(),
-
-    prenom:
-      document.getElementById("profPrenom").value.trim(),
-
-    email:
-      document.getElementById("profEmail").value.trim(),
-
-    telephone:
-      document.getElementById("profTelephone").value.trim()
-
-  };
-
-
-  if(!item.nom || !item.prenom){
-
-    alert("Mete non ak prénom.");
-
-    return;
-  }
-
-
-  try{
-
-    await firebaseSave(
-      "professeurs",
-      item
-    );
-
-    window.data.professeurs.push(item);
 
     actualiserTout();
 
-    document.getElementById("profNom").value="";
-    document.getElementById("profPrenom").value="";
-    document.getElementById("profEmail").value="";
-    document.getElementById("profTelephone").value="";
 
-    alert("Pwofesè a anrejistre.");
+    alert(
+      "Elèv la ajoute avèk siksè."
+    );
+
 
   }catch(error){
 
@@ -1702,37 +1850,180 @@ async function(){
 };
 
 
-/* =========================
-   ADD CLASSE
-========================= */
+/* ================= PROFESÈ ================= */
 
-window.ajouterClasse =
-async function(){
+window.ajouterProfesseur = async function(){
 
-  if(window.profile.role!=="admin"){
+  if(!isAdmin()){
 
-    alert("Se Admin ka ajoute klas.");
+    alert(
+      "Se Admin ki ka ajoute pwofesè."
+    );
 
     return;
+
   }
 
 
   const nom =
-    document.getElementById("classeNom")
-    .value.trim();
+    document.getElementById(
+      "profNom"
+    ).value.trim();
 
 
-  if(!nom){
+  const prenom =
+    document.getElementById(
+      "profPrenom"
+    ).value.trim();
 
-    alert("Mete non klas la.");
+
+  const email =
+    document.getElementById(
+      "profEmail"
+    ).value.trim();
+
+
+  const telephone =
+    document.getElementById(
+      "profTelephone"
+    ).value.trim();
+
+
+  const matiere =
+    document.getElementById(
+      "profMatiere"
+    ).value.trim();
+
+
+  if(!nom || !prenom){
+
+    alert(
+      "Mete non ak prenon pwofesè a."
+    );
 
     return;
+
   }
 
 
   const item={
-    id:uid(),
-    nom
+
+    id:generateId(),
+
+    nom,
+
+    prenom,
+
+    email,
+
+    telephone,
+
+    matiere,
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  try{
+
+    await firebaseSave(
+      "professeurs",
+      item
+    );
+
+
+    window.data.professeurs.push(
+      item
+    );
+
+
+    document.getElementById(
+      "profNom"
+    ).value="";
+
+
+    document.getElementById(
+      "profPrenom"
+    ).value="";
+
+
+    document.getElementById(
+      "profEmail"
+    ).value="";
+
+
+    document.getElementById(
+      "profTelephone"
+    ).value="";
+
+
+    document.getElementById(
+      "profMatiere"
+    ).value="";
+
+
+    actualiserTout();
+
+
+    alert(
+      "Pwofesè a ajoute avèk siksè."
+    );
+
+
+  }catch(error){
+
+    alert(
+      "Erè:\n\n"+error.message
+    );
+
+  }
+
+};
+
+
+/* ================= KLAS ================= */
+
+window.ajouterClasse = async function(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se Admin ki ka ajoute klas."
+    );
+
+    return;
+
+  }
+
+
+  const nom =
+    document.getElementById(
+      "classeNom"
+    ).value.trim();
+
+
+  if(!nom){
+
+    alert(
+      "Mete non klas la."
+    );
+
+    return;
+
+  }
+
+
+  const item={
+
+    id:generateId(),
+
+    nom,
+
+    createdAt:
+      new Date().toISOString()
+
   };
 
 
@@ -1743,21 +2034,29 @@ async function(){
       item
     );
 
-    window.data.classes.push(item);
+
+    window.data.classes.push(
+      item
+    );
+
 
     document.getElementById(
       "classeNom"
     ).value="";
 
+
     actualiserTout();
 
-    alert("Klas la anrejistre.");
+
+    alert(
+      "Klas la ajoute avèk siksè."
+    );
+
 
   }catch(error){
 
     alert(
-      "Erè Firebase:\n\n"
-      + error.message
+      "Erè:\n\n"+error.message
     );
 
   }
@@ -1765,37 +2064,47 @@ async function(){
 };
 
 
-/* =========================
-   ADD MATIERE
-========================= */
+/* ================= MATYÈ ================= */
 
-window.ajouterMatiere =
-async function(){
+window.ajouterMatiere = async function(){
 
-  if(window.profile.role!=="admin"){
+  if(!isAdmin()){
 
-    alert("Se Admin ka ajoute matyè.");
+    alert(
+      "Se Admin ki ka ajoute matyè."
+    );
 
     return;
+
   }
 
 
   const nom =
-    document.getElementById("matiereNom")
-    .value.trim();
+    document.getElementById(
+      "matiereNom"
+    ).value.trim();
 
 
   if(!nom){
 
-    alert("Mete non matyè a.");
+    alert(
+      "Mete non matyè a."
+    );
 
     return;
+
   }
 
 
   const item={
-    id:uid(),
-    nom
+
+    id:generateId(),
+
+    nom,
+
+    createdAt:
+      new Date().toISOString()
+
   };
 
 
@@ -1806,21 +2115,29 @@ async function(){
       item
     );
 
-    window.data.matieres.push(item);
+
+    window.data.matieres.push(
+      item
+    );
+
 
     document.getElementById(
       "matiereNom"
     ).value="";
 
+
     actualiserTout();
 
-    alert("Matyè a anrejistre.");
+
+    alert(
+      "Matyè a ajoute avèk siksè."
+    );
+
 
   }catch(error){
 
     alert(
-      "Erè Firebase:\n\n"
-      + error.message
+      "Erè:\n\n"+error.message
     );
 
   }
@@ -1828,69 +2145,91 @@ async function(){
 };
 
 
-/* =========================
-   ADD DEVOIR
-========================= */
+/* ================= DEVWA ================= */
 
-window.ajouterDevoir =
-async function(){
+window.ajouterDevoir = async function(){
 
-  const role =
-    window.profile.role;
+  if(
+    !isAdmin()
+    &&
+    !isTeacher()
+  ){
+
+    alert(
+      "Ou pa gen dwa kreye devwa."
+    );
+
+    return;
+
+  }
+
+
+  const titre =
+    document.getElementById(
+      "devoirTitre"
+    ).value.trim();
+
+
+  const date =
+    document.getElementById(
+      "devoirDate"
+    ).value;
+
+
+  const classeId =
+    document.getElementById(
+      "devoirClasse"
+    ).value;
+
+
+  const matiereId =
+    document.getElementById(
+      "devoirMatiere"
+    ).value;
+
+
+  const description =
+    document.getElementById(
+      "devoirDescription"
+    ).value.trim();
 
 
   if(
-    role!=="admin" &&
-    role!=="professeur"
+    !titre ||
+    !classeId ||
+    !matiereId
   ){
 
-    alert("Ou pa gen dwa kreye devwa.");
+    alert(
+      "Ranpli tit, klas ak matyè."
+    );
 
     return;
+
   }
 
 
   const item={
 
-    id:uid(),
+    id:generateId(),
 
-    titre:
-      document.getElementById(
-        "devoirTitre"
-      ).value.trim(),
+    titre,
 
-    description:
-      document.getElementById(
-        "devoirDescription"
-      ).value.trim(),
+    date,
 
-    matiereId:
-      document.getElementById(
-        "devoirMatiere"
-      ).value,
+    classeId,
 
-    classeId:
-      document.getElementById(
-        "devoirClasse"
-      ).value,
+    matiereId,
 
-    date:
-      document.getElementById(
-        "devoirDate"
-      ).value,
+    description,
 
     createdBy:
-      window.currentUser.uid
+      window.currentUser.uid,
+
+    createdAt:
+      new Date().toISOString()
 
   };
-
-
-  if(!item.titre){
-
-    alert("Mete tit devwa a.");
-
-    return;
-  }
 
 
   try{
@@ -1900,25 +2239,39 @@ async function(){
       item
     );
 
-    window.data.devoirs.push(item);
 
-    actualiserTout();
+    window.data.devoirs.push(
+      item
+    );
+
 
     document.getElementById(
       "devoirTitre"
     ).value="";
 
+
+    document.getElementById(
+      "devoirDate"
+    ).value="";
+
+
     document.getElementById(
       "devoirDescription"
     ).value="";
 
-    alert("Devwa a kreye.");
+
+    actualiserTout();
+
+
+    alert(
+      "Devwa a kreye avèk siksè."
+    );
+
 
   }catch(error){
 
     alert(
-      "Devwa a pa anrejistre.\n\n"
-      + error.message
+      "Erè:\n\n"+error.message
     );
 
   }
@@ -1926,25 +2279,22 @@ async function(){
 };
 
 
-/* =========================
-   ADD REMISE
-========================= */
+/* ================= REMIZ ================= */
 
-window.ajouterRemise =
-async function(){
-
-  const role =
-    window.profile.role;
-
+window.ajouterRemise = async function(){
 
   if(
-    role!=="admin" &&
-    role!=="professeur"
+    !isAdmin()
+    &&
+    !isTeacher()
   ){
 
-    alert("Ou pa gen dwa ajoute nòt.");
+    alert(
+      "Ou pa gen dwa ajoute remiz."
+    );
 
     return;
+
   }
 
 
@@ -1953,15 +2303,18 @@ async function(){
       "remiseEleve"
     ).value;
 
+
   const devoirId =
     document.getElementById(
       "remiseDevoir"
     ).value;
 
+
   const statut =
     document.getElementById(
       "remiseStatut"
     ).value;
+
 
   const note =
     document.getElementById(
@@ -1969,19 +2322,23 @@ async function(){
     ).value;
 
 
-  if(!eleveId || !devoirId){
+  if(
+    !eleveId ||
+    !devoirId
+  ){
 
     alert(
       "Chwazi elèv ak devwa."
     );
 
     return;
+
   }
 
 
   const item={
 
-    id:uid(),
+    id:generateId(),
 
     eleveId,
 
@@ -1992,10 +2349,7 @@ async function(){
     note:
       note==="" ? null : Number(note),
 
-    createdBy:
-      window.currentUser.uid,
-
-    date:
+    createdAt:
       new Date().toISOString()
 
   };
@@ -2008,21 +2362,29 @@ async function(){
       item
     );
 
-    window.data.remises.push(item);
 
-    actualiserTout();
+    window.data.remises.push(
+      item
+    );
+
 
     document.getElementById(
       "remiseNote"
     ).value="";
 
-    alert("Remiz la anrejistre.");
+
+    actualiserTout();
+
+
+    alert(
+      "Remiz la anrejistre avèk siksè."
+    );
+
 
   }catch(error){
 
     alert(
-      "Erè Firebase:\n\n"
-      + error.message
+      "Erè:\n\n"+error.message
     );
 
   }
@@ -2030,33 +2392,32 @@ async function(){
 };
 
 
-/* =========================
-   DELETE ITEM
-========================= */
+/* ================= DELETE ================= */
 
-window.supprimer =
-async function(
+window.supprimer = async function(
   collectionName,
   id
 ){
 
-  if(
-    window.profile.role!=="admin"
-  ){
+  if(!isAdmin()){
 
     alert(
       "Se Admin ki ka efase done."
     );
 
     return;
+
   }
 
 
-  if(!confirm(
-    "Èske ou sèten ou vle efase sa?"
-  )){
+  if(
+    !confirm(
+      "Èske ou sèten ou vle efase sa?"
+    )
+  ){
 
     return;
+
   }
 
 
@@ -2067,6 +2428,7 @@ async function(
       id
     );
 
+
     window.data[
       collectionName
     ] =
@@ -2076,7 +2438,9 @@ async function(
         x=>x.id!==id
       );
 
+
     actualiserTout();
+
 
   }catch(error){
 
@@ -2090,9 +2454,201 @@ async function(
 };
 
 
-/* =========================
-   CLASSES LIST
-========================= */
+/* ================= AFFICHER ELÈV ================= */
+
+function afficherEleves(){
+
+  const box =
+    document.getElementById(
+      "listeEleves"
+    );
+
+
+  if(!box) return;
+
+
+  let eleves =
+    window.data.eleves;
+
+
+  if(
+    isStudent()
+  ){
+
+    eleves =
+      eleves.filter(
+        e =>
+          e.id ===
+          window.profile.eleveId
+      );
+
+  }
+
+
+  if(eleves.length===0){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen elèv pou montre.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    eleves.map(
+      e=>{
+
+        const classe =
+          window.data.classes.find(
+            c=>c.id===e.classeId
+          );
+
+
+        return `
+
+          <div class="item">
+
+            <b>
+              ${esc(
+                e.prenom+" "+e.nom
+              )}
+            </b>
+
+            <br>
+
+            📧 ${esc(e.email || "-")}
+
+            <br>
+
+            📞 ${esc(
+              e.telephone || "-"
+            )}
+
+            <br>
+
+            🏫
+            ${esc(
+              classe?.nom || "-"
+            )}
+
+            ${
+              isAdmin()
+              ?
+              `
+              <div class="actions">
+
+                <button
+                  class="btnRed"
+                  onclick="supprimer('eleves','${e.id}')"
+                >
+                  🗑️ Efase
+                </button>
+
+              </div>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* ================= AFFICHER PROFESÈ ================= */
+
+function afficherProfesseurs(){
+
+  const box =
+    document.getElementById(
+      "listeProfesseurs"
+    );
+
+
+  if(!box) return;
+
+
+  if(
+    window.data.professeurs.length===0
+  ){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen pwofesè pou montre.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    window.data.professeurs.map(
+      p=>`
+
+        <div class="item">
+
+          <b>
+            ${esc(
+              p.prenom+" "+p.nom
+            )}
+          </b>
+
+          <br>
+
+          📧 ${esc(
+            p.email || "-"
+          )}
+
+          <br>
+
+          📞 ${esc(
+            p.telephone || "-"
+          )}
+
+          <br>
+
+          📚 Matyè:
+          ${esc(
+            p.matiere || "-"
+          )}
+
+          ${
+            isAdmin()
+            ?
+            `
+            <div class="actions">
+
+              <button
+                class="btnRed"
+                onclick="supprimer('professeurs','${p.id}')"
+              >
+                🗑️ Efase
+              </button>
+
+            </div>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* ================= AFFICHER KLAS ================= */
 
 function afficherClasses(){
 
@@ -2101,42 +2657,75 @@ function afficherClasses(){
       "listeClasses"
     );
 
-  box.innerHTML="";
+
+  if(
+    window.data.classes.length===0
+  ){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen klas pou montre.
+      </div>`;
+
+    return;
+
+  }
 
 
-  window.data.classes.forEach(
-    c=>{
+  box.innerHTML =
+    window.data.classes.map(
+      c=>{
 
-      box.innerHTML += `
+        const total =
+          window.data.eleves.filter(
+            e=>e.classeId===c.id
+          ).length;
 
-        <div class="item">
 
-          <b>${esc(c.nom)}</b>
+        return `
 
-          ${
-            window.profile.role==="admin"
-            ?
-            `<button class="btnDelete"
-              onclick="supprimer('classes','${c.id}')">
-              🗑️ Efase
-            </button>`
-            :
-            ""
-          }
+          <div class="item">
 
-        </div>
+            <b>
+              🏫 ${esc(c.nom)}
+            </b>
 
-      `;
+            <br>
 
-    }
-  );
+            👨‍🎓
+            ${total}
+            elèv
+
+            ${
+              isAdmin()
+              ?
+              `
+              <div class="actions">
+
+                <button
+                  class="btnRed"
+                  onclick="supprimer('classes','${c.id}')"
+                >
+                  🗑️ Efase
+                </button>
+
+              </div>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
 
 }
 
 
-/* =========================
-   MATIERES LIST
-========================= */
+/* ================= AFFICHER MATYÈ ================= */
 
 function afficherMatieres(){
 
@@ -2145,158 +2734,59 @@ function afficherMatieres(){
       "listeMatieres"
     );
 
-  box.innerHTML="";
+
+  if(
+    window.data.matieres.length===0
+  ){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen matyè pou montre.
+      </div>`;
+
+    return;
+
+  }
 
 
-  window.data.matieres.forEach(
-    m=>{
-
-      box.innerHTML += `
+  box.innerHTML =
+    window.data.matieres.map(
+      m=>`
 
         <div class="item">
 
-          <b>${esc(m.nom)}</b>
+          <b>
+            📚 ${esc(m.nom)}
+          </b>
 
           ${
-            window.profile.role==="admin"
+            isAdmin()
             ?
-            `<button class="btnDelete"
-              onclick="supprimer('matieres','${m.id}')">
-              🗑️ Efase
-            </button>`
+            `
+            <div class="actions">
+
+              <button
+                class="btnRed"
+                onclick="supprimer('matieres','${m.id}')"
+              >
+                🗑️ Efase
+              </button>
+
+            </div>
+            `
             :
             ""
           }
 
         </div>
 
-      `;
-
-    }
-  );
+      `
+    ).join("");
 
 }
 
 
-/* =========================
-   ELEVES LIST
-========================= */
-
-function afficherEleves(){
-
-  const tbody =
-    document.getElementById(
-      "listeEleves"
-    );
-
-  tbody.innerHTML="";
-
-
-  window.data.eleves.forEach(
-    e=>{
-
-      const classe =
-        window.data.classes.find(
-          c=>c.id===e.classeId
-        );
-
-
-      tbody.innerHTML += `
-
-        <tr>
-
-          <td>${esc(e.nom)}</td>
-
-          <td>${esc(e.prenom)}</td>
-
-          <td>${esc(e.email)}</td>
-
-          <td>${esc(
-            classe?.nom || ""
-          )}</td>
-
-          <td>
-
-            ${
-              window.profile.role==="admin"
-              ?
-              `<button class="btnDelete"
-                onclick="supprimer('eleves','${e.id}')">
-                🗑️
-              </button>`
-              :
-              ""
-            }
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
-
-}
-
-
-/* =========================
-   PROF LIST
-========================= */
-
-function afficherProfesseurs(){
-
-  const tbody =
-    document.getElementById(
-      "listeProfesseurs"
-    );
-
-  tbody.innerHTML="";
-
-
-  window.data.professeurs.forEach(
-    p=>{
-
-      tbody.innerHTML += `
-
-        <tr>
-
-          <td>${esc(p.nom)}</td>
-
-          <td>${esc(p.prenom)}</td>
-
-          <td>${esc(p.email)}</td>
-
-          <td>${esc(p.telephone)}</td>
-
-          <td>
-
-            ${
-              window.profile.role==="admin"
-              ?
-              `<button class="btnDelete"
-                onclick="supprimer('professeurs','${p.id}')">
-                🗑️
-              </button>`
-              :
-              ""
-            }
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
-
-}
-
-
-/* =========================
-   DEVOIRS
-========================= */
+/* ================= AFFICHER DEVWA ================= */
 
 function afficherDevoirs(){
 
@@ -2305,99 +2795,100 @@ function afficherDevoirs(){
       "listeDevoirs"
     );
 
-  box.innerHTML="";
-
-
-  let devoirs =
-    window.data.devoirs;
-
-
-  /*
-    Elèv sèlman:
-    montre devwa klas li.
-  */
 
   if(
-    window.profile.role==="eleve"
-    && window.profile.eleveId
+    window.data.devoirs.length===0
   ){
 
-    const eleve =
-      window.data.eleves.find(
-        e=>e.id===window.profile.eleveId
-      );
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen devwa pou montre.
+      </div>`;
 
-
-    if(eleve){
-
-      devoirs =
-        devoirs.filter(
-          d=>d.classeId===eleve.classeId
-        );
-
-    }
+    return;
 
   }
 
 
-  devoirs.forEach(
-    d=>{
+  box.innerHTML =
+    window.data.devoirs.map(
+      d=>{
 
-      const matiere =
-        window.data.matieres.find(
-          m=>m.id===d.matiereId
-        );
-
-      const classe =
-        window.data.classes.find(
-          c=>c.id===d.classeId
-        );
+        const classe =
+          window.data.classes.find(
+            c=>c.id===d.classeId
+          );
 
 
-      box.innerHTML += `
+        const matiere =
+          window.data.matieres.find(
+            m=>m.id===d.matiereId
+          );
 
-        <div class="item">
 
-          <h3>
-            ${esc(d.titre)}
-          </h3>
+        return `
 
-          <p>
-            ${esc(d.description)}
-          </p>
+          <div class="item">
 
-          <p class="small">
-            📚 ${esc(matiere?.nom || "")}
-            |
-            🏫 ${esc(classe?.nom || "")}
-            |
-            📅 ${esc(d.date || "")}
-          </p>
+            <b>
+              📝 ${esc(d.titre)}
+            </b>
 
-          ${
-            window.profile.role==="admin"
-            ?
-            `<button class="btnDelete"
-              onclick="supprimer('devoirs','${d.id}')">
-              🗑️ Efase
-            </button>`
-            :
-            ""
-          }
+            <br>
 
-        </div>
+            🏫 Klas:
+            ${esc(
+              classe?.nom || "-"
+            )}
 
-      `;
+            <br>
 
-    }
-  );
+            📚 Matyè:
+            ${esc(
+              matiere?.nom || "-"
+            )}
+
+            <br>
+
+            📅 Dat:
+            ${esc(d.date || "-")}
+
+            <br><br>
+
+            ${esc(
+              d.description || ""
+            )}
+
+            ${
+              isAdmin()
+              ?
+              `
+              <div class="actions">
+
+                <button
+                  class="btnRed"
+                  onclick="supprimer('devoirs','${d.id}')"
+                >
+                  🗑️ Efase
+                </button>
+
+              </div>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
 
 }
 
 
-/* =========================
-   REMISES
-========================= */
+/* ================= AFFICHER REMIZ ================= */
 
 function afficherRemises(){
 
@@ -2406,7 +2897,8 @@ function afficherRemises(){
       "listeRemises"
     );
 
-  box.innerHTML="";
+
+  if(!box) return;
 
 
   let remises =
@@ -2414,17 +2906,32 @@ function afficherRemises(){
 
 
   if(
-    window.profile.role==="eleve"
+    isStudent()
   ){
 
     remises =
       remises.filter(
         r =>
-          r.eleveId===
+          r.eleveId ===
           window.profile.eleveId
       );
 
   }
+
+
+  if(remises.length===0){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen remiz pou montre.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML="";
 
 
   remises.forEach(
@@ -2434,6 +2941,7 @@ function afficherRemises(){
         window.data.eleves.find(
           e=>e.id===r.eleveId
         );
+
 
       const devoir =
         window.data.devoirs.find(
@@ -2457,20 +2965,752 @@ function afficherRemises(){
 
           <br>
 
-          Devwa:
-          ${esc(devoir?.titre || "")}
+          📝 Devwa:
+          ${esc(
+            devoir?.titre || ""
+          )}
 
           <br>
 
-          Estati:
-          <b>${esc(r.statut)}</b>
+          📌 Estati:
+          <b>
+            ${esc(
+              r.statut
+            )}
+          </b>
 
           <br>
 
-          Nòt:
-          <b>${r.note ?? "-"}</b>
+          📊 Nòt:
+          <b>
+            ${
+              r.note ?? "-"
+            }
+          </b>
 
           ${
-            window.profile.role==="admin"
+            isAdmin()
             ?
-            `<br>
+            `
+            <div class="actions">
+
+              <button
+                class="btnRed"
+                onclick="supprimer('remises','${r.id}')"
+              >
+                🗑️ Efase
+              </button>
+
+            </div>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* ================= REZILTA ================= */
+
+function afficherResultat(){
+
+  const box =
+    document.getElementById(
+      "listeResultats"
+    );
+
+
+  if(!box) return;
+
+
+  let eleves =
+    window.data.eleves;
+
+
+  if(isStudent()){
+
+    eleves =
+      eleves.filter(
+        e =>
+          e.id ===
+          window.profile.eleveId
+      );
+
+  }
+
+
+  if(eleves.length===0){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen rezilta pou montre.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    eleves.map(
+      e=>{
+
+        const remises =
+          window.data.remises.filter(
+            r=>r.eleveId===e.id
+          );
+
+
+        const notes =
+          remises
+            .filter(
+              r =>
+                r.note !== null
+                &&
+                r.note !== undefined
+            )
+            .map(
+              r=>Number(r.note)
+            );
+
+
+        const moyenne =
+          notes.length
+          ?
+          (
+            notes.reduce(
+              (a,b)=>a+b,
+              0
+            )
+            /
+            notes.length
+          ).toFixed(2)
+          :
+          "-";
+
+
+        return `
+
+          <div class="item">
+
+            <b>
+              ${esc(
+                e.prenom+" "+e.nom
+              )}
+            </b>
+
+            <br>
+
+            📚 Kantite nòt:
+            ${notes.length}
+
+            <br>
+
+            📊 Mwayèn:
+            <b>
+              ${moyenne}
+            </b>
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* ================= UTILIZATÈ ================= */
+
+function afficherUtilisateurs(){
+
+  const box =
+    document.getElementById(
+      "listeUtilisateurs"
+    );
+
+
+  if(!box) return;
+
+
+  if(!isAdmin()){
+
+    box.innerHTML="";
+
+    return;
+
+  }
+
+
+  if(
+    window.data.users.length===0
+  ){
+
+    box.innerHTML =
+      `<div class="empty">
+        Pa gen itilizatè.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    window.data.users.map(
+      u=>{
+
+        let badge =
+          "badgeAttente";
+
+
+        if(
+          u.role==="admin"
+        ){
+
+          badge="badgeAdmin";
+
+        }
+
+
+        if(
+          u.role==="professeur"
+        ){
+
+          badge="badgeProf";
+
+        }
+
+
+        if(
+          u.role==="eleve"
+        ){
+
+          badge="badgeEleve";
+
+        }
+
+
+        return `
+
+          <div class="item">
+
+            <b>
+              ${esc(
+                u.displayName
+                ||
+                u.email
+                ||
+                "Utilisateur"
+              )}
+            </b>
+
+            <br>
+
+            📧
+            ${esc(
+              u.email || "-"
+            )}
+
+            <br>
+
+            🔐 Wòl:
+
+            <span
+              class="badge ${badge}"
+            >
+              ${esc(
+                roleLabel(
+                  u.role
+                )
+              )}
+            </span>
+
+
+            ${
+              u.role==="attente"
+              ?
+              `
+
+              <div class="actions">
+
+                <button
+                  class="btnGreen"
+                  onclick="approuverUtilisateur('${u.id}','eleve')"
+                >
+                  👨‍🎓 Mete Elèv
+                </button>
+
+                <button
+                  class="btnOrange"
+                  onclick="approuverUtilisateur('${u.id}','professeur')"
+                >
+                  👨‍🏫 Mete Pwofesè
+                </button>
+
+              </div>
+
+              `
+              :
+              ""
+            }
+
+
+            ${
+              u.role!=="admin"
+              ?
+              `
+
+              <div class="actions">
+
+                <button
+                  class="btnRed"
+                  onclick="supprimerUtilisateur('${u.id}')"
+                >
+                  🗑️ Efase pwofil
+                </button>
+
+              </div>
+
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* ================= APWOUVE UTILIZATÈ ================= */
+
+window.approuverUtilisateur =
+async function(
+  uid,
+  role
+){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se Admin ki ka apwouve itilizatè."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const ref =
+      doc(db,"users",uid);
+
+
+    const snap =
+      await getDoc(ref);
+
+
+    if(!snap.exists()){
+
+      alert(
+        "Itilizatè sa a pa egziste."
+      );
+
+      return;
+
+    }
+
+
+    const old =
+      snap.data();
+
+
+    let update={
+
+      ...old,
+
+      role,
+
+      updatedAt:
+        new Date().toISOString()
+
+    };
+
+
+    if(role==="eleve"){
+
+      const id =
+        prompt(
+          "Mete ID elèv ki koresponn ak kont sa a.\n\n"
+          +
+          "Si ou poko gen ID a, kite li vid."
+        );
+
+
+      if(id){
+
+        update.eleveId=id;
+
+      }
+
+    }
+
+
+    await setDoc(
+      ref,
+      update
+    );
+
+
+    const index =
+      window.data.users.findIndex(
+        u=>u.id===uid
+      );
+
+
+    if(index>=0){
+
+      window.data.users[index]={
+        id:uid,
+        ...update
+      };
+
+    }
+
+
+    afficherUtilisateurs();
+
+
+    alert(
+      "Itilizatè a apwouve avèk siksè."
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Erè:\n\n"
+      + error.message
+    );
+
+  }
+
+};
+
+
+/* ================= DELETE USER PROFILE ================= */
+
+window.supprimerUtilisateur =
+async function(uid){
+
+  if(!isAdmin()){
+
+    alert(
+      "Se Admin ki ka efase itilizatè."
+    );
+
+    return;
+
+  }
+
+
+  if(uid===window.currentUser.uid){
+
+    alert(
+      "Ou pa ka efase pwòp kont Admin ou pandan ou konekte."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "Èske ou sèten ou vle efase pwofil itilizatè sa a?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(db,"users",uid)
+    );
+
+
+    window.data.users =
+      window.data.users.filter(
+        u=>u.id!==uid
+      );
+
+
+    afficherUtilisateurs();
+
+
+  }catch(error){
+
+    alert(
+      "Erè:\n\n"
+      + error.message
+    );
+
+  }
+
+};
+
+
+/* ================= DROPDOWN ================= */
+
+function remplirSelects(){
+
+  const classeOptions =
+    `<option value="">
+      Chwazi klas
+    </option>`
+    +
+    window.data.classes.map(
+      c=>
+        `<option value="${c.id}">
+          ${esc(c.nom)}
+        </option>`
+    ).join("");
+
+
+  const eleveClasse =
+    document.getElementById(
+      "eleveClasse"
+    );
+
+
+  const devoirClasse =
+    document.getElementById(
+      "devoirClasse"
+    );
+
+
+  if(eleveClasse){
+
+    eleveClasse.innerHTML =
+      classeOptions;
+
+  }
+
+
+  if(devoirClasse){
+
+    devoirClasse.innerHTML =
+      classeOptions;
+
+  }
+
+
+  const matiereOptions =
+    `<option value="">
+      Chwazi matyè
+    </option>`
+    +
+    window.data.matieres.map(
+      m=>
+        `<option value="${m.id}">
+          ${esc(m.nom)}
+        </option>`
+    ).join("");
+
+
+  const devoirMatiere =
+    document.getElementById(
+      "devoirMatiere"
+    );
+
+
+  if(devoirMatiere){
+
+    devoirMatiere.innerHTML =
+      matiereOptions;
+
+  }
+
+
+  const eleveOptions =
+    `<option value="">
+      Chwazi elèv
+    </option>`
+    +
+    window.data.eleves.map(
+      e=>
+        `<option value="${e.id}">
+          ${esc(
+            e.prenom+" "+e.nom
+          )}
+        </option>`
+    ).join("");
+
+
+  const remiseEleve =
+    document.getElementById(
+      "remiseEleve"
+    );
+
+
+  if(remiseEleve){
+
+    remiseEleve.innerHTML =
+      eleveOptions;
+
+  }
+
+
+  const devoirOptions =
+    `<option value="">
+      Chwazi devwa
+    </option>`
+    +
+    window.data.devoirs.map(
+      d=>
+        `<option value="${d.id}">
+          ${esc(d.titre)}
+        </option>`
+    ).join("");
+
+
+  const remiseDevoir =
+    document.getElementById(
+      "remiseDevoir"
+    );
+
+
+  if(remiseDevoir){
+
+    remiseDevoir.innerHTML =
+      devoirOptions;
+
+  }
+
+}
+
+
+/* ================= COUNTERS ================= */
+
+function actualiserCompteurs(){
+
+  document.getElementById(
+    "countEleves"
+  ).textContent =
+    window.data.eleves.length;
+
+
+  document.getElementById(
+    "countProfesseurs"
+  ).textContent =
+    window.data.professeurs.length;
+
+
+  document.getElementById(
+    "countClasses"
+  ).textContent =
+    window.data.classes.length;
+
+
+  document.getElementById(
+    "countMatieres"
+  ).textContent =
+    window.data.matieres.length;
+
+
+  document.getElementById(
+    "countDevoirs"
+  ).textContent =
+    window.data.devoirs.length;
+
+
+  document.getElementById(
+    "countRemises"
+  ).textContent =
+    window.data.remises.length;
+
+}
+
+
+/* ================= REFRESH EVERYTHING ================= */
+
+function actualiserTout(){
+
+  actualiserCompteurs();
+
+  remplirSelects();
+
+  afficherEleves();
+
+  afficherProfesseurs();
+
+  afficherClasses();
+
+  afficherMatieres();
+
+  afficherDevoirs();
+
+  afficherRemises();
+
+  afficherResultat();
+
+  if(isAdmin()){
+
+    afficherUtilisateurs();
+
+  }
+
+}
+
+
+/* ================= DECONNEXION ================= */
+
+window.deconnexion =
+async function(){
+
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    alert(
+      "Erè:\n\n"
+      + error.message
+    );
+
+  }
+
+};
+
+
+/* ================= START ================= */
+
+console.log(
+  "Sistèm Aprantisaj Firebase pare."
+);
+
+</script>
+
+</body>
+</html>
