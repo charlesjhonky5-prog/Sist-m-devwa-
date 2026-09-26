@@ -4662,6 +4662,19 @@ if (installBtn) {
   });
 }
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => {
+        console.log("Service Worker aktif");
+      })
+      .catch(error => {
+        console.error("Service Worker pa mache:", error);
+      });
+  });
+}
+</script>
 </body>
   <script>
 if ("serviceWorker" in navigator) {
